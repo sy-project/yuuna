@@ -1,6 +1,7 @@
 #pragma once
 class cSystem : public Singleton<cSystem>
 {
+	friend class Singleton;
 public:
 	bool Init(int _x, int _y, bool _fullscreen);
 	bool Update();
@@ -9,8 +10,6 @@ public:
 	void PostRender();
 
 private:
-	struct nk_context* ctx;
-	struct nk_colorf bg;
 
 private:
 	cSystem();

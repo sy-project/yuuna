@@ -15,7 +15,7 @@ Device::~Device()
 	renderTargetView->Release();
 }
 
-void Device::CreateDeviceAndSwapChain(int WIN_X, int WIN_Y, HWND hWnd)
+void Device::CreateDeviceAndSwapChain(int WIN_X, int WIN_Y, HWND& hWnd)
 {
 	UINT width = WIN_X;
 	UINT height = WIN_Y;

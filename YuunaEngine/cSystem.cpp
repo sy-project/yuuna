@@ -1,5 +1,10 @@
 #include "header.h"
 #include "cSystem.h"
+#include "../nuklear/nuklear.h"
+#include "nuklear_d3d11.h"
+
+struct nk_context* ctx;
+struct nk_colorf bg;
 
 static LRESULT CALLBACK
 WindowProc(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam)
@@ -37,7 +42,7 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
 	wc.style = CS_DBLCLKS;
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = GetModuleHandleW(0);
-    wc.hIcon = LoadIcon(NULL, /*LPCWSTR(WINNAME)*/IDI_APPLICATION);
+    wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.lpszClassName = WINNAME;
     RegisterClassW(&wc);
@@ -77,6 +82,7 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
 /*set_style(ctx, THEME_BLUE);*/
 /*set_style(ctx, THEME_DARK);*/
 #endif
+    bg.r = 0.10f, bg.g = 0.18f, bg.b = 0.24f, bg.a = 1.0f;
 	return true;
 }
 
@@ -152,5 +158,4 @@ cSystem::cSystem()
 cSystem::~cSystem()
 {
     nk_d3d11_shutdown();
-    Device::Delete();
 }

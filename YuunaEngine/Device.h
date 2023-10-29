@@ -21,7 +21,7 @@ private:
 	ID3D11DepthStencilView* depthStencilView;
 
 public:
-	void CreateDeviceAndSwapChain(int WIN_X, int WIN_Y, HWND hWnd);
+	void CreateDeviceAndSwapChain(int WIN_X, int WIN_Y, HWND& hWnd);
 	void CreateBackBuffer(int WIN_X, int WIN_Y);
 	void SetRenderTarget();
 	void Clear(Float4 color = Float4(0.1f, 0.1f, 0.125f, 1.0f));

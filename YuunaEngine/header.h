@@ -1,5 +1,7 @@
 #pragma once
-
+#define COBJMACROS
+#define WIN32_LEAN_AND_MEAN
+#define _CRT_SECURE_NO_WARNINGS
 #include <framework.h>
 #include <d3d11.h>
 #include <stdio.h>
@@ -61,8 +63,10 @@ const XMVECTORF32 kRight = { 1,0,0 };
 const XMVECTORF32 kUp = { 0,1,0 };
 const XMVECTORF32 kForward = { 0,0,1 };
 
-#include "Device.h"
-#include <nuklear.h>
-#include "nuklear_d3d11.h"
+#include <Singleton.h>
 
-static HWND g_hWnd;
+#include "Device.h"
+#include "cSystem.h"
+
+extern HWND g_hWnd;
+extern HINSTANCE g_hInstance;

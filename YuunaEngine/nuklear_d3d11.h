@@ -86,20 +86,17 @@ nk_d3d11_render(ID3D11DeviceContext *context, enum nk_anti_aliasing AA)
     const UINT stride = sizeof(struct nk_d3d11_vertex);
     const UINT offset = 0;
 
-    ID3D11DeviceContext_IASetInputLayout(context, d3d11.input_layout);
-    ID3D11DeviceContext_IASetVertexBuffers(context, 0, 1, &d3d11.vertex_buffer, &stride, &offset);
-    ID3D11DeviceContext_IASetIndexBuffer(context, d3d11.index_buffer, DXGI_FORMAT_R16_UINT, 0);
-    ID3D11DeviceContext_IASetPrimitiveTopology(context, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-    ID3D11DeviceContext_VSSetShader(context, d3d11.vertex_shader, NULL, 0);
-    ID3D11DeviceContext_VSSetConstantBuffers(context, 0, 1, &d3d11.const_buffer);
-
-    ID3D11DeviceContext_PSSetShader(context, d3d11.pixel_shader, NULL, 0);
-    ID3D11DeviceContext_PSSetSamplers(context, 0, 1, &d3d11.sampler_state);
-
-    ID3D11DeviceContext_OMSetBlendState(context, d3d11.blend_state, blend_factor, 0xffffffff);
-    ID3D11DeviceContext_RSSetState(context, d3d11.rasterizer_state);
-    ID3D11DeviceContext_RSSetViewports(context, 1, &d3d11.viewport);
+    context->IASetInputLayout(d3d11.input_layout);
+    context->IASetVertexBuffers(0, 1, &d3d11.vertex_buffer, &stride, &offset);
+    context->IASetIndexBuffer(d3d11.index_buffer, DXGI_FORMAT_R16_UINT, 0);
+    context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    context->VSSetShader(d3d11.vertex_shader, NULL, 0);
+    context->VSSetConstantBuffers(0, 1, &d3d11.const_buffer);
+    context->PSSetShader(d3d11.pixel_shader, NULL, 0);
+    context->PSSetSamplers(0, 1, &d3d11.sampler_state);
+    context->OMSetBlendState(d3d11.blend_state, blend_factor, 0xffffffff);
+    context->RSSetState(d3d11.rasterizer_state);
+    context->RSSetViewports(1, &d3d11.viewport);
 
     /* Convert from command queue into draw list and draw to screen */
     {/* load draw vertices & elements directly into vertex + element buffer */
@@ -109,9 +106,9 @@ nk_d3d11_render(ID3D11DeviceContext *context, enum nk_anti_aliasing AA)
     UINT offset = 0;
     HRESULT hr;
 
-    hr = ID3D11DeviceContext_Map(context, (ID3D11Resource *)d3d11.vertex_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &vertices);
+    hr = context->Map((ID3D11Resource *)d3d11.vertex_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &vertices);
     NK_ASSERT(SUCCEEDED(hr));
-    hr = ID3D11DeviceContext_Map(context, (ID3D11Resource *)d3d11.index_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &indices);
+    hr = context->Map((ID3D11Resource *)d3d11.index_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &indices);
     NK_ASSERT(SUCCEEDED(hr));
 
     {/* fill converting configuration */
@@ -141,8 +138,8 @@ nk_d3d11_render(ID3D11DeviceContext *context, enum nk_anti_aliasing AA)
         nk_convert(&d3d11.ctx, &d3d11.cmds, &vbuf, &ibuf, &config);}
     }
 
-    ID3D11DeviceContext_Unmap(context, (ID3D11Resource *)d3d11.vertex_buffer, 0);
-    ID3D11DeviceContext_Unmap(context, (ID3D11Resource *)d3d11.index_buffer, 0);
+    context->Unmap((ID3D11Resource *)d3d11.vertex_buffer, 0);
+    context->Unmap((ID3D11Resource *)d3d11.index_buffer, 0);
 
     /* iterate over and execute each draw command */
     nk_draw_foreach(cmd, &d3d11.ctx, &d3d11.cmds)
@@ -156,9 +153,9 @@ nk_d3d11_render(ID3D11DeviceContext *context, enum nk_anti_aliasing AA)
         scissor.top = (LONG)cmd->clip_rect.y;
         scissor.bottom = (LONG)(cmd->clip_rect.y + cmd->clip_rect.h);
 
-        ID3D11DeviceContext_PSSetShaderResources(context, 0, 1, &texture_view);
-        ID3D11DeviceContext_RSSetScissorRects(context, 1, &scissor);
-        ID3D11DeviceContext_DrawIndexed(context, (UINT)cmd->elem_count, offset, 0);
+        context->PSSetShaderResources(0, 1, &texture_view);
+        context->RSSetScissorRects(1, &scissor);
+        context->DrawIndexed((UINT)cmd->elem_count, offset, 0);
         offset += cmd->elem_count;
     }
     nk_clear(&d3d11.ctx);}
@@ -185,10 +182,10 @@ NK_API void
 nk_d3d11_resize(ID3D11DeviceContext *context, int width, int height)
 {
     D3D11_MAPPED_SUBRESOURCE mapped;
-    if (SUCCEEDED(ID3D11DeviceContext_Map(context, (ID3D11Resource *)d3d11.const_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped)))
+    if (SUCCEEDED(context->Map((ID3D11Resource *)d3d11.const_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped)))
     {
         nk_d3d11_get_projection_matrix(width, height, (float *)mapped.pData);
-        ID3D11DeviceContext_Unmap(context, (ID3D11Resource *)d3d11.const_buffer, 0);
+        context->Unmap((ID3D11Resource *)d3d11.const_buffer, 0);
 
         d3d11.viewport.Width = (float)width;
         d3d11.viewport.Height = (float)height;
@@ -424,7 +421,7 @@ nk_d3d11_init(ID3D11Device *device, int width, int height, unsigned int max_vert
     d3d11.max_vertex_buffer = max_vertex_buffer;
     d3d11.max_index_buffer = max_index_buffer;
     d3d11.device = device;
-    ID3D11Device_AddRef(device);
+    device->AddRef();
 
     nk_init_default(&d3d11.ctx, 0);
     d3d11.ctx.clip.copy = nk_d3d11_clipboard_copy;
@@ -446,11 +443,12 @@ nk_d3d11_init(ID3D11Device *device, int width, int height, unsigned int max_vert
     desc.ScissorEnable = TRUE;
     desc.MultisampleEnable = FALSE;
     desc.AntialiasedLineEnable = FALSE;
-    hr = ID3D11Device_CreateRasterizerState(device,&desc, &d3d11.rasterizer_state);
+    
+    hr = device->CreateRasterizerState(&desc, &d3d11.rasterizer_state);
     NK_ASSERT(SUCCEEDED(hr));}
 
     /* vertex shader */
-    {hr = ID3D11Device_CreateVertexShader(device,nk_d3d11_vertex_shader, sizeof(nk_d3d11_vertex_shader), NULL, &d3d11.vertex_shader);
+    {hr = device->CreateVertexShader(nk_d3d11_vertex_shader, sizeof(nk_d3d11_vertex_shader), NULL, &d3d11.vertex_shader);
     NK_ASSERT(SUCCEEDED(hr));}
 
     /* input layout */
@@ -459,7 +457,7 @@ nk_d3d11_init(ID3D11Device *device, int width, int height, unsigned int max_vert
         { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,       0, offsetof(struct nk_d3d11_vertex, uv),       D3D11_INPUT_PER_VERTEX_DATA, 0 },
         { "COLOR",    0, DXGI_FORMAT_R8G8B8A8_UNORM,     0, offsetof(struct nk_d3d11_vertex, col),      D3D11_INPUT_PER_VERTEX_DATA, 0 },
     };
-    hr = ID3D11Device_CreateInputLayout(device,layout, ARRAYSIZE(layout), nk_d3d11_vertex_shader, sizeof(nk_d3d11_vertex_shader), &d3d11.input_layout);
+    hr = device->CreateInputLayout(layout, ARRAYSIZE(layout), nk_d3d11_vertex_shader, sizeof(nk_d3d11_vertex_shader), &d3d11.input_layout);
     NK_ASSERT(SUCCEEDED(hr));}
 
     /* constant buffer */
@@ -478,11 +476,11 @@ nk_d3d11_init(ID3D11Device *device, int width, int height, unsigned int max_vert
     data.SysMemSlicePitch = 0;
 
     nk_d3d11_get_projection_matrix(width, height, matrix);
-    hr = ID3D11Device_CreateBuffer(device, &desc, &data, &d3d11.const_buffer);
+    hr = device->CreateBuffer(&desc, &data, &d3d11.const_buffer);
     NK_ASSERT(SUCCEEDED(hr));}}
 
     /* pixel shader */
-    {hr = ID3D11Device_CreatePixelShader(device, nk_d3d11_pixel_shader, sizeof(nk_d3d11_pixel_shader), NULL, &d3d11.pixel_shader);
+    {hr = device->CreatePixelShader(nk_d3d11_pixel_shader, sizeof(nk_d3d11_pixel_shader), NULL, &d3d11.pixel_shader);
     NK_ASSERT(SUCCEEDED(hr));}
 
     {/* blend state */
@@ -497,7 +495,7 @@ nk_d3d11_init(ID3D11Device *device, int width, int height, unsigned int max_vert
     desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
     desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
     desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-    hr = ID3D11Device_CreateBlendState(device, &desc, &d3d11.blend_state);
+    hr = device->CreateBlendState(&desc, &d3d11.blend_state);
     NK_ASSERT(SUCCEEDED(hr));}
 
     /* vertex buffer */
@@ -508,7 +506,7 @@ nk_d3d11_init(ID3D11Device *device, int width, int height, unsigned int max_vert
     desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
     desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
     desc.MiscFlags = 0;
-    hr = ID3D11Device_CreateBuffer(device, &desc, NULL, &d3d11.vertex_buffer);
+    hr = device->CreateBuffer(&desc, NULL, &d3d11.vertex_buffer);
     NK_ASSERT(SUCCEEDED(hr));}
 
     /* index buffer */
@@ -518,7 +516,7 @@ nk_d3d11_init(ID3D11Device *device, int width, int height, unsigned int max_vert
     desc.ByteWidth = max_index_buffer;
     desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
     desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-    hr = ID3D11Device_CreateBuffer(device, &desc, NULL, &d3d11.index_buffer);
+    hr = device->CreateBuffer(&desc, NULL, &d3d11.index_buffer);
     NK_ASSERT(SUCCEEDED(hr));}
 
     /* sampler state */
@@ -532,7 +530,7 @@ nk_d3d11_init(ID3D11Device *device, int width, int height, unsigned int max_vert
     desc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
     desc.MinLOD = 0.0f;
     desc.MaxLOD = FLT_MAX;
-    hr = ID3D11Device_CreateSamplerState(device, &desc, &d3d11.sampler_state);
+    hr = device->CreateSamplerState(&desc, &d3d11.sampler_state);
     NK_ASSERT(SUCCEEDED(hr));}
 
     /* viewport */
@@ -580,7 +578,7 @@ nk_d3d11_font_stash_end(void)
     data.pSysMem = image;
     data.SysMemPitch = (UINT)(w * 4);
     data.SysMemSlicePitch = 0;
-    hr = ID3D11Device_CreateTexture2D(d3d11.device, &desc, &data, &font_texture);
+    hr = d3d11.device->CreateTexture2D(&desc, &data, &font_texture);
     assert(SUCCEEDED(hr));}
 
     {D3D11_SHADER_RESOURCE_VIEW_DESC srv;
@@ -589,9 +587,9 @@ nk_d3d11_font_stash_end(void)
     srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
     srv.Texture2D.MipLevels = 1;
     srv.Texture2D.MostDetailedMip = 0;
-    hr = ID3D11Device_CreateShaderResourceView(d3d11.device, (ID3D11Resource *)font_texture, &srv, &d3d11.font_texture_view);
+    hr = d3d11.device->CreateShaderResourceView((ID3D11Resource *)font_texture, &srv, &d3d11.font_texture_view);
     assert(SUCCEEDED(hr));}
-    ID3D11Texture2D_Release(font_texture);}
+    font_texture->Release();}
 
     nk_font_atlas_end(&d3d11.atlas, nk_handle_ptr(d3d11.font_texture_view), &d3d11.null);
     if (d3d11.atlas.default_font)
@@ -605,17 +603,17 @@ void nk_d3d11_shutdown(void)
     nk_buffer_free(&d3d11.cmds);
     nk_free(&d3d11.ctx);
 
-    ID3D11SamplerState_Release(d3d11.sampler_state);
-    ID3D11ShaderResourceView_Release(d3d11.font_texture_view);
-    ID3D11Buffer_Release(d3d11.vertex_buffer);
-    ID3D11Buffer_Release(d3d11.index_buffer);
-    ID3D11BlendState_Release(d3d11.blend_state);
-    ID3D11PixelShader_Release(d3d11.pixel_shader);
-    ID3D11Buffer_Release(d3d11.const_buffer);
-    ID3D11VertexShader_Release(d3d11.vertex_shader);
-    ID3D11InputLayout_Release(d3d11.input_layout);
-    ID3D11RasterizerState_Release(d3d11.rasterizer_state);
-    ID3D11Device_Release(d3d11.device);
+    d3d11.sampler_state->Release();
+    d3d11.font_texture_view->Release();
+    d3d11.vertex_buffer->Release();
+    d3d11.index_buffer->Release();
+    d3d11.blend_state->Release();
+    d3d11.pixel_shader->Release();
+    d3d11.const_buffer->Release();
+    d3d11.vertex_shader->Release();
+    d3d11.input_layout->Release();
+    d3d11.rasterizer_state->Release();
+    d3d11.device->Release();
 }
 
 #endif
