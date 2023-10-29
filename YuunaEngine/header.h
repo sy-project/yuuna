@@ -69,4 +69,3 @@ const XMVECTORF32 kForward = { 0,0,1 };
 #include "cSystem.h"
 
 extern HWND g_hWnd;
-extern HINSTANCE g_hInstance;
