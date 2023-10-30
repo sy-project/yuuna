@@ -34,19 +34,24 @@ WindowProc(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam)
 
 bool cSystem::Init(int _x, int _y, bool _fullscreen)
 {
-	WNDCLASSW wc;
+	WNDCLASSEXW wc;
+    auto e = GetLastError();
 	RECT rect = { 0,0,_x,_y };
 	DWORD style = WS_OVERLAPPED;
 	DWORD exstyle = WS_EX_APPWINDOW;
 	memset(&wc, 0, sizeof(wc));
+    e = GetLastError();
 	wc.style = CS_DBLCLKS;
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = GetModuleHandleW(0);
     wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.lpszClassName = WINNAME;
-    RegisterClassW(&wc);
+    wc.cbSize = sizeof(WNDCLASSEXW);
+    e = GetLastError();
+    RegisterClassExW(&wc);
     AdjustWindowRectEx(&rect, style, FALSE, exstyle);
+    e = GetLastError();
 
     g_hWnd = CreateWindowExW(exstyle,
         wc.lpszClassName,
@@ -60,6 +65,12 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
         NULL,
         wc.hInstance,
         NULL);
+    e = GetLastError();
+
+    if (!g_hWnd)
+    {
+        return false;
+    }
 
     Device::Get()->CreateDeviceAndSwapChain(_x, _y, g_hWnd);
     Device::Get()->CreateBackBuffer(_x, _y);
