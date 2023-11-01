@@ -45,6 +45,12 @@
     <ClCompile Include="..\imgui\imgui_widgets.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -63,6 +69,12 @@
       <Filter>imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\imgui\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_dx11.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_win32.h">
       <Filter>imgui</Filter>
     </ClInclude>
   </ItemGroup>
