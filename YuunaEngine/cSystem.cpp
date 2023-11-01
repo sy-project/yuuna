@@ -63,6 +63,9 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
         return false;
     }
 
+    Device::Get()->CreateDeviceAndSwapChain(_x, _y, g_hWnd);
+    Device::Get()->CreateBackBuffer(_x, _y);
+
     IMGUI_CHECKVERSION();
 
     ImGui::CreateContext();
@@ -86,8 +89,6 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
 
     clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
     show_demo_window = true;
-    Device::Get()->CreateDeviceAndSwapChain(_x, _y, g_hWnd);
-    Device::Get()->CreateBackBuffer(_x, _y);
 	return true;
 }
 
