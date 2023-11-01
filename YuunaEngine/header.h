@@ -1,5 +1,4 @@
 #pragma once
-#define COBJMACROS
 #define WIN32_LEAN_AND_MEAN
 #define _CRT_SECURE_NO_WARNINGS
 #include <framework.h>
@@ -35,19 +34,6 @@
 #define V(hr) assert(SUCCEEDED(hr))
 #endif
 
-#define MAX_VERTEX_BUFFER 512 * 1024
-#define MAX_INDEX_BUFFER 128 * 1024
-
-#define NK_INCLUDE_FIXED_TYPES
-#define NK_INCLUDE_STANDARD_IO
-#define NK_INCLUDE_STANDARD_VARARGS
-#define NK_INCLUDE_DEFAULT_ALLOCATOR
-#define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
-#define NK_INCLUDE_FONT_BAKING
-#define NK_INCLUDE_DEFAULT_FONT
-#define NK_IMPLEMENTATION
-#define NK_D3D11_IMPLEMENTATION
-
 using namespace DirectX;
 using namespace std;
 using namespace DirectX::TriangleTests;
@@ -64,6 +50,10 @@ const XMVECTORF32 kUp = { 0,1,0 };
 const XMVECTORF32 kForward = { 0,0,1 };
 
 #include <Singleton.h>
+
+#include <imgui.h>
+#include <backends/imgui_impl_win32.h>
+#include <backends/imgui_impl_dx11.h>
 
 #include "Device.h"
 #include "cSystem.h"
