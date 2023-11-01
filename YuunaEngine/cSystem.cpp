@@ -10,6 +10,15 @@ WindowProc(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam)
 
     switch (msg)
     {
+    case WM_MOUSEMOVE:
+        cControl::Get()->SetMouse(lparam);
+        break;
+    case WM_MOUSEWHEEL:
+    {
+        short value = (short)HIWORD(wparam);
+        cControl::Get()->SetWheel((float)value);
+    }
+        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         return 0;
@@ -94,6 +103,9 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
 
 bool cSystem::Update()
 {
+    cControl::Get()->Update();
+    cTimer::Get()->Update();
+    cControl::Get()->SetWheel(0.0f);
     MSG msg;
     while (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE))
     {
@@ -132,10 +144,14 @@ void cSystem::PostRender()
 
 cSystem::cSystem()
 {
+    cControl::Get();
+    cTimer::Get();
 }
 
 cSystem::~cSystem()
 {
+    cControl::Delete();
+    cTimer::Delete();
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();

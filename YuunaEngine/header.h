@@ -49,13 +49,16 @@ const XMVECTORF32 kRight = { 1,0,0 };
 const XMVECTORF32 kUp = { 0,1,0 };
 const XMVECTORF32 kForward = { 0,0,1 };
 
-#include <Singleton.h>
-
 #include <imgui.h>
 #include <backends/imgui_impl_win32.h>
 #include <backends/imgui_impl_dx11.h>
 
+#include "cControl.h"
+#include "cTimer.h"
+
 #include "Device.h"
 #include "cSystem.h"
+
+#include "cVector3.h"
 
 extern HWND g_hWnd;

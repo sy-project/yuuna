@@ -168,7 +168,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../YuunaEngine/header.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="cControl.cpp" />
     <ClCompile Include="cSystem.cpp" />
+    <ClCompile Include="cTimer.cpp" />
+    <ClCompile Include="cVector3.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="header.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -184,7 +187,10 @@
     <ClInclude Include="..\imgui\imconfig.h" />
     <ClInclude Include="..\imgui\imgui.h" />
     <ClInclude Include="..\imgui\imgui_internal.h" />
+    <ClInclude Include="cControl.h" />
     <ClInclude Include="cSystem.h" />
+    <ClInclude Include="cTimer.h" />
+    <ClInclude Include="cVector3.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="header.h" />
   </ItemGroup>

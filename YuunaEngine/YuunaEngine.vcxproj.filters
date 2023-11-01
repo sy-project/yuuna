@@ -16,6 +16,18 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{0db50d39-06c1-4fd2-8490-cab82d2f954e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{0048dc5a-4cf6-4910-8bc3-fa6a0eafa195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Vector">
+      <UniqueIdentifier>{23d65ba9-8d9a-4dec-9712-57c25e14716a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{2a8e14f7-b4ef-45ec-905f-2a4dc39b2b1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Control">
+      <UniqueIdentifier>{a571d662-af63-40bc-a8f6-45653cf37255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +63,15 @@
     <ClCompile Include="..\imgui\backends\imgui_impl_win32.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="cTimer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cVector3.cpp">
+      <Filter>Math\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="cControl.cpp">
+      <Filter>Utility\Control</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -76,6 +97,15 @@
     </ClInclude>
     <ClInclude Include="..\imgui\backends\imgui_impl_win32.h">
       <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="cTimer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="cVector3.h">
+      <Filter>Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="cControl.h">
+      <Filter>Utility\Control</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
