@@ -23,6 +23,15 @@
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dwrite.lib")
 
+#include <DirectXTex.h>
+
+#pragma comment(lib, "DirectXTex.lib")
+
+#define LERP(s, e, t) s + (e - s) * t
+#define MAX_BONE 500
+#define MAX_FRAME_KEY 600
+#define MAX_INSTANCE 400
+
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 #define FULLSCREEN false
@@ -53,12 +62,44 @@ const XMVECTORF32 kForward = { 0,0,1 };
 #include <backends/imgui_impl_win32.h>
 #include <backends/imgui_impl_dx11.h>
 
+#include "Utility.h"
 #include "cControl.h"
 #include "cTimer.h"
 
 #include "Device.h"
 #include "cSystem.h"
 
+//Shader
+#include "Shader.h"
+#include "VertexShader.h"
+#include "HullShader.h"
+#include "DomainShader.h"
+#include "GeometryShader.h"
+#include "PixelShader.h"
+#include "ComputeShader.h"
+
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "ConstBuffer.h"
+#include "VertexLayouts.h"
+#include "GlobalBuffers.h"
+
+#include "Mesh.h"
+#include "Texture.h"
+#include "Material.h"
+
+#include "Transform.h"
 #include "cVector3.h"
+#include "Math.h"
+
+#include "Collider.h"
+#include "BoxCollider.h"
+#include "SphereCollider.h"
+#include "CapsuleCollider.h"
+
+#include "SamplerState.h"
+
+#include "Camera.h"
+#include "Environment.h"
 
 extern HWND g_hWnd;

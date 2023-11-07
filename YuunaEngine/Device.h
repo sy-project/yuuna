@@ -1,10 +1,5 @@
 #pragma once
 
-#ifdef COMMON_EXPORTS
-#define DEVICE_DECLSPEC __declspec(dllexport)
-#else
-#define DEVICE_DECLSPEC __declspec(dllimport)
-#endif
 
 class Device : public Singleton<Device> {
 private:

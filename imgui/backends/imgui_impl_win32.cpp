@@ -364,7 +364,7 @@ static void ImGui_ImplWin32_UpdateGamepads()
     //    return;
 
     // Calling XInputGetState() every frame on disconnected gamepads is unfortunately too slow.
-    // Instead we refresh gamepad availability by calling XInputGetCapabilities() _only_ after receiving WM_DEVICECHANGE.
+    // Instead we refresh gamepad availability by calling XInputGetCapabilities() _only_ after receiving WM_Device::Get()->GetDevice()CHANGE.
     if (bd->WantUpdateHasGamepad)
     {
         XINPUT_CAPABILITIES caps = {};

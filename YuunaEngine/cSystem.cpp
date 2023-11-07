@@ -74,6 +74,7 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
 
     Device::Get()->CreateDeviceAndSwapChain(_x, _y, g_hWnd);
     Device::Get()->CreateBackBuffer(_x, _y);
+    Environment::Get();
 
     IMGUI_CHECKVERSION();
 
@@ -105,6 +106,7 @@ bool cSystem::Update()
 {
     cControl::Get()->Update();
     cTimer::Get()->Update();
+    Environment::Get()->GetMainCamera()->Update();
     cControl::Get()->SetWheel(0.0f);
     MSG msg;
     while (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE))
@@ -119,23 +121,26 @@ bool cSystem::Update()
 
 void cSystem::PreRender()
 {
-    ImGui_ImplDX11_NewFrame();
-    ImGui_ImplWin32_NewFrame();
-    ImGui::NewFrame();
-    ImGui::ShowDemoWindow(&show_demo_window);
-    ImGui::Render();
+    Environment::Get()->Set();
     Device::Get()->Clear();
 }
 
 void cSystem::Render()
 {
     PreRender();
+    Environment::Get()->Set();
 
     PostRender();
 }
 
 void cSystem::PostRender()
 {
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
+    //ImGui::ShowDemoWindow(&show_demo_window);
+    Environment::Get()->PostRender();
+    ImGui::Render();
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     ImGui::UpdatePlatformWindows();
     ImGui::RenderPlatformWindowsDefault();
@@ -152,7 +157,11 @@ cSystem::~cSystem()
 {
     cControl::Delete();
     cTimer::Delete();
+    Environment::Delete();
+    Texture::Delete();
+    Shader::Delete();
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
+    Device::Delete();
 }

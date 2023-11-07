@@ -70,6 +70,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>$(SolutionDir)..\DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>$(SolutionDir)..\DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -104,7 +110,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Core;$(SolutionDir)..\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Core;$(SolutionDir)..\imgui;%(AdditionalIncludeDirectories);$(SolutionDir)..\DirectXTex-main\DirectXTex;$(SolutionDir)..\DirectXTex-main\DirectXTex</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>header.h</PrecompiledHeaderFile>
@@ -123,7 +129,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Core;$(SolutionDir)..\nuklear;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Core;$(SolutionDir)..\nuklear;%(AdditionalIncludeDirectories);$(SolutionDir)..\DirectXTex-main\DirectXTex</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>header.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -168,18 +174,41 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../YuunaEngine/header.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CapsuleCollider.cpp" />
     <ClCompile Include="cControl.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="ComputeShader.cpp" />
+    <ClCompile Include="ConstBuffer.cpp" />
     <ClCompile Include="cSystem.cpp" />
     <ClCompile Include="cTimer.cpp" />
     <ClCompile Include="cVector3.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="DomainShader.cpp" />
+    <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="GeometryShader.cpp" />
     <ClCompile Include="header.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">header.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">header.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="HullShader.cpp" />
+    <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="SamplerState.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\imgui\backends\imgui_impl_dx11.h" />
@@ -187,12 +216,37 @@
     <ClInclude Include="..\imgui\imconfig.h" />
     <ClInclude Include="..\imgui\imgui.h" />
     <ClInclude Include="..\imgui\imgui_internal.h" />
+    <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CapsuleCollider.h" />
     <ClInclude Include="cControl.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="ComputeShader.h" />
+    <ClInclude Include="ConstBuffer.h" />
     <ClInclude Include="cSystem.h" />
     <ClInclude Include="cTimer.h" />
     <ClInclude Include="cVector3.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="DomainShader.h" />
+    <ClInclude Include="Environment.h" />
+    <ClInclude Include="GeometryShader.h" />
+    <ClInclude Include="GlobalBuffers.h" />
     <ClInclude Include="header.h" />
+    <ClInclude Include="HullShader.h" />
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="PixelShader.h" />
+    <ClInclude Include="SamplerState.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="SphereCollider.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="VertexLayouts.h" />
+    <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\imgui\misc\debuggers\imgui.natstepfilter" />
