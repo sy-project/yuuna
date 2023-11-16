@@ -3,7 +3,7 @@ class ImGuiManager : public Singleton<ImGuiManager>
 {
 	friend class Singleton;
 public:
-	void OpenImGuiWindow(std::string _name);
+	bool OpenImGuiWindow(std::string _name, int viewport_x = 650, int viewport_y = 20);
 	void NewFrame();
 	void Render();
 

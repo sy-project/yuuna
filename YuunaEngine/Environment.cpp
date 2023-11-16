@@ -22,7 +22,6 @@ Environment::~Environment()
 	delete samplerState;	
 }
 
-bool a = true;
 void Environment::PostRender()
 {
 	mainCamera->PostRender();

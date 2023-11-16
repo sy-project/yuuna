@@ -113,9 +113,11 @@ void cSystem::Render()
 void cSystem::PostRender()
 {
     ImGuiManager::Get()->NewFrame();
-    ImGuiManager::Get()->OpenImGuiWindow("Test");
-    ImGui::Text("Test");
-    ImGui::End();
+    if (ImGuiManager::Get()->OpenImGuiWindow("Test"))
+    {
+        ImGui::Text("Test");
+        ImGui::End();
+    }
     Environment::Get()->PostRender();
     ImGuiManager::Get()->Render();
     Device::Get()->Present();

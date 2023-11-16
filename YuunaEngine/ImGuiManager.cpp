@@ -1,15 +1,18 @@
 #include "header.h"
 
-void ImGuiManager::OpenImGuiWindow(std::string _name)
+bool ImGuiManager::OpenImGuiWindow(std::string _name, int viewport_x, int viewport_y)
 {
     IM_ASSERT(ImGui::GetCurrentContext() != NULL && "Missing Dear ImGui context. Refer to examples app!");
     const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
-    ImGui::SetNextWindowPos(ImVec2(main_viewport->WorkPos.x + 650, main_viewport->WorkPos.y + 20), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowPos(ImVec2(main_viewport->WorkPos.x + viewport_x, main_viewport->WorkPos.y + viewport_y), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver);
     ImGuiWindowFlags window_flags = 0;
     window_flags |= ImGuiWindowFlags_MenuBar;
-    ImGui::Begin(_name.c_str());
+
+    if (!ImGui::Begin(_name.c_str()))
+        return false;
     ImGui::IsWindowAppearing();
+    return true;
 }
 
 void ImGuiManager::NewFrame()
