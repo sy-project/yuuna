@@ -67,6 +67,7 @@ const XMVECTORF32 kForward = { 0,0,1 };
 #include "cTimer.h"
 
 #include "Device.h"
+#include "ImGuiManager.h"
 #include "cSystem.h"
 
 //Shader

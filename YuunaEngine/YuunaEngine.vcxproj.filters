@@ -231,6 +231,9 @@
     <ClCompile Include="cTimer.cpp">
       <Filter>Utility\Timer</Filter>
     </ClCompile>
+    <ClCompile Include="ImGuiManager.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="cTimer.h">
       <Filter>Utility\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiManager.h">
+      <Filter>imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

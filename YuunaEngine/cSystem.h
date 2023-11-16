@@ -10,8 +10,6 @@ public:
 	void PostRender();
 
 private:
-	ImVec4 clear_color;
-	bool show_demo_window;
 
 private:
 	cSystem();

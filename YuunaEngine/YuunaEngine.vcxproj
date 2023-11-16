@@ -195,6 +195,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">header.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="HullShader.cpp" />
+    <ClCompile Include="ImGuiManager.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="GlobalBuffers.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="HullShader.h" />
+    <ClInclude Include="ImGuiManager.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Math.h" />

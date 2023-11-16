@@ -128,8 +128,7 @@ void Camera::View()
 
 void Camera::PostRender()
 {
-	ImGui::Begin("Camera");
-	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
+	ImGuiManager::Get()->OpenImGuiWindow("Camera");
 	ImGui::Text("CameraInfo");
 	ImGui::Text("CamPos : %.1f, %.1f, %.1f", position.x, position.y, position.z);
 	ImGui::Text("CamRot : %.1f, %.1f, %.1f", rotation.x, rotation.y, rotation.z);

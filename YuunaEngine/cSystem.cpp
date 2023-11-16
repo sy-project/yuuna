@@ -75,31 +75,8 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
     Device::Get()->CreateDeviceAndSwapChain(_x, _y, g_hWnd);
     Device::Get()->CreateBackBuffer(_x, _y);
     Environment::Get();
-
-    IMGUI_CHECKVERSION();
-
-    ImGui::CreateContext();
-
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-
-    ImGui::StyleColorsDark();
-
-    ImGuiStyle& imgui_style = ImGui::GetStyle();
-    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-    {
-        imgui_style.WindowRounding = 0.0f;
-        imgui_style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-    }
-
-    ImGui_ImplWin32_Init(g_hWnd);
-    ImGui_ImplDX11_Init(Device::Get()->GetDevice(), Device::Get()->GetDeviceContext());
-
-    clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-    show_demo_window = true;
-	return true;
+    ImGuiManager::Get();
+    return true;
 }
 
 bool cSystem::Update()
@@ -135,15 +112,12 @@ void cSystem::Render()
 
 void cSystem::PostRender()
 {
-    ImGui_ImplDX11_NewFrame();
-    ImGui_ImplWin32_NewFrame();
-    ImGui::NewFrame();
-    //ImGui::ShowDemoWindow(&show_demo_window);
+    ImGuiManager::Get()->NewFrame();
+    ImGuiManager::Get()->OpenImGuiWindow("Test");
+    ImGui::Text("Test");
+    ImGui::End();
     Environment::Get()->PostRender();
-    ImGui::Render();
-    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-    ImGui::UpdatePlatformWindows();
-    ImGui::RenderPlatformWindowsDefault();
+    ImGuiManager::Get()->Render();
     Device::Get()->Present();
 }
 
@@ -160,8 +134,6 @@ cSystem::~cSystem()
     Environment::Delete();
     Texture::Delete();
     Shader::Delete();
-    ImGui_ImplDX11_Shutdown();
-    ImGui_ImplWin32_Shutdown();
-    ImGui::DestroyContext();
+    ImGuiManager::Delete();
     Device::Delete();
 }

@@ -22,10 +22,11 @@ Environment::~Environment()
 	delete samplerState;	
 }
 
+bool a = true;
 void Environment::PostRender()
 {
 	mainCamera->PostRender();
-	ImGui::Begin("Test");
+	ImGuiManager::Get()->OpenImGuiWindow("Environment");
 	ImGui::Text("LightInfo");
 	ImGui::ColorEdit4("AmbientColor", (float*)&lightBuffer->data.ambient);
 	ImGui::ColorEdit4("AmbientCeilColor", (float*)&lightBuffer->data.ambientCeil);
