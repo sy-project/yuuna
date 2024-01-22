@@ -3,6 +3,8 @@ class cCmakeManager : Singleton<cCmakeManager>
 {
 	friend class Singleton;
 public:
+	void MakeCmakeFile(std::string _ProjectName);
+	void RunCmake();
 
 public:
 	void SetPath(std::string _path) { m_path = _path; }
@@ -12,6 +14,7 @@ public:
 
 private:
 	std::string m_path;
+	std::string m_FileName;
 	std::vector<std::string> m_vlib;
 
 private:
