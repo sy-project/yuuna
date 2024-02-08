@@ -76,6 +76,8 @@ bool cSystem::Init(int _x, int _y, bool _fullscreen)
     Device::Get()->CreateBackBuffer(_x, _y);
     Environment::Get();
     ImGuiManager::Get();
+    m_pScene = new cBaseScene();
+    m_pScene->Init();
     return true;
 }
 
@@ -93,19 +95,21 @@ bool cSystem::Update()
         TranslateMessage(&msg);
         DispatchMessageW(&msg);
     }
-	return true;
+	return m_pScene->Update();
 }
 
 void cSystem::PreRender()
 {
     Environment::Get()->Set();
     Device::Get()->Clear();
+    m_pScene->PreRender();
 }
 
 void cSystem::Render()
 {
     PreRender();
     Environment::Get()->Set();
+    m_pScene->Render();
 
     PostRender();
 }
@@ -113,11 +117,7 @@ void cSystem::Render()
 void cSystem::PostRender()
 {
     ImGuiManager::Get()->NewFrame();
-    if (ImGuiManager::Get()->OpenImGuiWindow("Test"))
-    {
-        ImGui::Text("Test");
-        ImGui::End();
-    }
+    m_pScene->PostRender();
     Environment::Get()->PostRender();
     ImGuiManager::Get()->Render();
     Device::Get()->Present();
@@ -131,6 +131,7 @@ cSystem::cSystem()
 
 cSystem::~cSystem()
 {
+    delete m_pScene;
     cControl::Delete();
     cTimer::Delete();
     Environment::Delete();
@@ -138,4 +139,6 @@ cSystem::~cSystem()
     Shader::Delete();
     ImGuiManager::Delete();
     Device::Delete();
+    ModelImporter::Get()->Close();
+    ModelImporter::Delete();
 }

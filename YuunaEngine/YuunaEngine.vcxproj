@@ -71,10 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(SolutionDir)..\DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\$(Configuration);$(SolutionDir)..\Assimp\lib\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\Assimp\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LibraryPath>$(SolutionDir)..\DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\$(Configuration);$(SolutionDir)..\Assimp\lib\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\Assimp\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -177,10 +179,12 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CapsuleCollider.cpp" />
+    <ClCompile Include="cBaseScene.cpp" />
     <ClCompile Include="cControl.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="ComputeShader.cpp" />
     <ClCompile Include="ConstBuffer.cpp" />
+    <ClCompile Include="cScene.cpp" />
     <ClCompile Include="cSystem.cpp" />
     <ClCompile Include="cTimer.cpp" />
     <ClCompile Include="cVector3.cpp" />
@@ -201,6 +205,7 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ModelImporter.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="SamplerState.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -220,10 +225,12 @@
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CapsuleCollider.h" />
+    <ClInclude Include="cBaseScene.h" />
     <ClInclude Include="cControl.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="ComputeShader.h" />
     <ClInclude Include="ConstBuffer.h" />
+    <ClInclude Include="cScene.h" />
     <ClInclude Include="cSystem.h" />
     <ClInclude Include="cTimer.h" />
     <ClInclude Include="cVector3.h" />
@@ -239,6 +246,7 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="ModelImporter.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="SamplerState.h" />
     <ClInclude Include="Shader.h" />
@@ -255,6 +263,20 @@
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="..\imgui\misc\debuggers\imgui.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\PixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shaders\VertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

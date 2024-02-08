@@ -7,7 +7,7 @@ VertexShader::VertexShader(wstring file, string entry)
 	DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
 
 	V(D3DCompileFromFile(path.c_str(), nullptr,
-		D3D_COMPILE_STANDARD_FILE_INCLUDE, entry.c_str(), "vs_5_0",
+		D3D_COMPILE_STANDARD_FILE_INCLUDE, entry.c_str(), "vs_4_0",
 		flags, 0, &blob, nullptr));
 
 	V(Device::Get()->GetDevice()->CreateVertexShader(blob->GetBufferPointer(),

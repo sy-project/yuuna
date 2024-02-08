@@ -10,6 +10,7 @@ public:
 	void PostRender();
 
 private:
+	cScene* m_pScene;
 
 private:
 	cSystem();

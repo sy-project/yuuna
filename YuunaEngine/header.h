@@ -3,9 +3,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <framework.h>
 #include <d3d11.h>
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
+#include <memory>
 #include <time.h>
 
 #include <d3d11.h>
@@ -26,6 +30,17 @@
 #include <DirectXTex.h>
 
 #pragma comment(lib, "DirectXTex.lib")
+//Assimp
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
+#ifdef _DEBUG
+#pragma comment(lib, "assimp-vc143-mtd.lib")
+#else
+#pragma comment(lib, "assimp-vc143-mt.lib")
+#endif
+
 
 #define LERP(s, e, t) s + (e - s) * t
 #define MAX_BONE 500
@@ -66,6 +81,7 @@ const XMVECTORF32 kForward = { 0,0,1 };
 #include "cControl.h"
 #include "cTimer.h"
 
+#include "cScene.h"
 #include "Device.h"
 #include "ImGuiManager.h"
 #include "cSystem.h"
@@ -88,6 +104,7 @@ const XMVECTORF32 kForward = { 0,0,1 };
 #include "Mesh.h"
 #include "Texture.h"
 #include "Material.h"
+#include "ModelImporter.h"
 
 #include "Transform.h"
 #include "cVector3.h"
@@ -102,5 +119,7 @@ const XMVECTORF32 kForward = { 0,0,1 };
 
 #include "Camera.h"
 #include "Environment.h"
+
+#include "cBaseScene.h"
 
 extern HWND g_hWnd;

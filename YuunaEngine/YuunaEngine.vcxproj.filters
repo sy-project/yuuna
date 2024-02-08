@@ -118,6 +118,12 @@
     <Filter Include="Utility\Timer">
       <UniqueIdentifier>{99468d57-c4f9-480c-8b5e-419ff3c27781}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utility\Model">
+      <UniqueIdentifier>{31680cda-b220-4fcf-8dfe-87254f81a69d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{46729d17-2006-471e-9b70-0794de92ca66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -234,6 +240,15 @@
     <ClCompile Include="ImGuiManager.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="ModelImporter.cpp">
+      <Filter>Utility\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="cBaseScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -347,6 +362,15 @@
     <ClInclude Include="ImGuiManager.h">
       <Filter>imgui</Filter>
     </ClInclude>
+    <ClInclude Include="ModelImporter.h">
+      <Filter>Utility\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="cBaseScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\imgui\misc\debuggers\imgui.natstepfilter">
@@ -357,5 +381,13 @@
     <Natvis Include="..\imgui\misc\debuggers\imgui.natvis">
       <Filter>imgui</Filter>
     </Natvis>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\PixelShader.hlsl">
+      <Filter>Shader\Pixel</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\VertexShader.hlsl">
+      <Filter>Shader\Vertex</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
