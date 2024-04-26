@@ -1,6 +1,9 @@
 #pragma once
+#include "cEngine.h"
 class cSystem
 {
+private:
+	cEngine* engine;
 public:
 	cSystem();
 	~cSystem();

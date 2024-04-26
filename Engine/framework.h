@@ -24,6 +24,10 @@
 #include <iostream>
 #include <io.h>
 #include <urlmon.h>
+#include <shellapi.h>
+#include <stdexcept>
+#include <windowsx.h>
+#include <../utf8.h>
 
 #pragma comment(lib, "urlmon.lib")
 
@@ -47,6 +51,7 @@
 #include <backends/imgui_impl_win32.h>
 #include <backends/imgui_impl_dx11.h>
 
+#include <assimp/types.h>
 #include <Assimp/Importer.hpp>
 #include <Assimp/scene.h>
 #include <Assimp/postprocess.h>

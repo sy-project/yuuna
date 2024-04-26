@@ -28,6 +28,12 @@
     <Filter Include="Core\Program">
       <UniqueIdentifier>{67c0592e-b6a9-476c-be63-b4abf08ffc41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainProgram">
+      <UniqueIdentifier>{baec402d-4389-4938-b08a-27761bf5c028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Assimp">
+      <UniqueIdentifier>{07eade7c-d4fb-4a5f-b70d-b65b6c2da53b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cDevice.cpp">
@@ -69,6 +75,15 @@
     <ClCompile Include="cSystem.cpp">
       <Filter>Core\Program</Filter>
     </ClCompile>
+    <ClCompile Include="cEngine.cpp">
+      <Filter>MainProgram</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Core\Assimp</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelLoader.cpp">
+      <Filter>Core\Assimp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cDevice.h">
@@ -104,10 +119,33 @@
     <ClInclude Include="cSystem.h">
       <Filter>Core\Program</Filter>
     </ClInclude>
+    <ClInclude Include="cEngine.h">
+      <Filter>MainProgram</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Core\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="SafeRelease.hpp">
+      <Filter>Core\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Core\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelLoader.h">
+      <Filter>Core\Assimp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="..\imgui\misc\debuggers\imgui.natvis">
       <Filter>Core\imgui\Core</Filter>
     </Natvis>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>Core\Assimp</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>Core\Assimp</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
