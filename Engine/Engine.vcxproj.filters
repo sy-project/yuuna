@@ -19,6 +19,9 @@
     <Filter Include="Core">
       <UniqueIdentifier>{f0b030a9-ee2a-46e8-975b-a4c00652d58b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\imgui">
+      <UniqueIdentifier>{7ef981bb-b612-4b49-96f6-3454c0ff751f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cDevice.cpp">
@@ -29,6 +32,27 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_demo.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_draw.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_tables.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_widgets.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>Core\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,5 +65,25 @@
     <ClInclude Include="Singleton.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\imgui\imconfig.h">
+      <Filter>Core\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imgui.h">
+      <Filter>Core\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imgui_internal.h">
+      <Filter>Core\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_dx11.h">
+      <Filter>Core\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_win32.h">
+      <Filter>Core\imgui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\imgui\misc\debuggers\imgui.natvis">
+      <Filter>Core\imgui</Filter>
+    </Natvis>
   </ItemGroup>
 </Project>

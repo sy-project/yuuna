@@ -4,7 +4,7 @@ HWND g_hWnd;
 
 LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
-//extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 void Init()
 {
@@ -109,8 +109,8 @@ LRESULT CALLBACK MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lpar
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
-	//if (ImGui_ImplWin32_WndProcHandler(hwnd, umessage, wparam, lparam))
-	//	return true;
+	if (ImGui_ImplWin32_WndProcHandler(hwnd, umessage, wparam, lparam))
+		return true;
 
 	switch (umessage)
 	{

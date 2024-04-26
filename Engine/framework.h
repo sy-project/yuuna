@@ -1,4 +1,6 @@
 #pragma once
+#define WIN32_LEAN_AND_MEAN
+#define _CRT_SECURE_NO_WARNINGS
 
 #define WIN_NAME L"SY_Engine"
 #define WIN_X 1600
@@ -40,6 +42,11 @@
 
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dwrite.lib")
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include <imgui.h>
+#include <backends/imgui_impl_win32.h>
+#include <backends/imgui_impl_dx11.h>
+
 
 using namespace DirectX;
 using namespace std;
@@ -53,6 +60,7 @@ typedef XMMATRIX Matrix;
 typedef XMFLOAT4X4 Float4x4;
 
 #include "Singleton.h"
+#include "cImGuiManager.h"
 #include "cDevice.h"
 
 
