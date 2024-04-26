@@ -157,6 +157,7 @@
     <ClCompile Include="..\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\imgui\imgui_widgets.cpp" />
     <ClCompile Include="cDevice.cpp" />
+    <ClCompile Include="cImGuiManager.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -169,6 +170,7 @@
     <ClInclude Include="..\imgui\imgui.h" />
     <ClInclude Include="..\imgui\imgui_internal.h" />
     <ClInclude Include="cDevice.h" />
+    <ClInclude Include="cImGuiManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>

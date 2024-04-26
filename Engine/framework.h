@@ -47,6 +47,15 @@
 #include <backends/imgui_impl_win32.h>
 #include <backends/imgui_impl_dx11.h>
 
+#include <Assimp/Importer.hpp>
+#include <Assimp/scene.h>
+#include <Assimp/postprocess.h>
+
+#ifdef _DEBUG
+#pragma comment(lib, "Debug/assimp-vc143-mtd.lib")
+#else
+#pragma comment(lib, "Release/assimp-vc143-mt.lib")
+#endif
 
 using namespace DirectX;
 using namespace std;
