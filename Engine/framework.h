@@ -73,5 +73,6 @@ typedef XMFLOAT4X4 Float4x4;
 #include "cDevice.h"
 
 
+#include "cProgram.h"
 
 extern HWND g_hWnd;

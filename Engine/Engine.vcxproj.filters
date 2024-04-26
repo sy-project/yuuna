@@ -25,6 +25,9 @@
     <Filter Include="Core\imgui\Core">
       <UniqueIdentifier>{f59c64fc-41ac-45d8-8d88-29b64c602055}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Program">
+      <UniqueIdentifier>{67c0592e-b6a9-476c-be63-b4abf08ffc41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cDevice.cpp">
@@ -60,6 +63,12 @@
     <ClCompile Include="cImGuiManager.cpp">
       <Filter>Core\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="cProgram.cpp">
+      <Filter>Core\Program</Filter>
+    </ClCompile>
+    <ClCompile Include="cSystem.cpp">
+      <Filter>Core\Program</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cDevice.h">
@@ -88,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="cImGuiManager.h">
       <Filter>Core\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="cProgram.h">
+      <Filter>Core\Program</Filter>
+    </ClInclude>
+    <ClInclude Include="cSystem.h">
+      <Filter>Core\Program</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

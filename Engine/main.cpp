@@ -62,13 +62,12 @@ void Init()
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
 	Init();
-	//while (cProgram::Get()->Update())
-	while(true)
+	while (cProgram::Get()->Update())
 	{
-		//cProgram::Get()->Render();
+		cProgram::Get()->Render();
 	}
 
-	//cProgram::Get()->Delete();
+	cProgram::Get()->Delete();
 
 	ShowCursor(true);
 
