@@ -7,22 +7,22 @@ ModelLoader::ModelLoader() :
 	meshes_(),
 	directory_(),
 	textures_loaded_(){
-	// empty
 }
 
+const aiScene* m_pscene;
 
 ModelLoader::~ModelLoader() {
-	// empty
+	delete m_pscene;
 }
 
 bool ModelLoader::Load(ID3D11Device* dev, ID3D11DeviceContext* devcon, std::string filename) {
 	Assimp::Importer importer;
 
-	const aiScene* pScene = importer.ReadFile(filename,
+	m_pscene = importer.ReadFile(filename,
 		aiProcess_Triangulate |
 		aiProcess_ConvertToLeftHanded);
 
-	if (pScene == nullptr)
+	if (m_pscene == nullptr)
 		return false;
 
 	this->directory_ = filename.substr(0, filename.find_last_of("/\\"));
@@ -30,7 +30,7 @@ bool ModelLoader::Load(ID3D11Device* dev, ID3D11DeviceContext* devcon, std::stri
 	this->dev_ = dev;
 	this->devcon_ = devcon;
 
-	processNode(pScene->mRootNode, pScene);
+	processNode(m_pscene->mRootNode, m_pscene);
 
 	return true;
 }
@@ -38,6 +38,26 @@ bool ModelLoader::Load(ID3D11Device* dev, ID3D11DeviceContext* devcon, std::stri
 void ModelLoader::Draw(ID3D11DeviceContext* devcon) {
 	for (size_t i = 0; i < meshes_.size(); ++i) {
 		meshes_[i].Draw(devcon);
+	}
+}
+
+void ModelLoader::SetRotation(Vector4 vec)
+{
+}
+
+void ModelLoader::SetPosition(Vector4 vec)
+{
+	if (m_pscene == nullptr)
+		return;
+	for (unsigned int i = 0; i < m_pscene->mRootNode->mNumMeshes; i++)
+	{
+		aiMesh* mesh = m_pscene->mMeshes[m_pscene->mRootNode->mMeshes[i]];
+		for (unsigned int j = 0; j < m_pscene->mRootNode->mNumChildren; j++)
+		{
+			m_pscene->mRootNode->mChildren[j]->mTransformation.a4 = vec.m128_f32[0];
+			m_pscene->mRootNode->mChildren[j]->mTransformation.b4 = vec.m128_f32[1];
+			m_pscene->mRootNode->mChildren[j]->mTransformation.c4 = vec.m128_f32[2];
+		}
 	}
 }
 
@@ -77,7 +97,7 @@ Mesh ModelLoader::processMesh(aiMesh* mesh, const aiScene* scene) {
 		textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 	}
 
-	return Mesh(dev_, vertices, indices, textures);
+	return Mesh(vertices, indices, textures);
 }
 
 std::vector<Texture> ModelLoader::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene) {

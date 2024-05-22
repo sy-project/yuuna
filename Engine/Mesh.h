@@ -34,16 +34,14 @@ public:
     std::vector<VERTEX> vertices_;
     std::vector<UINT> indices_;
     std::vector<Texture> textures_;
-    ID3D11Device* dev_;
 
-    Mesh(ID3D11Device* dev, const std::vector<VERTEX>& vertices, const std::vector<UINT>& indices, const std::vector<Texture>& textures) :
+    Mesh(const std::vector<VERTEX>& vertices, const std::vector<UINT>& indices, const std::vector<Texture>& textures) :
         vertices_(vertices),
         indices_(indices),
         textures_(textures),
-        dev_(dev),
         VertexBuffer_(nullptr),
         IndexBuffer_(nullptr) {
-        this->setupMesh(this->dev_);
+        this->setupMesh();
     }
 
     void Draw(ID3D11DeviceContext* devcon) {
@@ -53,7 +51,8 @@ public:
         devcon->IASetVertexBuffers(0, 1, &VertexBuffer_, &stride, &offset);
         devcon->IASetIndexBuffer(IndexBuffer_, DXGI_FORMAT_R32_UINT, 0);
 
-        devcon->PSSetShaderResources(0, 1, &textures_[0].texture);
+        if(textures_.size() > 0)
+            devcon->PSSetShaderResources(0, 1, &textures_[0].texture);
 
         devcon->DrawIndexed(static_cast<UINT>(indices_.size()), 0, 0);
     }
@@ -68,7 +67,7 @@ private:
 
     // Functions
     // Initializes all the buffer objects/arrays
-    void setupMesh(ID3D11Device* dev) {
+    void setupMesh() {
         HRESULT hr;
 
         D3D11_BUFFER_DESC vbd;
@@ -81,7 +80,7 @@ private:
         D3D11_SUBRESOURCE_DATA initData;
         initData.pSysMem = &vertices_[0];
 
-        hr = dev->CreateBuffer(&vbd, &initData, &VertexBuffer_);
+        hr = cDevice::Get()->GetDevice()->CreateBuffer(&vbd, &initData, &VertexBuffer_);
         if (FAILED(hr)) {
             Close();
             throw std::runtime_error("Failed to create vertex buffer.");
@@ -96,7 +95,7 @@ private:
 
         initData.pSysMem = &indices_[0];
 
-        hr = dev->CreateBuffer(&ibd, &initData, &IndexBuffer_);
+        hr = cDevice::Get()->GetDevice()->CreateBuffer(&ibd, &initData, &IndexBuffer_);
         if (FAILED(hr)) {
             Close();
             throw std::runtime_error("Failed to create index buffer.");

@@ -22,6 +22,8 @@ public:
 
 	bool Load(ID3D11Device* dev, ID3D11DeviceContext* devcon, std::string filename);
 	void Draw(ID3D11DeviceContext* devcon);
+	void SetRotation(Vector4 vec);
+	void SetPosition(Vector4 vec);
 
 	void Close();
 private:
