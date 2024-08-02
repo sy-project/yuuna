@@ -27,6 +27,8 @@ private:
 	ID3D11Buffer* pConstantBuffer;
 	ID3D11SamplerState* TexSamplerState;
 
+	bool m_ck;
+
 public:
 	cEngine();
 	~cEngine();

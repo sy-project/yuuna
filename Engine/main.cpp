@@ -61,6 +61,7 @@ void Init()
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
+	test();
 	Init();
 	while (cProgram::Get()->Update())
 	{

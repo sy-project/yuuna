@@ -28,24 +28,16 @@ void cSystem::Render()
 
 void cSystem::PostRender()
 {
-	ImGui_ImplDX11_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
+	cImGuiManager::Get()->NewFrame();
 	engine->PostRender();
-	ImGui::Render();
-	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	cImGuiManager::Get()->Render();
 }
 
 void cSystem::Create()
 {
 	cDevice::Get();
-
-	ImGui::CreateContext();
-	ImGui::StyleColorsDark();
-
-	ImGui_ImplWin32_Init(g_hWnd);
-	ImGui_ImplDX11_Init(cDevice::Get()->GetDevice(), cDevice::Get()->GetDeviceContext());
 	engine = new cEngine();
+	cImGuiManager::Get();
 }
 
 void cSystem::Delete()

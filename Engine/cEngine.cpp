@@ -4,6 +4,7 @@
 
 cEngine::cEngine()
 {
+	m_ck = false;
 	D3D11_VIEWPORT viewport;
 	ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));
 
@@ -111,11 +112,6 @@ void cEngine::Update()
 	cDevice::Get()->GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	m_World = XMMatrixRotationY(-t);
-	//Vector4 vec;
-	//vec.m128_f32[0] = t;
-	//vec.m128_f32[1] = t;
-	//vec.m128_f32[2] = t;
-	//vec.m128_f32[3] = t;
 
 	ConstantBuffer cb;
 	cb.mWorld = XMMatrixTranspose(m_World);
@@ -127,7 +123,6 @@ void cEngine::Update()
 	cDevice::Get()->GetDeviceContext()->VSSetConstantBuffers(0, 1, &pConstantBuffer);
 	cDevice::Get()->GetDeviceContext()->PSSetShader(pPS, 0, 0);
 	cDevice::Get()->GetDeviceContext()->PSSetSamplers(0, 1, &TexSamplerState);
-	//m_pourModel->SetPosition(vec);
 }
 
 void cEngine::PreRender()
@@ -144,6 +139,13 @@ void cEngine::Render()
 
 void cEngine::PostRender()
 {
+	if (ImGui::Checkbox("OpenBox", &m_ck))
+	{
+		if (ImGui::BeginChild("child",ImVec2(500,500),true))
+		{
+			ImGui::EndChild();
+		}
+	}
 }
 
 void cEngine::Throwanerror(LPCSTR errormessage)

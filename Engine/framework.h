@@ -58,6 +58,7 @@
 
 #ifdef _DEBUG
 #pragma comment(lib, "Debug/assimp-vc143-mtd.lib")
+#pragma comment(lib, "Debug/cuda_core.lib")
 #else
 #pragma comment(lib, "Release/assimp-vc143-mt.lib")
 #endif
@@ -72,6 +73,8 @@ typedef XMFLOAT2 Float2;
 typedef XMVECTOR Vector4;
 typedef XMMATRIX Matrix;
 typedef XMFLOAT4X4 Float4x4;
+
+#include "cuda_main.h"
 
 #include "Singleton.h"
 #include "cImGuiManager.h"

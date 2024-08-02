@@ -26,13 +26,16 @@ public:
 	void SetPosition(Vector4 vec);
 
 	void Close();
+
 private:
 	ID3D11Device* dev_;
 	ID3D11DeviceContext* devcon_;
+public:
 	std::vector<Mesh> meshes_;
 	std::string directory_;
 	std::vector<Texture> textures_loaded_;
 
+private:
 	void processNode(aiNode* node, const aiScene* scene);
 	Mesh processMesh(aiMesh* mesh, const aiScene* scene);
 	std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene);

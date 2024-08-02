@@ -9,16 +9,13 @@ ModelLoader::ModelLoader() :
 	textures_loaded_(){
 }
 
-const aiScene* m_pscene;
 
 ModelLoader::~ModelLoader() {
-	delete m_pscene;
 }
 
 bool ModelLoader::Load(ID3D11Device* dev, ID3D11DeviceContext* devcon, std::string filename) {
 	Assimp::Importer importer;
-
-	m_pscene = importer.ReadFile(filename,
+	const aiScene* m_pscene = importer.ReadFile(filename,
 		aiProcess_Triangulate |
 		aiProcess_ConvertToLeftHanded);
 
@@ -47,18 +44,6 @@ void ModelLoader::SetRotation(Vector4 vec)
 
 void ModelLoader::SetPosition(Vector4 vec)
 {
-	if (m_pscene == nullptr)
-		return;
-	for (unsigned int i = 0; i < m_pscene->mRootNode->mNumMeshes; i++)
-	{
-		aiMesh* mesh = m_pscene->mMeshes[m_pscene->mRootNode->mMeshes[i]];
-		for (unsigned int j = 0; j < m_pscene->mRootNode->mNumChildren; j++)
-		{
-			m_pscene->mRootNode->mChildren[j]->mTransformation.a4 = vec.m128_f32[0];
-			m_pscene->mRootNode->mChildren[j]->mTransformation.b4 = vec.m128_f32[1];
-			m_pscene->mRootNode->mChildren[j]->mTransformation.c4 = vec.m128_f32[2];
-		}
-	}
 }
 
 Mesh ModelLoader::processMesh(aiMesh* mesh, const aiScene* scene) {

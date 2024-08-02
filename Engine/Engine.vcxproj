@@ -79,12 +79,12 @@
     <LibraryPath>$(SolutionDir)..\Assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)..\Assimp\include;$(SolutionDir)..\Core;$(SolutionDir)..\imgui;$(SolutionDir)..\stb;$(SolutionDir)..\utf8;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\Assimp\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\Assimp\include;$(SolutionDir)..\Core;$(SolutionDir)..\imgui;$(SolutionDir)..\stb;$(SolutionDir)..\utf8;$(SolutionDir)cuda_core;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Assimp\lib;$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)..\Assimp\include;$(SolutionDir)..\Core;$(SolutionDir)..\imgui;$(SolutionDir)..\stb;$(SolutionDir)..\utf8;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\Assimp\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\Assimp\include;$(SolutionDir)..\Core;$(SolutionDir)..\imgui;$(SolutionDir)..\stb;$(SolutionDir)..\utf8;$(SolutionDir)cuda_core;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Assimp\lib;$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
