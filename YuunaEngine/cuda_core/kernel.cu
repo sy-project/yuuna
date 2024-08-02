@@ -24,15 +24,15 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     return TRUE;
 }
 
-int test()
+int cuda_dll::test(int* c, const int* a, const int* b, unsigned int size)
 {
-    const int arraySize = 5;
+    /*const int arraySize = 5;
     const int a[arraySize] = { 1, 2, 3, 4, 5 };
     const int b[arraySize] = { 10, 20, 30, 40, 50 };
-    int c[arraySize] = { 0 };
+    int c[arraySize] = { 0 };*/
     
     // Add vectors in parallel.
-    cudaError_t cudaStatus = addWithCuda(c, a, b, arraySize);
+    cudaError_t cudaStatus = addWithCuda(c, a, b, size);
     if (cudaStatus != cudaSuccess) {
         fprintf(stderr, "addWithCuda failed!");
         return 1;

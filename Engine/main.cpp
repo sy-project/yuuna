@@ -61,7 +61,11 @@ void Init()
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
-	test();
+	const int arraySize = 5;
+	const int a[arraySize] = { 1, 2, 3, 4, 5 };
+	const int b[arraySize] = { 10, 20, 30, 40, 50 };
+	int c[arraySize] = { 0 };
+	cuda_dll::test(c, a, b, arraySize);
 	Init();
 	while (cProgram::Get()->Update())
 	{

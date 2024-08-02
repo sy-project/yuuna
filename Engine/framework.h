@@ -61,6 +61,7 @@
 #pragma comment(lib, "Debug/cuda_core.lib")
 #else
 #pragma comment(lib, "Release/assimp-vc143-mt.lib")
+#pragma comment(lib, "Debug/cuda_core.lib")
 #endif
 
 using namespace DirectX;

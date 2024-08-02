@@ -3,4 +3,15 @@
 #include <windows.h>
 #include <stdio.h>
 
-extern "C" __declspec(dllexport) int test();
+namespace cuda_dll
+{
+	extern "C" __declspec(dllexport) int test(int* c, const int* a, const int* b, unsigned int size);
+	namespace math
+	{
+
+	}
+	namespace physics
+	{
+
+	}
+}
