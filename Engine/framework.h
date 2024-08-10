@@ -56,12 +56,18 @@
 #include <Assimp/scene.h>
 #include <Assimp/postprocess.h>
 
+#include <fbxsdk.h>
+
 #ifdef _DEBUG
 #pragma comment(lib, "Debug/assimp-vc143-mtd.lib")
 #pragma comment(lib, "Debug/cuda_core.lib")
+#pragma comment(lib, "Debug/Core.lib")
+#pragma comment(lib, "debug/libfbxsdk.lib")
 #else
 #pragma comment(lib, "Release/assimp-vc143-mt.lib")
-#pragma comment(lib, "Debug/cuda_core.lib")
+#pragma comment(lib, "Release/cuda_core.lib")
+#pragma comment(lib, "Release/Core.lib")
+#pragma comment(lib, "release/libfbxsdk.lib")
 #endif
 
 using namespace DirectX;
@@ -76,9 +82,12 @@ typedef XMMATRIX Matrix;
 typedef XMFLOAT4X4 Float4x4;
 
 #include "cuda_main.h"
+#include "pch.h"
 
 #include "Singleton.h"
 #include "cImGuiManager.h"
+#include "cModel.h"
+#include "cModelManager.h"
 #include "cDevice.h"
 
 

@@ -66,6 +66,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	const int b[arraySize] = { 10, 20, 30, 40, 50 };
 	int c[arraySize] = { 0 };
 	cuda_dll::test(c, a, b, arraySize);
+	Core::Init();
+	Core::Log::WriteLog("test");
 	Init();
 	while (cProgram::Get()->Update())
 	{
@@ -85,7 +87,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	g_hWnd = NULL;
 
 	UnregisterClass(WIN_NAME, GetModuleHandle(NULL));
-
+	Core::End();
 	return 0;
 }
 

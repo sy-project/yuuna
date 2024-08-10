@@ -34,6 +34,9 @@
     <Filter Include="Core\Assimp">
       <UniqueIdentifier>{07eade7c-d4fb-4a5f-b70d-b65b6c2da53b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Model">
+      <UniqueIdentifier>{8998747e-9202-4894-b730-4a26242adf6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cDevice.cpp">
@@ -84,6 +87,12 @@
     <ClCompile Include="ModelLoader.cpp">
       <Filter>Core\Assimp</Filter>
     </ClCompile>
+    <ClCompile Include="cModelManager.cpp">
+      <Filter>Core\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="cModel.cpp">
+      <Filter>Core\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cDevice.h">
@@ -133,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="ModelLoader.h">
       <Filter>Core\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="cModelManager.h">
+      <Filter>Core\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="cModel.h">
+      <Filter>Core\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

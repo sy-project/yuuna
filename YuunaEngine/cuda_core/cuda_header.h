@@ -1,6 +1,4 @@
 #pragma once
-#include "cuda_runtime.h"
-#include "device_launch_parameters.h"
 #ifdef __INTELLISENSE__
 
 //KERNEL_ARG2(grid, block) : <<< grid, block >>>

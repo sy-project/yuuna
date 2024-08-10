@@ -30,6 +30,9 @@
     <ClInclude Include="cLibController.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="cLogger.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -42,6 +45,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="cLibController.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cLogger.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

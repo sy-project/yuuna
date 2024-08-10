@@ -10,4 +10,18 @@
 // 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
 
+namespace Core
+{
+	extern "C" __declspec(dllexport) int Init();
+	extern "C" __declspec(dllexport) int End();
+	namespace Log
+	{
+		extern "C" __declspec(dllexport) int WriteLog(std::string _str);
+	}
+	namespace Cmake
+	{
+
+	}
+}
+
 #endif //PCH_H

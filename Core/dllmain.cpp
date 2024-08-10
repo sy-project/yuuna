@@ -17,3 +17,20 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
+int Core::Init()
+{
+    cLogger::Get();
+    return 0;
+}
+
+int Core::End()
+{
+    cLogger::Delete();
+    return 0;
+}
+
+int Core::Log::WriteLog(std::string _str)
+{
+    cLogger::Get()->Logging(_str);
+    return 0;
+}

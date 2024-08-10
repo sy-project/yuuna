@@ -4,6 +4,7 @@
 
 cEngine::cEngine()
 {
+	cModelManager::Get();
 	m_ck = false;
 	D3D11_VIEWPORT viewport;
 	ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));

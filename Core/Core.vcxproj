@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="cCmakeManager.h" />
     <ClInclude Include="cLibController.h" />
+    <ClInclude Include="cLogger.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Singleton.h" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="cCmakeManager.cpp" />
     <ClCompile Include="cLibController.cpp" />
+    <ClCompile Include="cLogger.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
