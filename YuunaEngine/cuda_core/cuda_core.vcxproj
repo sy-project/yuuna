@@ -42,6 +42,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)..\Core;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)..\Core;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -56,6 +62,7 @@
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
+      <Defines>COMPILE_DLL</Defines>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -75,14 +82,21 @@
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
+      <Defines>COMPILE_DLL</Defines>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CudaCompile Include="cuda_math.cu" />
     <CudaCompile Include="kernel.cu" />
+    <CudaCompile Include="SoundTracingPlugin.cu" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Core\Singleton.h" />
+    <ClInclude Include="all_type.h" />
     <ClInclude Include="cuda_header.h" />
     <ClInclude Include="cuda_main.h" />
+    <ClInclude Include="cuda_math.h" />
+    <ClInclude Include="SoundTracingPlugin.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

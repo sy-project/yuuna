@@ -73,7 +73,7 @@ cEngine::cEngine()
 	m_View = XMMatrixLookAtLH(Eye, At, Up);
 
 	ModelLoader* m = new ModelLoader;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		switch (i)
 		{
@@ -101,8 +101,35 @@ cEngine::~cEngine()
 	SafeRelease(TexSamplerState);
 }
 
+
 void cEngine::Update()
 {
+	const int arraySize = 5;
+	const int a[arraySize] = { 1, 2, 3, 4, 5 - (rand() % 5)};
+	const int b[arraySize] = { 10, 20, 30, 40, 50 - (rand() % 50) };
+	int c[arraySize] = { 0 };
+
+	cuda_dll::math::CudaMath_test(c, a, b, arraySize);
+	cuda_text = "[";
+	cuda_text += to_string(a[0]) + "/";
+	cuda_text += to_string(a[1]) + "/";
+	cuda_text += to_string(a[2]) + "/";
+	cuda_text += to_string(a[3]) + "/";
+	cuda_text += to_string(a[4]) + "] + ";
+
+	cuda_text += "[";
+	cuda_text += to_string(b[0]) + "/";
+	cuda_text += to_string(b[1]) + "/";
+	cuda_text += to_string(b[2]) + "/";
+	cuda_text += to_string(b[3]) + "/";
+	cuda_text += to_string(b[4]) + "] = ";
+
+	cuda_text += "[";
+	cuda_text += to_string(c[0]) + "/";
+	cuda_text += to_string(c[1]) + "/";
+	cuda_text += to_string(c[2]) + "/";
+	cuda_text += to_string(c[3]) + "/";
+	cuda_text += to_string(c[4]) + "]";
 	static float t = 0.0f;
 	static ULONGLONG timeStart = 0;
 	ULONGLONG timeCur = GetTickCount64();
@@ -140,13 +167,11 @@ void cEngine::Render()
 
 void cEngine::PostRender()
 {
-	if (ImGui::Checkbox("OpenBox", &m_ck))
+	if(cImGuiManager::Get()->OpenImGuiWindow("test"))
 	{
-		if (ImGui::BeginChild("child",ImVec2(500,500),true))
-		{
-			ImGui::EndChild();
-		}
+		ImGui::Text(cuda_text.c_str());
 	}
+	ImGui::End();
 }
 
 void cEngine::Throwanerror(LPCSTR errormessage)

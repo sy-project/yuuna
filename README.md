@@ -8,3 +8,7 @@ https://github.com/ocornut/imgui/tree/docking
 
 # 3D File Import
 Assimp
+Fbxsdk
+
+# Cuda Version
+12.3

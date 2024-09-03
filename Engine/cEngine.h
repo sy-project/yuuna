@@ -29,6 +29,8 @@ private:
 
 	bool m_ck;
 
+	string cuda_text;
+
 public:
 	cEngine();
 	~cEngine();
