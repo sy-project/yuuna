@@ -79,11 +79,11 @@
     <LibraryPath>$(SolutionDir)..\Assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)..\Assimp\include;$(SolutionDir)..\Core;$(SolutionDir)..\imgui;$(SolutionDir)..\stb;$(SolutionDir)..\utf8;$(SolutionDir)cuda_core;C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.7\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\Assimp\include;$(SolutionDir)..\Core;$(SolutionDir)..\imgui;$(SolutionDir)..\asio-1.18.0\include;$(SolutionDir)..\stb;$(SolutionDir)..\utf8;$(SolutionDir)cuda_core;C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.7\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Assimp\lib;$(SolutionDir)x64\;C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.7\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)..\Assimp\include;$(SolutionDir)..\Core;$(SolutionDir)..\imgui;$(SolutionDir)..\stb;$(SolutionDir)..\utf8;$(SolutionDir)cuda_core;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\Assimp\include;$(SolutionDir)..\Core;$(SolutionDir)..\imgui;$(SolutionDir)..\asio-1.18.0\include;$(SolutionDir)..\stb;$(SolutionDir)..\utf8;$(SolutionDir)cuda_core;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Assimp\lib;$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -104,9 +104,15 @@ cEngine::~cEngine()
 
 void cEngine::Update()
 {
-	const int arraySize = 5;
-	const int a[arraySize] = { 1, 2, 3, 4, 5 - (rand() % 5)};
-	const int b[arraySize] = { 10, 20, 30, 40, 50 - (rand() % 50) };
+	const int arraySize = 17;
+	const int a[arraySize] = {	1, 2, 3, 4, 5,
+								6, 7, 8, 9, 10,
+								11, 12, 13, 14, 15,
+								16, 17};
+	const int b[arraySize] = { 10, 20, 30, 40, 50,
+								60, 70, 80, 90 , 100,
+								110, 120, 130, 140, 150,
+								160, 170};
 	int c[arraySize] = { 0 };
 
 	cuda_dll::math::CudaMath_test(c, a, b, arraySize);
@@ -115,21 +121,57 @@ void cEngine::Update()
 	cuda_text += to_string(a[1]) + "/";
 	cuda_text += to_string(a[2]) + "/";
 	cuda_text += to_string(a[3]) + "/";
-	cuda_text += to_string(a[4]) + "] + ";
+	cuda_text += to_string(a[4]) + "/";
+	cuda_text += to_string(a[5]) + "/";
+	cuda_text += to_string(a[6]) + "/";
+	cuda_text += to_string(a[7]) + "/";
+	cuda_text += to_string(a[8]) + "/";
+	cuda_text += to_string(a[9]) + "/";
+	cuda_text += to_string(a[10]) + "/";
+	cuda_text += to_string(a[11]) + "/";
+	cuda_text += to_string(a[12]) + "/";
+	cuda_text += to_string(a[13]) + "/";
+	cuda_text += to_string(a[14]) + "/";
+	cuda_text += to_string(a[15]) + "/";
+	cuda_text += to_string(a[16]) + "] + \n";
 
 	cuda_text += "[";
 	cuda_text += to_string(b[0]) + "/";
 	cuda_text += to_string(b[1]) + "/";
 	cuda_text += to_string(b[2]) + "/";
 	cuda_text += to_string(b[3]) + "/";
-	cuda_text += to_string(b[4]) + "] = ";
+	cuda_text += to_string(b[4]) + "/";
+	cuda_text += to_string(b[5]) + "/";
+	cuda_text += to_string(b[6]) + "/";
+	cuda_text += to_string(b[7]) + "/";
+	cuda_text += to_string(b[8]) + "/";
+	cuda_text += to_string(b[9]) + "/";
+	cuda_text += to_string(b[10]) + "/";
+	cuda_text += to_string(b[11]) + "/";
+	cuda_text += to_string(b[12]) + "/";
+	cuda_text += to_string(b[13]) + "/";
+	cuda_text += to_string(b[14]) + "/";
+	cuda_text += to_string(b[15]) + "/";
+	cuda_text += to_string(b[16]) + "] = \n";
 
 	cuda_text += "[";
 	cuda_text += to_string(c[0]) + "/";
 	cuda_text += to_string(c[1]) + "/";
 	cuda_text += to_string(c[2]) + "/";
 	cuda_text += to_string(c[3]) + "/";
-	cuda_text += to_string(c[4]) + "]";
+	cuda_text += to_string(c[4]) + "/";
+	cuda_text += to_string(c[5]) + "/";
+	cuda_text += to_string(c[6]) + "/";
+	cuda_text += to_string(c[7]) + "/";
+	cuda_text += to_string(c[8]) + "/";
+	cuda_text += to_string(c[9]) + "/";
+	cuda_text += to_string(c[10]) + "/";
+	cuda_text += to_string(c[11]) + "/";
+	cuda_text += to_string(c[12]) + "/";
+	cuda_text += to_string(c[13]) + "/";
+	cuda_text += to_string(c[14]) + "/";
+	cuda_text += to_string(c[15]) + "/";
+	cuda_text += to_string(c[16]) + "]";
 	static float t = 0.0f;
 	static ULONGLONG timeStart = 0;
 	ULONGLONG timeCur = GetTickCount64();
