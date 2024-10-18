@@ -12,3 +12,6 @@ Fbxsdk
 
 # Cuda Version
 12.3
+
+# Network
+Asio 1.18.0
