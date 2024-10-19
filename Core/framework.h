@@ -18,5 +18,7 @@
 #include <urlmon.h>
 #pragma comment(lib, "urlmon.lib")
 #include "Singleton.h"
+#include "Common.h"
 #include "cLogger.h"
+#include "cEncryptManager.h"
 #include "cCmakeManager.h"

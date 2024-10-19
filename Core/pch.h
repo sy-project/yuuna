@@ -7,20 +7,29 @@
 #ifndef PCH_H
 #define PCH_H
 
+#ifdef COMPILE_DLL
+#define CORE_DLL __declspec(dllexport)
+#else
+#define CORE_DLL __declspec(dllimport)
+#endif // COMPILE_DLL
+
 // 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
 
-namespace Core
+extern "C"
 {
-	extern "C" __declspec(dllexport) int Init();
-	extern "C" __declspec(dllexport) int End();
-	namespace Log
+	namespace Core
 	{
-		extern "C" __declspec(dllexport) int WriteLog(std::string _str);
-	}
-	namespace Cmake
-	{
+		CORE_DLL int Init();
+		CORE_DLL int End();
+		namespace Log
+		{
+			CORE_DLL int WriteLog(std::string _str);
+		}
+		namespace Cmake
+		{
 
+		}
 	}
 }
 
