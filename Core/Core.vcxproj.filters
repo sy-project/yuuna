@@ -57,6 +57,9 @@
     <ClInclude Include="Common.h">
       <Filter>Utils\Network</Filter>
     </ClInclude>
+    <ClInclude Include="cEncryptManager.h">
+      <Filter>Utils\EncDec</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="cCmakeManager.cpp">
       <Filter>Utils\CMake</Filter>
+    </ClCompile>
+    <ClCompile Include="cEncryptManager.cpp">
+      <Filter>Utils\EncDec</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

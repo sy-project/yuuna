@@ -88,6 +88,7 @@ typedef XMFLOAT4X4 Float4x4;
 #include "cImGuiManager.h"
 #include "cModel.h"
 #include "cModelManager.h"
+#include "cNetworkManager.h"
 #include "cDevice.h"
 
 

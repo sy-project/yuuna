@@ -37,6 +37,9 @@
     <Filter Include="Core\Model">
       <UniqueIdentifier>{8998747e-9202-4894-b730-4a26242adf6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Network">
+      <UniqueIdentifier>{534224e0-98a5-4fa5-b0eb-ce755d47f516}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cDevice.cpp">
@@ -93,6 +96,9 @@
     <ClCompile Include="cModel.cpp">
       <Filter>Core\Model</Filter>
     </ClCompile>
+    <ClCompile Include="cNetworkManager.cpp">
+      <Filter>Core\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cDevice.h">
@@ -148,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="cModel.h">
       <Filter>Core\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="cNetworkManager.h">
+      <Filter>Core\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

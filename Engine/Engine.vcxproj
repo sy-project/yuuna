@@ -161,6 +161,7 @@
     <ClCompile Include="cImGuiManager.cpp" />
     <ClCompile Include="cModel.cpp" />
     <ClCompile Include="cModelManager.cpp" />
+    <ClCompile Include="cNetworkManager.cpp" />
     <ClCompile Include="cProgram.cpp" />
     <ClCompile Include="cSystem.cpp" />
     <ClCompile Include="framework.cpp">
@@ -181,6 +182,7 @@
     <ClInclude Include="cImGuiManager.h" />
     <ClInclude Include="cModel.h" />
     <ClInclude Include="cModelManager.h" />
+    <ClInclude Include="cNetworkManager.h" />
     <ClInclude Include="cProgram.h" />
     <ClInclude Include="cSystem.h" />
     <ClInclude Include="framework.h" />
