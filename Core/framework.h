@@ -20,5 +20,6 @@
 #include "Singleton.h"
 #include "Common.h"
 #include "cLogger.h"
+#include "cLibController.h"
 #include "cEncryptManager.h"
 #include "cCmakeManager.h"

@@ -17,15 +17,22 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
-int Core::Init()
+int Core::Init(int _key = 1234)
 {
     cLogger::Get();
+    cLibController::Get();
+    cEncryptManager::Get();
+    cEncryptManager::Get()->SetKey(_key);
+    cCmakeManager::Get();
     return 0;
 }
 
 int Core::End()
 {
     cLogger::Delete();
+    cLibController::Delete();
+    cEncryptManager::Delete();
+    cCmakeManager::Delete();
     return 0;
 }
 
@@ -33,4 +40,24 @@ int Core::Log::WriteLog(std::string _str)
 {
     cLogger::Get()->Logging(_str);
     return 0;
+}
+
+std::string Core::Encrypt::EStringData(std::string _str)
+{
+    return cEncryptManager::Get()->EncryptData(_str);
+}
+
+std::string Core::Encrypt::EPlayerData(sPlayerDescription _data)
+{
+    return cEncryptManager::Get()->EncryptNetwork(_data);
+}
+
+std::string Core::Decrypt::DStringData(std::string _str)
+{
+    return cEncryptManager::Get()->DecryptData(_str);
+}
+
+sPlayerDescription Core::Decrypt::DPlayerData(std::string _data)
+{
+    return cEncryptManager::Get()->DecryptNetwork(_data);
 }

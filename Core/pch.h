@@ -20,7 +20,7 @@ extern "C"
 {
 	namespace Core
 	{
-		CORE_DLL int Init();
+		CORE_DLL int Init(int _key);
 		CORE_DLL int End();
 		namespace Log
 		{
@@ -29,6 +29,20 @@ extern "C"
 		namespace Cmake
 		{
 
+		}
+		namespace Lib
+		{
+
+		}
+		namespace Encrypt
+		{
+			CORE_DLL std::string EStringData(std::string _str);
+			CORE_DLL std::string EPlayerData(sPlayerDescription _data);
+		}
+		namespace Decrypt
+		{
+			CORE_DLL std::string DStringData(std::string _str);
+			CORE_DLL sPlayerDescription DPlayerData(std::string _data);
 		}
 	}
 }
