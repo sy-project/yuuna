@@ -51,4 +51,7 @@
       <Filter>CUDA\MATH</Filter>
     </CudaCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Memo.txt" />
+  </ItemGroup>
 </Project>

@@ -20,6 +20,17 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     return TRUE;
 }
 
+int cuda_dll::Check_Cuda()
+{
+    cudaError_t cudaStatus;
+    cudaStatus = cudaSetDevice(0);
+    if (cudaStatus != cudaSuccess) {
+        fprintf(stderr, "cudaSetDevice failed!  Do you have a CUDA-capable GPU installed?");
+        return -1;
+    }
+    return 0;
+}
+
 void cuda_dll::math::CudaMath_test(int* c, const int* a, const int* b, unsigned int size)
 {
     Math_Test(c, a, b, size);

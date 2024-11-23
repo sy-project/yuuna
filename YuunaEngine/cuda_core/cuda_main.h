@@ -14,6 +14,7 @@ extern "C"
 {
 	namespace cuda_dll
 	{
+		CUDA_DLL int Check_Cuda();
 		namespace math
 		{
 			CUDA_DLL void CudaMath_test(int* c, const int* a, const int* b, unsigned int size);
