@@ -1,5 +1,5 @@
 #pragma once
-class cCmakeManager : Singleton<cCmakeManager>
+class cCmakeManager : public Singleton<cCmakeManager>
 {
 	friend class Singleton;
 public:
