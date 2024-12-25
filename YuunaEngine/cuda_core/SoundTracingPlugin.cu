@@ -94,6 +94,7 @@ cudaError_t SoundTracer::InitDev(int* c, const int* a, const int* b, unsigned in
     }
 
     // Copy output vector from GPU buffer to host memory.
+
     cudaStatus = cudaMemcpy(c, dev_c, size * sizeof(int), cudaMemcpyDeviceToHost);
     if (cudaStatus != cudaSuccess) {
         fprintf(stderr, "cudaMemcpy failed!");
