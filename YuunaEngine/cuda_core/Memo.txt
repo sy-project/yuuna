@@ -1,6 +1,7 @@
 NVidia 제품 확인 후 아닐 경우 unload 나 return 필요.
 
 기본적인 연산은 cpu, 사운드 트레이싱 혹은 그와 비슷한 모든 병렬적인 연산이 필요할 경우 cuda
+cuda > 터레인(빌보드 알고리즘), 레이트레이싱
 
 Cuda Memo
 To be cpu > gpu
