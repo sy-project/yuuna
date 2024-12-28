@@ -14,11 +14,15 @@
 
 #define FULLSCREEN false
 
-#include <Windows.h>
-#include <assert.h>
+//STL
 #include <vector>
+#include <list>
 #include <map>
 #include <unordered_map>
+
+//WIN
+#include <Windows.h>
+#include <assert.h>
 #include <string>
 #include <functional>
 #include <iostream>
@@ -31,14 +35,19 @@
 
 #pragma comment(lib, "urlmon.lib")
 
+//DX
 #include <d3d11.h>
 #include <DirectXMath.h>
 #include <d3dcompiler.h>
 #include <DirectXCollision.h>
+#include <wrl.h>
+#include <DirectXTex.h>
+#include <DirectXTex.inl>
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dxguid.lib")
+#pragma comment(lib, "DirectXTex.lib")
 
 
 #include <d2d1_2.h>
@@ -73,6 +82,7 @@
 using namespace DirectX;
 using namespace std;
 using namespace DirectX::TriangleTests;
+using namespace Microsoft::WRL;
 
 typedef XMFLOAT4 Float4;
 typedef XMFLOAT3 Float3;

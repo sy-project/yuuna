@@ -9,12 +9,6 @@ cDevice::cDevice()
 
 cDevice::~cDevice()
 {
-	device->Release();
-	deviceContext->Release();
-
-	swapChain->Release();
-
-	renderTargetView->Release();
 }
 
 void cDevice::CreateDeviceAndSwapChain()
@@ -33,7 +27,7 @@ void cDevice::CreateDeviceAndSwapChain()
 	desc.OutputWindow = g_hWnd;
 	desc.SampleDesc.Count = 1;
 	desc.SampleDesc.Quality = 0;
-	desc.Windowed = true;
+	desc.Windowed = !FULLSCREEN;
 
 #ifdef _DEBUG
 	V(D3D11CreateDeviceAndSwapChain(
@@ -45,10 +39,10 @@ void cDevice::CreateDeviceAndSwapChain()
 		0,
 		D3D11_SDK_VERSION,
 		&desc,
-		&swapChain,
-		&device,
+		swapChain.GetAddressOf(),
+		device.GetAddressOf(),
 		nullptr,
-		&deviceContext
+		deviceContext.GetAddressOf()
 	));
 #else
 	V(D3D11CreateDeviceAndSwapChain(
@@ -60,10 +54,10 @@ void cDevice::CreateDeviceAndSwapChain()
 		0,
 		D3D11_SDK_VERSION,
 		&desc,
-		&swapChain,
-		&device,
+		swapChain.GetAddressOf(),
+		device.GetAddressOf(),
 		nullptr,
-		&deviceContext
+		deviceContext.GetAddressOf()
 	));
 #endif // _DEBUG
 
@@ -74,7 +68,7 @@ void cDevice::CreateBackBuffer()
 	ID3D11Texture2D* backBuffer;
 
 	V(swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backBuffer));
-	V(device->CreateRenderTargetView(backBuffer, nullptr, &renderTargetView));
+	V(device->CreateRenderTargetView(backBuffer, nullptr, renderTargetView.GetAddressOf()));
 	backBuffer->Release();
 
 	ID3D11Texture2D* depthBuffer;
@@ -99,20 +93,20 @@ void cDevice::CreateBackBuffer()
 		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 		desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 
-		V(device->CreateDepthStencilView(depthBuffer, &desc, &depthStencilView));
+		V(device->CreateDepthStencilView(depthBuffer, &desc, depthStencilView.GetAddressOf()));
 		depthBuffer->Release();
 	}
 }
 
 void cDevice::SetRenderTarget()
 {
-	deviceContext->OMSetRenderTargets(1, &renderTargetView, depthStencilView);
+	deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), depthStencilView.Get());
 }
 
 void cDevice::Clear(Float4 color)
 {
-	deviceContext->ClearRenderTargetView(renderTargetView, (float*)&color);
-	deviceContext->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	deviceContext->ClearRenderTargetView(renderTargetView.Get(), (float*)&color);
+	deviceContext->ClearDepthStencilView(depthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void cDevice::Present()

@@ -8,12 +8,17 @@ private:
 	~cDevice();
 
 private:
-	ID3D11Device* device;
-	ID3D11DeviceContext* deviceContext;
+	ComPtr<ID3D11Device> device;
+	ComPtr<ID3D11DeviceContext> deviceContext;
+	//ID3D11Device* device;
+	//ID3D11DeviceContext* deviceContext;
 
-	IDXGISwapChain* swapChain;
-	ID3D11RenderTargetView* renderTargetView;
-	ID3D11DepthStencilView* depthStencilView;
+	ComPtr<IDXGISwapChain> swapChain;
+	ComPtr<ID3D11RenderTargetView> renderTargetView;
+	ComPtr<ID3D11DepthStencilView> depthStencilView;
+	//IDXGISwapChain* swapChain;
+	//ID3D11RenderTargetView* renderTargetView;
+	//ID3D11DepthStencilView* depthStencilView;
 
 public:
 	void CreateDeviceAndSwapChain();
@@ -22,8 +27,8 @@ public:
 	void Clear(Float4 color = Float4(0.1f, 0.1f, 0.125f, 1.0f));
 	void Present();
 
-	ID3D11Device* GetDevice() { return device; }
-	ID3D11DeviceContext* GetDeviceContext() { return deviceContext; }
-	IDXGISwapChain* GetSwapChain() { return swapChain; }
+	ID3D11Device* GetDevice() { return device.Get(); }
+	ID3D11DeviceContext* GetDeviceContext() { return deviceContext.Get(); }
+	IDXGISwapChain* GetSwapChain() { return swapChain.Get(); }
 };
 
