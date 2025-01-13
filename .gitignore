@@ -403,3 +403,6 @@ Study_Winapi/*
 
 # Sound Propagation
 [Ss]ound*.cu
+
+# CUDA
+*.cu
