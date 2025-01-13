@@ -7,7 +7,44 @@
 #ifndef PCH_H
 #define PCH_H
 
+#ifdef COMPILE_DLL
+#define CORE_DLL __declspec(dllexport)
+#else
+#define CORE_DLL __declspec(dllimport)
+#endif // COMPILE_DLL
+
 // 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
+
+extern "C"
+{
+	namespace Core
+	{
+		CORE_DLL int Init(int _key);
+		CORE_DLL int End();
+		namespace Log
+		{
+			CORE_DLL int WriteLog(std::string _str);
+		}
+		namespace Cmake
+		{
+
+		}
+		namespace Lib
+		{
+
+		}
+		namespace Encrypt
+		{
+			CORE_DLL std::string EStringData(std::string _str);
+			CORE_DLL std::string EPlayerData(sPlayerDescription _data);
+		}
+		namespace Decrypt
+		{
+			CORE_DLL std::string DStringData(std::string _str);
+			CORE_DLL sPlayerDescription DPlayerData(std::string _data);
+		}
+	}
+}
 
 #endif //PCH_H

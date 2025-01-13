@@ -1,5 +1,4 @@
 #include "pch.h"
-#include "cLibController.h"
 #include <fstream>
 #include <iostream>
 #include <filesystem>
@@ -69,6 +68,12 @@ void cLibController::Importer(std::string _Path)
 
 void cLibController::ReadHeader()
 {
+}
+
+void cLibController::CheckFunc()
+{
+	std::string _path = "Lib/return.data";
+
 }
 
 cLibController::cLibController()

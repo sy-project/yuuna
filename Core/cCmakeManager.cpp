@@ -1,5 +1,4 @@
 #include "pch.h"
-#include "cCmakeManager.h"
 #include <iostream>
 #include <fstream>
 
@@ -56,7 +55,7 @@ void cCmakeManager::RunCmake()
 	temp += "/Makefile";
 	for (;;)
 	{
-		if (access(temp.c_str(), 0) != -1)
+		if (_access(temp.c_str(), 0) != -1)
 		{
 			system("make");
 			break;
@@ -68,7 +67,7 @@ void cCmakeManager::RunCmake()
 	temp += "/" + m_FileName + ".exe";
 	for (;;)
 	{
-		if (access(temp.c_str(), 0) != -1)
+		if (_access(temp.c_str(), 0) != -1)
 		{
 			out = "start " + m_path;
 			system(out.c_str());

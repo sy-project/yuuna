@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Device">
+      <UniqueIdentifier>{c3fcce78-184e-406c-b9a1-33177d02cd89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{f0b030a9-ee2a-46e8-975b-a4c00652d58b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\imgui">
+      <UniqueIdentifier>{7ef981bb-b612-4b49-96f6-3454c0ff751f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\imgui\Core">
+      <UniqueIdentifier>{f59c64fc-41ac-45d8-8d88-29b64c602055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Program">
+      <UniqueIdentifier>{67c0592e-b6a9-476c-be63-b4abf08ffc41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainProgram">
+      <UniqueIdentifier>{baec402d-4389-4938-b08a-27761bf5c028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Assimp">
+      <UniqueIdentifier>{07eade7c-d4fb-4a5f-b70d-b65b6c2da53b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Model">
+      <UniqueIdentifier>{8998747e-9202-4894-b730-4a26242adf6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Network">
+      <UniqueIdentifier>{534224e0-98a5-4fa5-b0eb-ce755d47f516}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cDevice.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui.cpp">
+      <Filter>Core\imgui\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_demo.cpp">
+      <Filter>Core\imgui\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_draw.cpp">
+      <Filter>Core\imgui\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>Core\imgui\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>Core\imgui\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_tables.cpp">
+      <Filter>Core\imgui\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_widgets.cpp">
+      <Filter>Core\imgui\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="cImGuiManager.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="cProgram.cpp">
+      <Filter>Core\Program</Filter>
+    </ClCompile>
+    <ClCompile Include="cSystem.cpp">
+      <Filter>Core\Program</Filter>
+    </ClCompile>
+    <ClCompile Include="cEngine.cpp">
+      <Filter>MainProgram</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Core\Assimp</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelLoader.cpp">
+      <Filter>Core\Assimp</Filter>
+    </ClCompile>
+    <ClCompile Include="cModelManager.cpp">
+      <Filter>Core\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="cModel.cpp">
+      <Filter>Core\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="cNetworkManager.cpp">
+      <Filter>Core\Network</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cDevice.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imconfig.h">
+      <Filter>Core\imgui\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imgui.h">
+      <Filter>Core\imgui\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_dx11.h">
+      <Filter>Core\imgui\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_win32.h">
+      <Filter>Core\imgui\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imgui_internal.h">
+      <Filter>Core\imgui\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="cImGuiManager.h">
+      <Filter>Core\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="cProgram.h">
+      <Filter>Core\Program</Filter>
+    </ClInclude>
+    <ClInclude Include="cSystem.h">
+      <Filter>Core\Program</Filter>
+    </ClInclude>
+    <ClInclude Include="cEngine.h">
+      <Filter>MainProgram</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Core\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="SafeRelease.hpp">
+      <Filter>Core\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Core\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelLoader.h">
+      <Filter>Core\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="cModelManager.h">
+      <Filter>Core\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="cModel.h">
+      <Filter>Core\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="cNetworkManager.h">
+      <Filter>Core\Network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\imgui\misc\debuggers\imgui.natvis">
+      <Filter>Core\imgui\Core</Filter>
+    </Natvis>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>Core\Assimp</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>Core\Assimp</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="SampleAssimp.txt" />
+  </ItemGroup>
+</Project>

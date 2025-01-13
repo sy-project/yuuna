@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="cuda_header.h">
+      <Filter>MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="cuda_main.h">
+      <Filter>MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Singleton.h">
+      <Filter>MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundTracingPlugin.h">
+      <Filter>CUDA\PHYSICS\SOUNDTRACING</Filter>
+    </ClInclude>
+    <ClInclude Include="cuda_math.h">
+      <Filter>CUDA\MATH</Filter>
+    </ClInclude>
+    <ClInclude Include="all_type.h">
+      <Filter>CUDA\TYPE</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CUDA">
+      <UniqueIdentifier>{da5045eb-7d5b-4f43-8128-64df7be5e850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\PHYSICS">
+      <UniqueIdentifier>{aca1ecf4-01ea-4ac8-aa8a-c8ed685f75b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\PHYSICS\SOUNDTRACING">
+      <UniqueIdentifier>{50c64302-fb96-4065-ac99-b49cb10de9f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MAIN">
+      <UniqueIdentifier>{fea2cf5c-8a7f-42e5-be06-41eef5bc5f09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\MATH">
+      <UniqueIdentifier>{6c65d150-adca-4e8e-8eca-a9309e5f5023}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\TYPE">
+      <UniqueIdentifier>{7f2abae8-9fe9-4d22-b4a5-8b096e23f3a4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="kernel.cu">
+      <Filter>MAIN</Filter>
+    </CudaCompile>
+    <CudaCompile Include="SoundTracingPlugin.cu">
+      <Filter>CUDA\PHYSICS\SOUNDTRACING</Filter>
+    </CudaCompile>
+    <CudaCompile Include="cuda_math.cu">
+      <Filter>CUDA\MATH</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Memo.txt" />
+  </ItemGroup>
+</Project>
