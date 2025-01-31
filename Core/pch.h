@@ -25,6 +25,11 @@ extern "C"
 		namespace Log
 		{
 			CORE_DLL int WriteLog(std::string _str);
+			CORE_DLL void SetJsonFilename(std::string& _filename);
+			CORE_DLL bool LoadJson();
+			CORE_DLL bool SaveJson();
+			CORE_DLL std::string GetValueFromJson(const std::string& key, const std::string& defaultValue = "");
+			CORE_DLL void SetValueFromJson(const std::string& key, const std::string& value);
 		}
 		namespace Cmake
 		{
@@ -32,7 +37,9 @@ extern "C"
 		}
 		namespace Lib
 		{
-
+			CORE_DLL cLibController* GetInstance();
+			CORE_DLL bool LoadPluginFromName(const std::string& pluginName, const std::string& dllPath);
+			CORE_DLL void UnloadAllPlugin(const std::string& pluginName);
 		}
 		namespace Encrypt
 		{

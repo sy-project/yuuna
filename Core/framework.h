@@ -4,10 +4,11 @@
 #pragma warning(disable: 4996)
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#define CMAKEVERSION 3.11
+#define CMAKEVERSION 3.15
 // Windows 헤더 파일
 #include <windows.h>
 #include <iostream>
+#include <fstream>
 #include <assert.h>
 #include <vector>
 #include <map>
@@ -23,3 +24,4 @@
 #include "cLibController.h"
 #include "cEncryptManager.h"
 #include "cCmakeManager.h"
+#include "cJsonController.h"

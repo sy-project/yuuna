@@ -24,6 +24,7 @@ int Core::Init(int _key = 1234)
     cEncryptManager::Get();
     cEncryptManager::Get()->SetKey(_key);
     cCmakeManager::Get();
+    cJsonController::Get();
     return 0;
 }
 
@@ -33,6 +34,7 @@ int Core::End()
     cLibController::Delete();
     cEncryptManager::Delete();
     cCmakeManager::Delete();
+    cJsonController::Delete();
     return 0;
 }
 
@@ -40,6 +42,46 @@ int Core::Log::WriteLog(std::string _str)
 {
     cLogger::Get()->Logging(_str);
     return 0;
+}
+
+void Core::Log::SetJsonFilename(std::string& _filename)
+{
+    return cJsonController::Get()->SetFilename(_filename);
+}
+
+bool Core::Log::LoadJson()
+{
+    return cJsonController::Get()->Load();
+}
+
+bool Core::Log::SaveJson()
+{
+    return cJsonController::Get()->Save();
+}
+
+std::string Core::Log::GetValueFromJson(const std::string& key, const std::string& defaultValue)
+{
+    return cJsonController::Get()->GetValue(key, defaultValue);
+}
+
+void Core::Log::SetValueFromJson(const std::string& key, const std::string& value)
+{
+    return cJsonController::Get()->SetValue(key, value);
+}
+
+CORE_DLL cLibController* Core::Lib::GetInstance()
+{
+    return cLibController::Get();
+}
+
+bool Core::Lib::LoadPluginFromName(const std::string& pluginName, const std::string& dllPath)
+{
+    return cLibController::Get()->LoadPlugin(pluginName, dllPath);
+}
+
+void Core::Lib::UnloadAllPlugin(const std::string& pluginName)
+{
+    return cLibController::Get()->UnloadPlugin(pluginName);
 }
 
 std::string Core::Encrypt::EStringData(std::string _str)
