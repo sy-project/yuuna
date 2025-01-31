@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="cCmakeManager.h" />
     <ClInclude Include="cEncryptManager.h" />
+    <ClInclude Include="cJsonController.h" />
     <ClInclude Include="cLibController.h" />
     <ClInclude Include="cLogger.h" />
     <ClInclude Include="Common.h" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="cCmakeManager.cpp" />
     <ClCompile Include="cEncryptManager.cpp" />
+    <ClCompile Include="cJsonController.cpp" />
     <ClCompile Include="cLibController.cpp" />
     <ClCompile Include="cLogger.cpp" />
     <ClCompile Include="dllmain.cpp" />

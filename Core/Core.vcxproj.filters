@@ -31,6 +31,9 @@
     <Filter Include="Utils\Network">
       <UniqueIdentifier>{83cf03c6-b95a-4dab-86ce-ca56ca0eac6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils\json">
+      <UniqueIdentifier>{60284d35-d036-42af-8fbe-548fe00d7f67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -60,6 +63,9 @@
     <ClInclude Include="cEncryptManager.h">
       <Filter>Utils\EncDec</Filter>
     </ClInclude>
+    <ClInclude Include="cJsonController.h">
+      <Filter>Utils\json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -79,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="cEncryptManager.cpp">
       <Filter>Utils\EncDec</Filter>
+    </ClCompile>
+    <ClCompile Include="cJsonController.cpp">
+      <Filter>Utils\json</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
