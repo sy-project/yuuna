@@ -15,6 +15,44 @@ bool cImGuiManager::OpenImGuiWindow(std::string _name, int viewport_x, int viewp
     return true;
 }
 
+void cImGuiManager::ShowCMakeLogWindow()
+{
+    static std::vector<std::string> log;
+    static bool runCMake = false;
+
+    cImGuiManager::Get()->OpenImGuiWindow("Build Tool Box");
+    if (ImGui::Button("Build")) {
+        log = Core::Cmake::RunCommand("cmake .. && cmake --build .");
+        runCMake = true;
+    }
+
+    if (runCMake) {
+        for (const auto& line : log) {
+            ImGui::TextWrapped("%s", line.c_str());
+        }
+    }
+
+    ImGui::End();
+}
+
+void cImGuiManager::ShowLibList()
+{
+    cImGuiManager::Get()->OpenImGuiWindow("Lib List");
+    auto pluginloader = Core::Lib::GetLibContInstance();
+    for (const auto& pluginPair : pluginloader->GetLoadedPlugins()) {
+        const std::string& pluginName = pluginPair.first;
+        const PluginInfo& pluginInfo = pluginPair.second;
+
+        for (const auto& functionPair : pluginInfo.functions) {
+            const std::string& functionName = functionPair.first;
+            std::string displayText = pluginName + "/" + functionName;
+
+            ImGui::Text("%s", displayText.c_str());
+        }
+    }
+    ImGui::End();
+}
+
 void cImGuiManager::NewFrame()
 {
     ImGui_ImplDX11_NewFrame();

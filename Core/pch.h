@@ -33,11 +33,11 @@ extern "C"
 		}
 		namespace Cmake
 		{
-
+			CORE_DLL std::vector<std::string> RunCommand(const std::string& command);
 		}
 		namespace Lib
 		{
-			CORE_DLL cLibController* GetInstance();
+			CORE_DLL cLibController* GetLibContInstance();
 			CORE_DLL bool LoadPluginFromName(const std::string& pluginName, const std::string& dllPath);
 			CORE_DLL void UnloadAllPlugin(const std::string& pluginName);
 		}

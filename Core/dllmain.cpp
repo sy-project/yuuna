@@ -69,7 +69,12 @@ void Core::Log::SetValueFromJson(const std::string& key, const std::string& valu
     return cJsonController::Get()->SetValue(key, value);
 }
 
-CORE_DLL cLibController* Core::Lib::GetInstance()
+std::vector<std::string> Core::Cmake::RunCommand(const std::string& command)
+{
+    return cCmakeManager::Get()->RunCMakeCommand(command);
+}
+
+cLibController* Core::Lib::GetLibContInstance()
 {
     return cLibController::Get();
 }
