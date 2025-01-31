@@ -46,36 +46,25 @@ void cCmakeManager::MakeCmakeFile(std::string _ProjectName)
 	ofs.close();
 }
 
-void cCmakeManager::RunCmake()
+std::vector<std::string> cCmakeManager::RunCMakeCommand(const std::string& command)
 {
-	string out = "cmake " + m_path;
-	system(out.c_str());
-	string temp = "";
-	temp += m_path;
-	temp += "/Makefile";
-	for (;;)
-	{
-		if (_access(temp.c_str(), 0) != -1)
-		{
-			system("make");
-			break;
-		}
-		else
-			Sleep(50);
+	std::vector<std::string> output;
+	char buffer[256];
+
+	FILE* pipe = _popen(command.c_str(), "r");
+
+	if (!pipe) {
+		output.push_back("Failed to run CMake command.");
+		return output;
 	}
-	temp = m_path;
-	temp += "/" + m_FileName + ".exe";
-	for (;;)
-	{
-		if (_access(temp.c_str(), 0) != -1)
-		{
-			out = "start " + m_path;
-			system(out.c_str());
-			break;
-		}
-		else
-			Sleep(50);
+
+	while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+		output.push_back(buffer);
 	}
+
+	_pclose(pipe);
+
+	return output;
 }
 
 cCmakeManager::cCmakeManager()

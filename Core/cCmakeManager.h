@@ -4,7 +4,7 @@ class cCmakeManager : public Singleton<cCmakeManager>
 	friend class Singleton;
 public:
 	void MakeCmakeFile(std::string _ProjectName);
-	void RunCmake();
+	static std::vector<std::string> RunCMakeCommand(const std::string& command);
 
 public:
 	void SetPath(std::string _path) { m_path = _path; }
