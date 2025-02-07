@@ -61,7 +61,7 @@ void Init()
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
-	Core::Init(1);
+	Core::Init();
 	Core::Log::WriteLog("test");
 	cuda_dll::physics::SoundTracing::GetInstance();
 	Init();

@@ -5,6 +5,10 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
 #define CMAKEVERSION 3.15
+
+#define KEY "my_secret_key_123"  // 16 bytes AES 키
+#define IV "0000000000000000"    // 16 bytes IV
+
 // Windows 헤더 파일
 #include <windows.h>
 #include <iostream>

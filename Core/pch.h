@@ -20,7 +20,7 @@ extern "C"
 {
 	namespace Core
 	{
-		CORE_DLL int Init(int _key);
+		CORE_DLL int Init();
 		CORE_DLL int End();
 		namespace Log
 		{

@@ -17,12 +17,11 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
-int Core::Init(int _key = 1234)
+int Core::Init()
 {
     cLogger::Get();
     cLibController::Get();
     cEncryptManager::Get();
-    cEncryptManager::Get()->SetKey(_key);
     cCmakeManager::Get();
     cJsonController::Get();
     return 0;
