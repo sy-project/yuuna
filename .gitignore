@@ -406,3 +406,5 @@ Study_Winapi/*
 
 # CUDA
 *.cu
+
+[dD]oc/*
