@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTex", "..\DirectXTex
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JsonReader", "..\JsonReader\JsonReader.vcxproj", "{264109F2-101B-45E7-BE5F-88EF3EA81044}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaCoreTestApplication", "..\CudaCoreTestApplication\CudaCoreTestApplication.vcxproj", "{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -156,6 +158,24 @@ Global
 		{264109F2-101B-45E7-BE5F-88EF3EA81044}.Release|x64.Build.0 = Release|x64
 		{264109F2-101B-45E7-BE5F-88EF3EA81044}.Release|x86.ActiveCfg = Release|Win32
 		{264109F2-101B-45E7-BE5F-88EF3EA81044}.Release|x86.Build.0 = Release|Win32
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Debug|ARM64.ActiveCfg = Debug|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Debug|ARM64.Build.0 = Debug|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Debug|x64.ActiveCfg = Debug|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Debug|x64.Build.0 = Debug|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Debug|x86.ActiveCfg = Debug|Win32
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Debug|x86.Build.0 = Debug|Win32
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Profile|ARM64.ActiveCfg = Debug|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Profile|ARM64.Build.0 = Debug|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Profile|x64.ActiveCfg = Debug|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Profile|x64.Build.0 = Debug|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Profile|x86.ActiveCfg = Debug|Win32
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Profile|x86.Build.0 = Debug|Win32
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Release|ARM64.ActiveCfg = Release|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Release|ARM64.Build.0 = Release|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Release|x64.ActiveCfg = Release|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Release|x64.Build.0 = Release|x64
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Release|x86.ActiveCfg = Release|Win32
+		{51C5F320-1A2E-4C50-B646-9F2B6A3C658F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

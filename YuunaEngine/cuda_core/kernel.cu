@@ -3,6 +3,7 @@
 #include "device_launch_parameters.h"
 #include "SoundTracingPlugin.h"
 #include "cuda_math.h"
+#include "CudaGDevice.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule,
     DWORD  ul_reason_for_call,
@@ -20,7 +21,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     return TRUE;
 }
 
-int cuda_dll::Check_Cuda()
+extern "C" int cuda_dll::Check_Cuda()
 {
     cudaError_t cudaStatus;
     cudaStatus = cudaSetDevice(0);
@@ -31,12 +32,37 @@ int cuda_dll::Check_Cuda()
     return 0;
 }
 
-void cuda_dll::math::CudaMath_test(int* c, const int* a, const int* b, unsigned int size)
+extern "C" void cuda_dll::GDevice::DeviceInit(const int WIDTH, const int HEIGHT)
+{
+    initFramebufferCudaDevice(WIDTH, HEIGHT);
+}
+
+extern "C" void cuda_dll::GDevice::DeviceRender(const int WIDTH, const int HEIGHT)
+{
+    renderCudaDevice(WIDTH, HEIGHT);
+}
+
+extern "C" void cuda_dll::GDevice::DeviceCopyFramebuffer(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT)
+{
+    copyFramebufferToCPUCudaDevice(h_framebuffer, WIDTH, HEIGHT);
+}
+
+extern "C" void cuda_dll::GDevice::DevicedisplayFramebuffer(uint8_t* framebuffer, const int x, const int y, const int WIDTH, const int HEIGHT)
+{
+    displayFramebufferCudaDevice(framebuffer, x, y, WIDTH, HEIGHT);
+}
+
+extern "C" void cuda_dll::GDevice::DeviceDelete()
+{
+    DeleteCudaDevice();
+}
+
+extern "C" void cuda_dll::math::CudaMath_test(int* c, const int* a, const int* b, unsigned int size)
 {
     Math_Test(c, a, b, size);
 }
 
-void* cuda_dll::physics::SoundTracing::GetInstance()
+extern "C" void* cuda_dll::physics::SoundTracing::GetInstance()
 {
     return SoundTracer::Get();
 }

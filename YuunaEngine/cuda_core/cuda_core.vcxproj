@@ -88,6 +88,7 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CudaCompile Include="CudaGDevice.cu" />
     <CudaCompile Include="cuda_math.cu" />
     <CudaCompile Include="kernel.cu" />
     <CudaCompile Include="SoundTracingPlugin.cu" />
@@ -95,6 +96,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Core\Singleton.h" />
     <ClInclude Include="all_type.h" />
+    <ClInclude Include="CudaGDevice.h" />
     <ClInclude Include="cuda_header.h" />
     <ClInclude Include="cuda_main.h" />
     <ClInclude Include="cuda_math.h" />
