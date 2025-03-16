@@ -7,6 +7,7 @@
 #endif // COMPILE_DLL
 
 #include "cuda_header.h"
+#include "all_type.h"
 #include <windows.h>
 #include <iostream>
 #include <stdio.h>
@@ -18,11 +19,13 @@
 		extern "C" CUDA_DLL int Check_Cuda();
 		namespace GDevice
 		{
-			extern "C" CUDA_DLL void DeviceInit(const int WIDTH, const int HEIGHT);
-			extern "C" CUDA_DLL void DeviceRender(const int WIDTH, const int HEIGHT);
-			extern "C"  CUDA_DLL void DeviceCopyFramebuffer(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT);
-			extern "C" CUDA_DLL void DevicedisplayFramebuffer(uint8_t* framebuffer, const int x, const int y, const int WIDTH, const int HEIGHT);
+			extern "C" CUDA_DLL void DeviceInit(std::string winName, const int WIDTH, const int HEIGHT);
+			extern "C" CUDA_DLL void DeviceRender(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT);
 			extern "C" CUDA_DLL void DeviceDelete();
+
+			extern "C" CUDA_DLL void DeviceUpdate2DVertex(int objId, Vector::Vector2D _vec);
+			extern "C" CUDA_DLL void DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec);
+			extern "C" CUDA_DLL void DeviceUpdate4DVertex(int objId, Vector::Vector4D _vec);
 		}
 		namespace math
 		{

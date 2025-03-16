@@ -32,29 +32,47 @@ extern "C" int cuda_dll::Check_Cuda()
     return 0;
 }
 
-extern "C" void cuda_dll::GDevice::DeviceInit(const int WIDTH, const int HEIGHT)
+extern "C" void cuda_dll::GDevice::DeviceInit(std::string winName, const int WIDTH, const int HEIGHT)
 {
     initFramebufferCudaDevice(WIDTH, HEIGHT);
+    createWindow(winName, 0, 0, WIDTH, HEIGHT);
 }
 
-extern "C" void cuda_dll::GDevice::DeviceRender(const int WIDTH, const int HEIGHT)
+//extern "C" void cuda_dll::GDevice::DeviceRender(const int WIDTH, const int HEIGHT)
+//{
+//    renderCudaDevice(WIDTH, HEIGHT);
+//}
+
+extern "C" void cuda_dll::GDevice::DeviceRender(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT)
 {
     renderCudaDevice(WIDTH, HEIGHT);
-}
-
-extern "C" void cuda_dll::GDevice::DeviceCopyFramebuffer(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT)
-{
     copyFramebufferToCPUCudaDevice(h_framebuffer, WIDTH, HEIGHT);
+    displayFramebufferCudaDevice(h_framebuffer, 0, 0, WIDTH, HEIGHT);
 }
-
-extern "C" void cuda_dll::GDevice::DevicedisplayFramebuffer(uint8_t* framebuffer, const int x, const int y, const int WIDTH, const int HEIGHT)
-{
-    displayFramebufferCudaDevice(framebuffer, x, y, WIDTH, HEIGHT);
-}
+//
+//extern "C" void cuda_dll::GDevice::DevicedisplayFramebuffer(uint8_t* framebuffer, const int x, const int y, const int WIDTH, const int HEIGHT)
+//{
+//    displayFramebufferCudaDevice(framebuffer, x, y, WIDTH, HEIGHT);
+//}
 
 extern "C" void cuda_dll::GDevice::DeviceDelete()
 {
     DeleteCudaDevice();
+}
+
+extern "C"  void cuda_dll::GDevice::DeviceUpdate2DVertex(int objId, Vector::Vector2D _vec)
+{
+    Update2DVertex(objId, _vec);
+}
+
+extern "C"  void cuda_dll::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
+{
+    Update3DVertex(objId, _vec);
+}
+
+extern "C"  void cuda_dll::GDevice::DeviceUpdate4DVertex(int objId, Vector::Vector4D _vec)
+{
+    Update4DVertex(objId, _vec);
 }
 
 extern "C" void cuda_dll::math::CudaMath_test(int* c, const int* a, const int* b, unsigned int size)

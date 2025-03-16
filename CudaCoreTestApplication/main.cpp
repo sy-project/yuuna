@@ -5,22 +5,20 @@
 
 int main()
 {
-    int X, Y, WIDTH, HEIGHT;
+    std::string winName = "test";
 
-    X = 100;
-    Y = 200;
+    int WIDTH, HEIGHT;
+
     WIDTH = 800;
     HEIGHT = 600;
 
-    cuda_dll::GDevice::DeviceInit(WIDTH, HEIGHT);
-    cuda_dll::GDevice::DeviceRender(WIDTH, HEIGHT);
+    cuda_dll::GDevice::DeviceInit(winName, WIDTH, HEIGHT);
 
     uint8_t* h_framebuffer = new uint8_t[WIDTH * HEIGHT * 4];
-    cuda_dll::GDevice::DeviceCopyFramebuffer(h_framebuffer, WIDTH, HEIGHT);
 
     while (true)
     {
-        cuda_dll::GDevice::DevicedisplayFramebuffer(h_framebuffer, X, Y, WIDTH, HEIGHT);
+        cuda_dll::GDevice::DeviceRender(h_framebuffer, WIDTH, HEIGHT);
     }
 
     delete[] h_framebuffer;
