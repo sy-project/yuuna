@@ -2,7 +2,7 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 #include "SoundTracingPlugin.h"
-#include "cuda_math.h"
+#include "cuda_math.cuh"
 #include "CudaGDevice.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -77,7 +77,7 @@ extern "C"  void cuda_dll::GDevice::DeviceUpdate4DVertex(int objId, Vector::Vect
 
 extern "C" void cuda_dll::math::CudaMath_test(int* c, const int* a, const int* b, unsigned int size)
 {
-    Math_Test(c, a, b, size);
+//    Math_Test(c, a, b, size);
 }
 
 extern "C" void* cuda_dll::physics::SoundTracing::GetInstance()

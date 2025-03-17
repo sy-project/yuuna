@@ -99,7 +99,7 @@
     <ClInclude Include="CudaGDevice.h" />
     <ClInclude Include="cuda_header.h" />
     <ClInclude Include="cuda_main.h" />
-    <ClInclude Include="cuda_math.h" />
+    <ClInclude Include="cuda_math.cuh" />
     <ClInclude Include="SoundTracingPlugin.h" />
   </ItemGroup>
   <ItemGroup>

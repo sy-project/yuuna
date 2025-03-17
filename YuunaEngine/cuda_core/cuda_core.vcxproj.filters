@@ -13,7 +13,7 @@
     <ClInclude Include="SoundTracingPlugin.h">
       <Filter>CUDA\PHYSICS\SOUNDTRACING</Filter>
     </ClInclude>
-    <ClInclude Include="cuda_math.h">
+    <ClInclude Include="cuda_math.cuh">
       <Filter>CUDA\MATH</Filter>
     </ClInclude>
     <ClInclude Include="all_type.h">

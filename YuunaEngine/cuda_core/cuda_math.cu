@@ -1,10 +1,17 @@
 #include "cuda_main.h"
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
-#include "cuda_math.h"
+#include "cuda_math.cuh"
 #include <math.h>
 #include "cuda_profiler_api.h"
 
+__device__ bool isInsideTriangle(int x, int y, int2 p0, int2 p1, int2 p2) {
+    int a = (p1.x - p0.x) * (y - p0.y) - (p1.y - p0.y) * (x - p0.x);
+    int b = (p2.x - p1.x) * (y - p1.y) - (p2.y - p1.y) * (x - p1.x);
+    int c = (p0.x - p2.x) * (y - p2.y) - (p0.y - p2.y) * (x - p2.x);
+
+    return (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
+}
 __global__ void GMath_Test(int* c, const int* a, const int* b)
 {
     int i = threadIdx.x;
