@@ -7,7 +7,10 @@
 #endif // COMPILE_DLL
 
 #include "all_type.h"
+#ifdef _WIN32
 #include <windows.h>
+#elif __linux__
+#endif
 #include <iostream>
 #include <stdio.h>
 
@@ -18,7 +21,7 @@
 		extern "C" CUDA_DLL int Check_Cuda();
 		namespace GDevice
 		{
-			extern "C" CUDA_DLL void DeviceInit(std::string winName, const int WIDTH, const int HEIGHT);
+			extern "C" CUDA_DLL void DeviceInit(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT, unsigned long dwStyle);
 			extern "C" CUDA_DLL void DeviceRender(uint8_t* h_framebuffer, const int WIDTH = 0, const int HEIGHT = 0);
 			extern "C" CUDA_DLL void DeviceDelete();
 

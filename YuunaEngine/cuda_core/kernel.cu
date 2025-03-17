@@ -1,6 +1,5 @@
 ﻿#include "cuda_main.h"
-#include "cuda_runtime.h"
-#include "device_launch_parameters.h"
+#include "cuda_header.h"
 #include "SoundTracingPlugin.h"
 #include "cuda_math.cuh"
 #include "CudaGDevice.h"
@@ -32,10 +31,14 @@ extern "C" int SYCUDA::Check_Cuda()
     return 0;
 }
 
-extern "C" void SYCUDA::GDevice::DeviceInit(std::string winName, const int WIDTH, const int HEIGHT)
+extern "C" void SYCUDA::GDevice::DeviceInit(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT, unsigned long dwStyle)
 {
     initFramebufferCudaDevice(WIDTH, HEIGHT);
-    createWindow(winName, 0, 0, WIDTH, HEIGHT);
+
+#ifdef _WIN32
+    createWindow(winName, X, Y, WIDTH, HEIGHT, dwStyle);
+#elif __linux__
+#endif
 }
 
 //extern "C" void cuda_dll::GDevice::DeviceRender(const int WIDTH, const int HEIGHT)

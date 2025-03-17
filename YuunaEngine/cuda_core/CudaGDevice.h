@@ -1,7 +1,7 @@
 #pragma once
 #include "all_type.h"
 
-void createWindow(std::string _name, const int x, const int y, const int WIDTH, const int HEIGHT);
+void createWindow(std::string _name, const int x, const int y, const int WIDTH, const int HEIGHT, unsigned long dwStyle);
 void initFramebufferCudaDevice(const int WIDTH, const int HEIGHT);
 void renderCudaDevice(const int WIDTH, const int HEIGHT);
 void RenderVertexDevice(const int WIDTH, const int HEIGHT);

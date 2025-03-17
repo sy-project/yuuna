@@ -12,7 +12,7 @@ int main()
     WIDTH = 800;
     HEIGHT = 600;
 
-    SYCUDA::GDevice::DeviceInit(winName, WIDTH, HEIGHT);
+    SYCUDA::GDevice::DeviceInit(winName, 10, 20, WIDTH, HEIGHT, WS_OVERLAPPEDWINDOW | WS_VISIBLE);
 
     uint8_t* h_framebuffer = new uint8_t[WIDTH * HEIGHT * 4];
     SYCUDA::GDevice::DeviceUpdate2DVertex({ 30, 50 }, { 100, 50 }, { 100, 100 });

@@ -22,6 +22,9 @@
     <ClInclude Include="CudaGDevice.h">
       <Filter>CUDA\DEVICE</Filter>
     </ClInclude>
+    <ClInclude Include="RayTracing.cuh">
+      <Filter>CUDA\MATH\RAYTRACING</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CUDA">
@@ -45,6 +48,9 @@
     <Filter Include="CUDA\DEVICE">
       <UniqueIdentifier>{59781306-6924-40d8-a5cc-e7d4332b4e8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CUDA\MATH\RAYTRACING">
+      <UniqueIdentifier>{dcf15982-4679-4dbd-8a61-a98c5e65185f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu">
@@ -58,6 +64,9 @@
     </CudaCompile>
     <CudaCompile Include="CudaGDevice.cu">
       <Filter>CUDA\DEVICE</Filter>
+    </CudaCompile>
+    <CudaCompile Include="RayTracing.cu">
+      <Filter>CUDA\MATH\RAYTRACING</Filter>
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
