@@ -6,7 +6,6 @@
 #define CUDA_DLL __declspec(dllimport)
 #endif // COMPILE_DLL
 
-#include "cuda_header.h"
 #include "all_type.h"
 #include <windows.h>
 #include <iostream>
@@ -23,7 +22,7 @@
 			extern "C" CUDA_DLL void DeviceRender(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT);
 			extern "C" CUDA_DLL void DeviceDelete();
 
-			extern "C" CUDA_DLL void DeviceUpdate2DVertex(int objId, Vector::Vector2D _vec);
+			extern "C" CUDA_DLL void DeviceUpdate2DVertex(Vector::Vector2D v0, Vector::Vector2D v1, Vector::Vector2D v2);
 			extern "C" CUDA_DLL void DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec);
 			extern "C" CUDA_DLL void DeviceUpdate4DVertex(int objId, Vector::Vector4D _vec);
 		}

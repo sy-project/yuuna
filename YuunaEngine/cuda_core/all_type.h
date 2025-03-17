@@ -50,3 +50,6 @@ struct Line {
 	float d[3];
 	float determinant;
 };
+struct Triangle {
+	Vector::Vector2D p0, p1, p2;
+};

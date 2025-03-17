@@ -15,6 +15,7 @@ int main()
     cuda_dll::GDevice::DeviceInit(winName, WIDTH, HEIGHT);
 
     uint8_t* h_framebuffer = new uint8_t[WIDTH * HEIGHT * 4];
+    cuda_dll::GDevice::DeviceUpdate2DVertex({ 30, 50 }, { 100, 50 }, { 100, 100 });
 
     while (true)
     {

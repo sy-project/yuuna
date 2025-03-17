@@ -4,9 +4,10 @@
 void createWindow(std::string _name, const int x, const int y, const int WIDTH, const int HEIGHT);
 void initFramebufferCudaDevice(const int WIDTH, const int HEIGHT);
 void renderCudaDevice(const int WIDTH, const int HEIGHT);
+void RenderVertexDevice(const int WIDTH, const int HEIGHT);
 void copyFramebufferToCPUCudaDevice(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT);
 void DeleteCudaDevice();
-void Update2DVertex(int objId, Vector::Vector2D _vec);
+void Update2DVertex(Vector::Vector2D v0, Vector::Vector2D v1, Vector::Vector2D v2);
 void Update3DVertex(int objId, Vector::Vector3D _vec);
 void Update4DVertex(int objId, Vector::Vector4D _vec);
 #ifdef _WIN32

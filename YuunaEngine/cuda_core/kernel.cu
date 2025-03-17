@@ -60,9 +60,9 @@ extern "C" void cuda_dll::GDevice::DeviceDelete()
     DeleteCudaDevice();
 }
 
-extern "C"  void cuda_dll::GDevice::DeviceUpdate2DVertex(int objId, Vector::Vector2D _vec)
+extern "C"  void cuda_dll::GDevice::DeviceUpdate2DVertex(Vector::Vector2D v0, Vector::Vector2D v1, Vector::Vector2D v2)
 {
-    Update2DVertex(objId, _vec);
+    Update2DVertex(v0, v1, v2);
 }
 
 extern "C"  void cuda_dll::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
