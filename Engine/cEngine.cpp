@@ -115,7 +115,7 @@ void cEngine::Update()
 								160, 170};
 	int c[arraySize] = { 0 };
 
-	cuda_dll::math::CudaMath_test(c, a, b, arraySize);
+	SYCUDA::math::CudaMath_test(c, a, b, arraySize);
 	cuda_text = "[";
 	cuda_text += to_string(a[0]) + "/";
 	cuda_text += to_string(a[1]) + "/";

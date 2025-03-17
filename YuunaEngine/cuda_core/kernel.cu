@@ -21,7 +21,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     return TRUE;
 }
 
-extern "C" int cuda_dll::Check_Cuda()
+extern "C" int SYCUDA::Check_Cuda()
 {
     cudaError_t cudaStatus;
     cudaStatus = cudaSetDevice(0);
@@ -32,7 +32,7 @@ extern "C" int cuda_dll::Check_Cuda()
     return 0;
 }
 
-extern "C" void cuda_dll::GDevice::DeviceInit(std::string winName, const int WIDTH, const int HEIGHT)
+extern "C" void SYCUDA::GDevice::DeviceInit(std::string winName, const int WIDTH, const int HEIGHT)
 {
     initFramebufferCudaDevice(WIDTH, HEIGHT);
     createWindow(winName, 0, 0, WIDTH, HEIGHT);
@@ -43,7 +43,7 @@ extern "C" void cuda_dll::GDevice::DeviceInit(std::string winName, const int WID
 //    renderCudaDevice(WIDTH, HEIGHT);
 //}
 
-extern "C" void cuda_dll::GDevice::DeviceRender(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT)
+extern "C" void SYCUDA::GDevice::DeviceRender(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT)
 {
     renderCudaDevice(WIDTH, HEIGHT);
     copyFramebufferToCPUCudaDevice(h_framebuffer, WIDTH, HEIGHT);
@@ -55,32 +55,32 @@ extern "C" void cuda_dll::GDevice::DeviceRender(uint8_t* h_framebuffer, const in
 //    displayFramebufferCudaDevice(framebuffer, x, y, WIDTH, HEIGHT);
 //}
 
-extern "C" void cuda_dll::GDevice::DeviceDelete()
+extern "C" void SYCUDA::GDevice::DeviceDelete()
 {
     DeleteCudaDevice();
 }
 
-extern "C"  void cuda_dll::GDevice::DeviceUpdate2DVertex(Vector::Vector2D v0, Vector::Vector2D v1, Vector::Vector2D v2)
+extern "C"  void SYCUDA::GDevice::DeviceUpdate2DVertex(Vector::Vector2D v0, Vector::Vector2D v1, Vector::Vector2D v2)
 {
     Update2DVertex(v0, v1, v2);
 }
 
-extern "C"  void cuda_dll::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
+extern "C"  void SYCUDA::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
 {
     Update3DVertex(objId, _vec);
 }
 
-extern "C"  void cuda_dll::GDevice::DeviceUpdate4DVertex(int objId, Vector::Vector4D _vec)
+extern "C"  void SYCUDA::GDevice::DeviceUpdate4DVertex(int objId, Vector::Vector4D _vec)
 {
     Update4DVertex(objId, _vec);
 }
 
-extern "C" void cuda_dll::math::CudaMath_test(int* c, const int* a, const int* b, unsigned int size)
+extern "C" void SYCUDA::math::CudaMath_test(int* c, const int* a, const int* b, unsigned int size)
 {
 //    Math_Test(c, a, b, size);
 }
 
-extern "C" void* cuda_dll::physics::SoundTracing::GetInstance()
+extern "C" void* SYCUDA::physics::SoundTracing::GetSTInstance()
 {
     return SoundTracer::Get();
 }

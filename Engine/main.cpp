@@ -63,7 +63,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 {
 	Core::Init();
 	Core::Log::WriteLog("test");
-	cuda_dll::physics::SoundTracing::GetInstance();
+	SYCUDA::physics::SoundTracing::GetSTInstance();
 	Init();
 	while (cProgram::Get()->Update())
 	{

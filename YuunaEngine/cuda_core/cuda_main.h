@@ -13,13 +13,13 @@
 
 //extern "C"
 //{
-	namespace cuda_dll
+	namespace SYCUDA
 	{
 		extern "C" CUDA_DLL int Check_Cuda();
 		namespace GDevice
 		{
 			extern "C" CUDA_DLL void DeviceInit(std::string winName, const int WIDTH, const int HEIGHT);
-			extern "C" CUDA_DLL void DeviceRender(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT);
+			extern "C" CUDA_DLL void DeviceRender(uint8_t* h_framebuffer, const int WIDTH = 0, const int HEIGHT = 0);
 			extern "C" CUDA_DLL void DeviceDelete();
 
 			extern "C" CUDA_DLL void DeviceUpdate2DVertex(Vector::Vector2D v0, Vector::Vector2D v1, Vector::Vector2D v2);
@@ -34,7 +34,7 @@
 		{
 			namespace SoundTracing
 			{
-				extern "C" CUDA_DLL void* GetInstance();
+				extern "C" CUDA_DLL void* GetSTInstance();
 			}
 		}
 	}

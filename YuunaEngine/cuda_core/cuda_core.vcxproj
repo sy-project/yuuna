@@ -44,10 +44,12 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)..\Core;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
+    <TargetName>SYCUDA</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)..\Core;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
+    <TargetName>SYCUDA</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

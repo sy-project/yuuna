@@ -1,7 +1,7 @@
 #include <cuda_main.h>
 #include <iostream>
 
-#pragma comment(lib, "cuda_core.lib")
+#pragma comment(lib, "SYCUDA.lib")
 
 int main()
 {
@@ -12,17 +12,17 @@ int main()
     WIDTH = 800;
     HEIGHT = 600;
 
-    cuda_dll::GDevice::DeviceInit(winName, WIDTH, HEIGHT);
+    SYCUDA::GDevice::DeviceInit(winName, WIDTH, HEIGHT);
 
     uint8_t* h_framebuffer = new uint8_t[WIDTH * HEIGHT * 4];
-    cuda_dll::GDevice::DeviceUpdate2DVertex({ 30, 50 }, { 100, 50 }, { 100, 100 });
+    SYCUDA::GDevice::DeviceUpdate2DVertex({ 30, 50 }, { 100, 50 }, { 100, 100 });
 
     while (true)
     {
-        cuda_dll::GDevice::DeviceRender(h_framebuffer, WIDTH, HEIGHT);
+        SYCUDA::GDevice::DeviceRender(h_framebuffer);
     }
 
     delete[] h_framebuffer;
-    cuda_dll::GDevice::DeviceDelete();
+    SYCUDA::GDevice::DeviceDelete();
     return 0;
 }

@@ -69,12 +69,12 @@
 
 #ifdef _DEBUG
 #pragma comment(lib, "Debug/assimp-vc143-mtd.lib")
-#pragma comment(lib, "Debug/cuda_core.lib")
+#pragma comment(lib, "Debug/SYCUDA.lib")
 #pragma comment(lib, "Debug/Core.lib")
 #pragma comment(lib, "debug/libfbxsdk.lib")
 #else
 #pragma comment(lib, "Release/assimp-vc143-mt.lib")
-#pragma comment(lib, "Release/cuda_core.lib")
+#pragma comment(lib, "Release/SYCUDA.lib")
 #pragma comment(lib, "Release/Core.lib")
 #pragma comment(lib, "release/libfbxsdk.lib")
 #endif
