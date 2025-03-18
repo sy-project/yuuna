@@ -41,7 +41,8 @@ int main()
 
     while (true)
     {
-        //SYCUDA::GDevice::DeviceUpdate2DVertexPos(0, {0.01f,0.01f});
+        SYCUDA::GDevice::DeviceUpdate2DVertexRot(0, 0.01f);
+        SYCUDA::GDevice::DeviceUpdate2DVertexPos(0, {0.01f,0.01f});
         SYCUDA::GDevice::DeviceRender(h_framebuffer);
     }
 

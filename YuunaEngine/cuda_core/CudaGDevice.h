@@ -10,6 +10,7 @@ void DeleteCudaDevice();
 void Input2DVertex(unsigned int objId, Vertex v0, Vertex v1, Vertex v2);
 void Input2DImage(unsigned int objId, std::string _path);
 void Update2DVertexPos(unsigned int objId, Vector::Vector2D v);
+void Update2DVertexRot(unsigned int objId, float _val);
 void Update3DVertex(int objId, Vector::Vector3D _vec);
 void Update4DVertex(int objId, Vector::Vector4D _vec);
 #ifdef _WIN32

@@ -78,6 +78,11 @@ extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexPos(int objId, Vector::Vect
     Update2DVertexPos(objId, v);
 }
 
+extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRot(int objId, float val)
+{
+    Update2DVertexRot(objId, val);
+}
+
 extern "C"  void SYCUDA::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
 {
     Update3DVertex(objId, _vec);

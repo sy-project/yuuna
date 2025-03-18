@@ -1,4 +1,11 @@
 #pragma once
+#ifndef CUDACC
+#define CUDACC
+#endif
+#include <cmath>
+#include <cuda.h>
+#include <device_functions.h>
+#include <cuda_runtime_api.h>
 #include "cuda_header.h"
 #include "all_type.h"
 extern __device__ bool isInside2DTriangle(Vector::Vector2D p, Vector::Vector2D a, Vector::Vector2D b, Vector::Vector2D c);
