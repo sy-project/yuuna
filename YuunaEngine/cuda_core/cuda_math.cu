@@ -1,13 +1,24 @@
-#include "cuda_math.cuh"
+﻿#include "cuda_math.cuh"
 #include <math.h>
 #include "cuda_profiler_api.h"
 
-__device__ bool isInside2DTriangle(int x, int y, Vector::Vector2D p0, Vector::Vector2D p1, Vector::Vector2D p2) {
-    int a = (p1.x - p0.x) * (y - p0.y) - (p1.y - p0.y) * (x - p0.x);
-    int b = (p2.x - p1.x) * (y - p1.y) - (p2.y - p1.y) * (x - p1.x);
-    int c = (p0.x - p2.x) * (y - p2.y) - (p0.y - p2.y) * (x - p2.x);
+__device__ bool isInside2DTriangle(Vector::Vector2D p, Vector::Vector2D a, Vector::Vector2D b, Vector::Vector2D c) {
+    Vector::Vector2D AB = { b.x - a.x, b.y - a.y };
+    Vector::Vector2D BC = { c.x - b.x, c.y - b.y };
+    Vector::Vector2D CA = { a.x - c.x, a.y - c.y };
 
-    return (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
+    // 점 P에서 삼각형의 각 변에 대한 벡터 계산
+    Vector::Vector2D AP = { p.x - a.x, p.y - a.y };
+    Vector::Vector2D BP = { p.x - b.x, p.y - b.y };
+    Vector::Vector2D CP = { p.x - c.x, p.y - c.y };
+
+    // 외적 계산
+    float cross1 = AB.x * AP.y - AB.y * AP.x;  // AB x AP
+    float cross2 = BC.x * BP.y - BC.y * BP.x;  // BC x BP
+    float cross3 = CA.x * CP.y - CA.y * CP.x;  // CA x CP
+
+    // 외적의 부호가 모두 같으면 삼각형 내부
+    return (cross1 >= 0 && cross2 >= 0 && cross3 >= 0) || (cross1 <= 0 && cross2 <= 0 && cross3 <= 0);
 }
 __global__ void GMath_Test(int* c, const int* a, const int* b)
 {

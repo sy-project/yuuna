@@ -25,6 +25,9 @@
     <ClInclude Include="RayTracing.cuh">
       <Filter>CUDA\MATH\RAYTRACING</Filter>
     </ClInclude>
+    <ClInclude Include="CudaUtils.h">
+      <Filter>CUDA\RESOURCES</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CUDA">
@@ -50,6 +53,9 @@
     </Filter>
     <Filter Include="CUDA\MATH\RAYTRACING">
       <UniqueIdentifier>{dcf15982-4679-4dbd-8a61-a98c5e65185f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\RESOURCES">
+      <UniqueIdentifier>{2192cde6-5220-43ec-a96a-657cb684b10f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

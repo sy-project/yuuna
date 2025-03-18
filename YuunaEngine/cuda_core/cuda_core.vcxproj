@@ -42,12 +42,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\Core;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\Core;$(SolutionDir)..\stb;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
     <TargetName>SYCUDA</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)..\Core;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\Core;$(SolutionDir)..\stb;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)x64\;$(LibraryPath)</LibraryPath>
     <TargetName>SYCUDA</TargetName>
   </PropertyGroup>
@@ -89,6 +89,7 @@
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
       <Defines>COMPILE_DLL</Defines>
+      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -102,6 +103,7 @@
     <ClInclude Include="..\..\Core\Singleton.h" />
     <ClInclude Include="all_type.h" />
     <ClInclude Include="CudaGDevice.h" />
+    <ClInclude Include="CudaUtils.h" />
     <ClInclude Include="cuda_header.h" />
     <ClInclude Include="cuda_main.h" />
     <ClInclude Include="cuda_math.cuh" />

@@ -25,7 +25,9 @@
 			extern "C" CUDA_DLL void DeviceRender(uint8_t* h_framebuffer, const int WIDTH = 0, const int HEIGHT = 0);
 			extern "C" CUDA_DLL void DeviceDelete();
 
-			extern "C" CUDA_DLL void DeviceUpdate2DVertex(Vector::Vector2D v0, Vector::Vector2D v1, Vector::Vector2D v2);
+			extern "C" CUDA_DLL void DeviceInput2DVertex(int objId, Vertex v0, Vertex v1, Vertex v2);
+			extern "C" CUDA_DLL void DeviceInput2DImage(int objId, std::string _path);
+			extern "C" CUDA_DLL void DeviceUpdate2DVertexPos(int objId, Vector::Vector2D v);
 			extern "C" CUDA_DLL void DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec);
 			extern "C" CUDA_DLL void DeviceUpdate4DVertex(int objId, Vector::Vector4D _vec);
 		}

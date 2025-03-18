@@ -63,9 +63,19 @@ extern "C" void SYCUDA::GDevice::DeviceDelete()
     DeleteCudaDevice();
 }
 
-extern "C"  void SYCUDA::GDevice::DeviceUpdate2DVertex(Vector::Vector2D v0, Vector::Vector2D v1, Vector::Vector2D v2)
+extern "C"  void SYCUDA::GDevice::DeviceInput2DVertex(int objId, Vertex v0, Vertex v1, Vertex v2)
 {
-    Update2DVertex(v0, v1, v2);
+    Input2DVertex(objId, v0, v1, v2);
+}
+
+extern "C" void SYCUDA::GDevice::DeviceInput2DImage(int objId, std::string _path)
+{
+    Input2DImage(objId, _path);
+}
+
+extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexPos(int objId, Vector::Vector2D v)
+{
+    Update2DVertexPos(objId, v);
 }
 
 extern "C"  void SYCUDA::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)

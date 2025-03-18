@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 namespace Vector
 {
 	typedef struct Vector2D {
@@ -50,6 +51,16 @@ struct Line {
 	float d[3];
 	float determinant;
 };
-struct Triangle {
-	Vector::Vector2D p0, p1, p2;
+struct Vertex {
+	Vector::Vector2D p;
+	Vector::Vector2D uv;
+};
+struct Triangle2D {
+	unsigned int objId;
+	Vertex v1, v2, v3;
+};
+struct Image2D {
+	unsigned int objId;
+	uint8_t* img;
+	Vector::Vector2D size;
 };
