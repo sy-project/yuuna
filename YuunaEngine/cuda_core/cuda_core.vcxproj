@@ -69,6 +69,10 @@
       <GPUDebugInfo>true</GPUDebugInfo>
       <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
     </CudaCompile>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -91,6 +95,12 @@
       <Defines>COMPILE_DLL</Defines>
       <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
     </CudaCompile>
+    <PostBuildEvent>
+      <Command>xcopy /Y "$(OutDir)SYCUDA.dll" "$(SolutionDir)..\Finally\Plugin\SYCUDA\dll"
+xcopy /Y "$(OutDir)SYCUDA.lib" "$(SolutionDir)..\Finally\Plugin\SYCUDA\lib"
+xcopy /Y "$(ProjectDir)*.h" "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc"
+xcopy /Y "$(ProjectDir)*.cuh" "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <CudaCompile Include="CudaGDevice.cu" />
@@ -101,7 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Core\Singleton.h" />
-    <ClInclude Include="all_type.h" />
     <ClInclude Include="CudaGDevice.h" />
     <ClInclude Include="CudaUtils.h" />
     <ClInclude Include="cuda_header.h" />

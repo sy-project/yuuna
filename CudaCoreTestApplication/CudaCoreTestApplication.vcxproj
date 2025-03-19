@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)cuda_core</IncludePath>
+    <IncludePath>$(SolutionDir)cuda_core;$(SolutionDir)..\Core</IncludePath>
     <LibraryPath>$(SolutionDir)x64\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)cuda_core</IncludePath>
+    <IncludePath>$(SolutionDir)cuda_core;$(SolutionDir)..\Core</IncludePath>
     <LibraryPath>$(SolutionDir)x64\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

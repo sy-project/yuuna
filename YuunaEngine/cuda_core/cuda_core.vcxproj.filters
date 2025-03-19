@@ -16,9 +16,6 @@
     <ClInclude Include="cuda_math.cuh">
       <Filter>CUDA\MATH</Filter>
     </ClInclude>
-    <ClInclude Include="all_type.h">
-      <Filter>CUDA\TYPE</Filter>
-    </ClInclude>
     <ClInclude Include="CudaGDevice.h">
       <Filter>CUDA\DEVICE</Filter>
     </ClInclude>
@@ -44,9 +41,6 @@
     </Filter>
     <Filter Include="CUDA\MATH">
       <UniqueIdentifier>{6c65d150-adca-4e8e-8eca-a9309e5f5023}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CUDA\TYPE">
-      <UniqueIdentifier>{7f2abae8-9fe9-4d22-b4a5-8b096e23f3a4}</UniqueIdentifier>
     </Filter>
     <Filter Include="CUDA\DEVICE">
       <UniqueIdentifier>{59781306-6924-40d8-a5cc-e7d4332b4e8f}</UniqueIdentifier>
