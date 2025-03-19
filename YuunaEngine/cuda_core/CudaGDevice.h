@@ -1,5 +1,5 @@
 #pragma once
-#include "all_type.h"
+#include <Types.h>
 
 void createWindow(std::string _name, const int x, const int y, const int WIDTH, const int HEIGHT, unsigned long dwStyle);
 void ImportWindow(std::string _name, const int x, const int y, const int WIDTH, const int HEIGHT);

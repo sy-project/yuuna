@@ -24,6 +24,7 @@ int Core::Init()
     cEncryptManager::Get();
     cCmakeManager::Get();
     cJsonController::Get();
+    cControl::Get();
     return 0;
 }
 
@@ -34,6 +35,7 @@ int Core::End()
     cEncryptManager::Delete();
     cCmakeManager::Delete();
     cJsonController::Delete();
+    cControl::Delete();
     return 0;
 }
 
@@ -106,4 +108,44 @@ std::string Core::Decrypt::DStringData(std::string _str)
 sPlayerDescription Core::Decrypt::DPlayerData(std::string _data)
 {
     return cEncryptManager::Get()->DecryptNetwork(_data);
+}
+
+void Core::CONTROL::UpdateInput()
+{
+    cControl::Get()->Update();
+}
+
+bool Core::CONTROL::KeyDown(UINT key)
+{
+    return cControl::Get()->Down(key);
+}
+
+bool Core::CONTROL::KeyUp(UINT key)
+{
+    return cControl::Get()->Up(key);
+}
+
+bool Core::CONTROL::KeyPress(UINT key)
+{
+    return cControl::Get()->Press(key);
+}
+
+Vector3D Core::CONTROL::MouseGet()
+{
+    return cControl::Get()->GetMouse();
+}
+
+void Core::CONTROL::MouseSet(LPARAM lParam, int WIN_X, int WIN_Y)
+{
+    return cControl::Get()->SetMouse(lParam, WIN_X, WIN_Y);
+}
+
+float Core::CONTROL::MouseWheelGet()
+{
+    return cControl::Get()->GetWheel();
+}
+
+void Core::CONTROL::MouseWheelSet(float value)
+{
+    return cControl::Get()->SetWheel(value);
 }

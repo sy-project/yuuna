@@ -34,6 +34,9 @@
     <Filter Include="Utils\json">
       <UniqueIdentifier>{60284d35-d036-42af-8fbe-548fe00d7f67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils\KeyInput">
+      <UniqueIdentifier>{f7d7e781-4916-4caf-8a93-977563f8d95d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -66,6 +69,12 @@
     <ClInclude Include="cJsonController.h">
       <Filter>Utils\json</Filter>
     </ClInclude>
+    <ClInclude Include="cControl.h">
+      <Filter>Utils\KeyInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -88,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="cJsonController.cpp">
       <Filter>Utils\json</Filter>
+    </ClCompile>
+    <ClCompile Include="cControl.cpp">
+      <Filter>Utils\KeyInput</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

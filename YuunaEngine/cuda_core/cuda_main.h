@@ -6,7 +6,7 @@
 #define CUDA_DLL __declspec(dllimport)
 #endif // COMPILE_DLL
 
-#include "all_type.h"
+#include <Types.h>
 #ifdef _WIN32
 #include <windows.h>
 #elif __linux__

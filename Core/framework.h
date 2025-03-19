@@ -29,3 +29,5 @@
 #include "cEncryptManager.h"
 #include "cCmakeManager.h"
 #include "cJsonController.h"
+#include "cControl.h"
+#include "Types.h"

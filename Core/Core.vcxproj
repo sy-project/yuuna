@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="cCmakeManager.h" />
+    <ClInclude Include="cControl.h" />
     <ClInclude Include="cEncryptManager.h" />
     <ClInclude Include="cJsonController.h" />
     <ClInclude Include="cLibController.h" />
@@ -159,9 +160,11 @@
     <ClInclude Include="Network.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cCmakeManager.cpp" />
+    <ClCompile Include="cControl.cpp" />
     <ClCompile Include="cEncryptManager.cpp" />
     <ClCompile Include="cJsonController.cpp" />
     <ClCompile Include="cLibController.cpp" />

@@ -51,6 +51,17 @@ extern "C"
 			CORE_DLL std::string DStringData(std::string _str);
 			CORE_DLL sPlayerDescription DPlayerData(std::string _data);
 		}
+		namespace CONTROL
+		{
+			CORE_DLL void UpdateInput();
+			CORE_DLL bool KeyDown(UINT key);
+			CORE_DLL bool KeyUp(UINT key);
+			CORE_DLL bool KeyPress(UINT key);
+			CORE_DLL Vector3D MouseGet();
+			CORE_DLL void MouseSet(LPARAM lParam, int WIN_X = 0, int WIN_Y = 0);
+			CORE_DLL float MouseWheelGet();
+			CORE_DLL void MouseWheelSet(float value);
+		}
 	}
 }
 
