@@ -148,7 +148,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\openssl\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "$(OutDir)Core.dll" "$(SolutionDir)..\Finally\Plugin\Core\dll"
+      <Command>rmdir /S /Q "$(SolutionDir)..\Finally\Plugin\Core\inc\" 2&gt;nul
+mkdir "$(SolutionDir)..\Finally\Plugin\Core\inc\"
+xcopy /Y "$(OutDir)Core.dll" "$(SolutionDir)..\Finally\Plugin\Core\dll"
 xcopy /Y "$(OutDir)Core.lib" "$(SolutionDir)..\Finally\Plugin\Core\lib"
 xcopy /Y "$(ProjectDir)*.h" "$(SolutionDir)..\Finally\Plugin\Core\inc"</Command>
     </PostBuildEvent>

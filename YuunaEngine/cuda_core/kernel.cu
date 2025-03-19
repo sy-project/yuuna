@@ -71,7 +71,7 @@ extern "C" void SYCUDA::GDevice::DeviceDelete()
     DeleteCudaDevice();
 }
 
-extern "C"  void SYCUDA::GDevice::DeviceInput2DVertex(int objId, Vertex v0, Vertex v1, Vertex v2)
+extern "C"  void SYCUDA::GDevice::DeviceInput2DVertex(int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2)
 {
     Input2DVertex(objId, v0, v1, v2);
 }

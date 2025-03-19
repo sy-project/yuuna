@@ -1,7 +1,10 @@
+#include <pch.h>
 #include <cuda_main.h>
+#include <unordered_map>
 #include <iostream>
 #include <vector>
 #pragma comment(lib, "SYCUDA.lib")
+#pragma comment(lib, "Core.lib")
 
 int main()
 {
@@ -12,14 +15,15 @@ int main()
     WIDTH = 800;
     HEIGHT = 600;
 
+    Core::Init();
     SYCUDA::GDevice::DeviceInit(winName, 10, 20, WIDTH, HEIGHT, WS_OVERLAPPEDWINDOW | WS_VISIBLE);
 
     uint8_t* h_framebuffer = new uint8_t[WIDTH * HEIGHT * 4];
 
-    std::vector<Vertex> vvertex;
+    std::vector<Vertex2D> vvertex;
     Vector::Vector2D p = { 100, 100 };
     Vector::Vector2D uv = { 0,0 };
-    Vertex v = { p,uv };
+    Vertex2D v = { p,uv };
     vvertex.push_back(v);
     p = { 200, 200 };
     uv = { 1,0 };
@@ -41,13 +45,16 @@ int main()
 
     while (true)
     {
+        Core::CONTROL::UpdateInput();
         SYCUDA::GDevice::DeviceUpdate2DVertexRotWCenter(0, 0.01f, {500,500});
-        SYCUDA::GDevice::DeviceUpdate2DVertexRot(0, 0.1f);
+        if(Core::CONTROL::KeyPress('K'))
+            SYCUDA::GDevice::DeviceUpdate2DVertexRot(0, 0.1f);
         SYCUDA::GDevice::DeviceUpdate2DVertexPos(1, {0.01f,0.01f});
         SYCUDA::GDevice::DeviceRender(h_framebuffer);
     }
 
     delete[] h_framebuffer;
     SYCUDA::GDevice::DeviceDelete();
+    Core::End();
     return 0;
 }

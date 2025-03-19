@@ -96,7 +96,9 @@
       <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
     </CudaCompile>
     <PostBuildEvent>
-      <Command>xcopy /Y "$(OutDir)SYCUDA.dll" "$(SolutionDir)..\Finally\Plugin\SYCUDA\dll"
+      <Command>rmdir /S /Q "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc\" 2&gt;nul
+mkdir "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc\"
+xcopy /Y "$(OutDir)SYCUDA.dll" "$(SolutionDir)..\Finally\Plugin\SYCUDA\dll"
 xcopy /Y "$(OutDir)SYCUDA.lib" "$(SolutionDir)..\Finally\Plugin\SYCUDA\lib"
 xcopy /Y "$(ProjectDir)*.h" "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc"
 xcopy /Y "$(ProjectDir)*.cuh" "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc"</Command>
