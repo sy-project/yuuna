@@ -2,6 +2,7 @@
 #include "all_type.h"
 
 void createWindow(std::string _name, const int x, const int y, const int WIDTH, const int HEIGHT, unsigned long dwStyle);
+void ImportWindow(std::string _name, const int x, const int y, const int WIDTH, const int HEIGHT);
 void initFramebufferCudaDevice(const int WIDTH, const int HEIGHT);
 void renderCudaDevice(const int WIDTH, const int HEIGHT);
 void RenderVertexDevice(const int WIDTH, const int HEIGHT);
@@ -11,6 +12,7 @@ void Input2DVertex(unsigned int objId, Vertex v0, Vertex v1, Vertex v2);
 void Input2DImage(unsigned int objId, std::string _path);
 void Update2DVertexPos(unsigned int objId, Vector::Vector2D v);
 void Update2DVertexRot(unsigned int objId, float _val);
+void Update2DVertexRot(unsigned int objId, float _val, Vector::Vector2D center);
 void Update3DVertex(int objId, Vector::Vector3D _vec);
 void Update4DVertex(int objId, Vector::Vector4D _vec);
 #ifdef _WIN32

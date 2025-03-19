@@ -22,6 +22,7 @@
 		namespace GDevice
 		{
 			extern "C" CUDA_DLL void DeviceInit(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT, unsigned long dwStyle);
+			extern "C" CUDA_DLL void DeviceImport(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT);
 			extern "C" CUDA_DLL void DeviceRender(uint8_t* h_framebuffer, const int WIDTH = 0, const int HEIGHT = 0);
 			extern "C" CUDA_DLL void DeviceDelete();
 
@@ -29,6 +30,7 @@
 			extern "C" CUDA_DLL void DeviceInput2DImage(int objId, std::string _path);
 			extern "C" CUDA_DLL void DeviceUpdate2DVertexPos(int objId, Vector::Vector2D v);
 			extern "C" CUDA_DLL void DeviceUpdate2DVertexRot(int objId, float val);
+			extern "C" CUDA_DLL void DeviceUpdate2DVertexRotWCenter(int objId, float val, Vector::Vector2D center);
 
 			extern "C" CUDA_DLL void DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec);
 			extern "C" CUDA_DLL void DeviceUpdate4DVertex(int objId, Vector::Vector4D _vec);

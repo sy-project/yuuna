@@ -41,6 +41,14 @@ extern "C" void SYCUDA::GDevice::DeviceInit(std::string winName, int X, int Y, c
 #endif
 }
 
+extern "C" void SYCUDA::GDevice::DeviceImport(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT)
+{
+#ifdef _WIN32
+    ImportWindow(winName, X, Y, WIDTH, HEIGHT);
+#elif __linux__
+#endif
+}
+
 //extern "C" void cuda_dll::GDevice::DeviceRender(const int WIDTH, const int HEIGHT)
 //{
 //    renderCudaDevice(WIDTH, HEIGHT);
@@ -81,6 +89,11 @@ extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexPos(int objId, Vector::Vect
 extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRot(int objId, float val)
 {
     Update2DVertexRot(objId, val);
+}
+
+extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRotWCenter(int objId, float val, Vector::Vector2D center)
+{
+    Update2DVertexRot(objId, val, center);
 }
 
 extern "C"  void SYCUDA::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
