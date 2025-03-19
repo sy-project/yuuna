@@ -65,3 +65,7 @@ To be cpu > gpu
 
 13. 쿠다 내 함수 이용시 매개변수로 input/output데이터는 포인터로만 값 적용.
  > 리턴값은 void이기때문
+
+14. w는 width, h는 height로 윈도우 창 크기에 따라 block과 grid 사이즈를 자동 조절
+    dim3 blockSize(16, 16);
+    dim3 gridSize((w + 15) / 16, (h + 15) / 16);
