@@ -14,6 +14,7 @@ int main()
     HEIGHT = 600;
 
     Core::Init();
+    //Core::Encrypt::EResourceFile("123432.png", "123432.enc");
     SYCUDA::GDevice::DeviceInit(winName, 10, 20, WIDTH, HEIGHT, WS_OVERLAPPEDWINDOW | WS_VISIBLE);
 
     uint8_t* h_framebuffer = new uint8_t[WIDTH * HEIGHT * 4];
@@ -39,7 +40,7 @@ int main()
     SYCUDA::GDevice::DeviceInput2DVertex(0, vvertex.at(0), vvertex.at(1), vvertex.at(3));
     SYCUDA::GDevice::DeviceInput2DVertex(0, vvertex.at(2), vvertex.at(0), vvertex.at(3));
     SYCUDA::GDevice::DeviceInput2DVertex(1, { 200, 200 }, { 200, 250 }, { 250, 200 });
-    SYCUDA::GDevice::DeviceInput2DImage(0, "123432.png");
+    SYCUDA::GDevice::DeviceInput2DImageFromEnc(0, Core::Decrypt::DResourceFile("123432.enc"));
 
     while (true)
     {

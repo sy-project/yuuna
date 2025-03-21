@@ -78,7 +78,12 @@ extern "C"  void SYCUDA::GDevice::DeviceInput2DVertex(int objId, Vertex2D v0, Ve
 
 extern "C" void SYCUDA::GDevice::DeviceInput2DImage(int objId, std::string _path)
 {
-    Input2DImage(objId, _path);
+    Input2DImage(objId, _path, std::vector<char>());
+}
+
+extern "C" void SYCUDA::GDevice::DeviceInput2DImageFromEnc(int objId, std::vector<char> encData)
+{
+    Input2DImage(objId, "", encData);
 }
 
 extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexPos(int objId, Vector::Vector2D v)

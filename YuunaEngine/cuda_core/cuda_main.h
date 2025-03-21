@@ -7,6 +7,7 @@
 #endif // COMPILE_DLL
 
 #include <Types.h>
+#include <vector>
 #ifdef _WIN32
 #include <windows.h>
 #elif __linux__
@@ -28,6 +29,7 @@
 
 			extern "C" CUDA_DLL void DeviceInput2DVertex(int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2);
 			extern "C" CUDA_DLL void DeviceInput2DImage(int objId, std::string _path);
+			extern "C" CUDA_DLL void DeviceInput2DImageFromEnc(int objId, std::vector<char> encData = std::vector<char>());
 			extern "C" CUDA_DLL void DeviceUpdate2DVertexPos(int objId, Vector::Vector2D v);
 			extern "C" CUDA_DLL void DeviceUpdate2DVertexRot(int objId, float val);
 			extern "C" CUDA_DLL void DeviceUpdate2DVertexRotWCenter(int objId, float val, Vector::Vector2D center);

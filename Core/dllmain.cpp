@@ -95,6 +95,11 @@ std::string Core::Encrypt::EStringData(std::string _str)
     return cEncryptManager::Get()->EncryptData(_str);
 }
 
+void Core::Encrypt::EResourceFile(const std::string& inputPath, const std::string& outputPath)
+{
+    cEncryptManager::Get()->EncryptResourceFile(inputPath, outputPath);
+}
+
 std::string Core::Encrypt::EPlayerData(sPlayerDescription _data)
 {
     return cEncryptManager::Get()->EncryptNetwork(_data);
@@ -103,6 +108,11 @@ std::string Core::Encrypt::EPlayerData(sPlayerDescription _data)
 std::string Core::Decrypt::DStringData(std::string _str)
 {
     return cEncryptManager::Get()->DecryptData(_str);
+}
+
+std::vector<char> Core::Decrypt::DResourceFile(const std::string& filePath)
+{
+    return cEncryptManager::Get()->DecryptResourceFile(filePath);
 }
 
 sPlayerDescription Core::Decrypt::DPlayerData(std::string _data)

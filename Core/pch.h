@@ -44,11 +44,13 @@ extern "C"
 		namespace Encrypt
 		{
 			CORE_DLL std::string EStringData(std::string _str);
+			CORE_DLL void EResourceFile(const std::string& inputPath, const std::string& outputPath);
 			CORE_DLL std::string EPlayerData(sPlayerDescription _data);
 		}
 		namespace Decrypt
 		{
 			CORE_DLL std::string DStringData(std::string _str);
+			CORE_DLL std::vector<char> DResourceFile(const std::string& filePath);
 			CORE_DLL sPlayerDescription DPlayerData(std::string _data);
 		}
 		namespace CONTROL
