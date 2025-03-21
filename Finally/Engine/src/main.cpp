@@ -1,3 +1,4 @@
+#define ONLY_ENGINE
 #include <CoreImporter.h>
 #include <CudaImporter.h>
 #include <unordered_map>

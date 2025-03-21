@@ -17,6 +17,11 @@ execute_process(
     OUTPUT_VARIABLE ICON_PATH OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
+execute_process(
+    COMMAND ${CMAKE_SOURCE_DIR}/Tools/json_reader ${CONFIG_FILE} export_path
+    OUTPUT_VARIABLE EXPORT_PATH OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
 # 소스파일 설정
 file(GLOB EngineSrc "Engine/src/*.cpp")
 
@@ -76,8 +81,17 @@ foreach(PLUGIN_PATH ${PLUGIN_FOLDERS})
                 add_custom_command(TARGET ${EXE_NAME} POST_BUILD
                     COMMAND ${CMAKE_COMMAND} -E copy ${DLL_FILE} $<TARGET_FILE_DIR:${EXE_NAME}>
                 )
+                add_custom_command(TARGET ${EXE_NAME} POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy ${DLL_FILE} ${EXPORT_PATH}
+                )
             endforeach()
         endif()
     endif()
 endforeach()
+
+# 빌드 결과 EXE 복사
+add_custom_command(TARGET ${EXE_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${EXPORT_PATH}
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${EXE_NAME}> ${EXPORT_PATH}
+)
 

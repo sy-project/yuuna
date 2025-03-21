@@ -1,4 +1,5 @@
 {
     "exe_name": "GameOut",
-    "icon_path": "Icons/123432.ico"
+    "icon_path": "Icons/123432.ico",
+    "export_path": "D:/workspace/yuuna/Finally/test"
 }

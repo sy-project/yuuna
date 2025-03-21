@@ -1,5 +1,9 @@
 #pragma once
+#ifdef ONLY_ENGINE
+#include "json/nlohmann/json.hpp"
+#else
 #include "../json/nlohmann/json.hpp"
+#endif // ONLY_ENGINE
 
 class cJsonController : public Singleton<cJsonController>
 {
