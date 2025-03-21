@@ -63,7 +63,7 @@ foreach(PLUGIN_PATH ${PLUGIN_FOLDERS})
 
         if (PLUGIN_LIB_FILES)
             message(STATUS "Linking static library: ${PLUGIN_LIB_FILES}")
-            target_link_libraries(${EXE_NAME} PRIVATE ${PLUGIN_LIB_FILES})
+            target_link_libraries(${EXE_NAME} PUBLIC ${PLUGIN_LIB_FILES})
         endif()
 
         # 동적 라이브러리 복사

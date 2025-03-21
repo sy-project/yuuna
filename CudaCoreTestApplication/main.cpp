@@ -1,10 +1,8 @@
-#include <pch.h>
-#include <cuda_main.h>
+#include <CoreImporter.h>
+#include <CudaImporter.h>
 #include <unordered_map>
 #include <iostream>
 #include <vector>
-#pragma comment(lib, "SYCUDA.lib")
-#pragma comment(lib, "Core.lib")
 
 int main()
 {

@@ -163,6 +163,7 @@ xcopy /Y "$(ProjectDir)*.h" "$(SolutionDir)..\Finally\Plugin\Core\inc"</Command>
     <ClInclude Include="cLibController.h" />
     <ClInclude Include="cLogger.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="CoreImporter.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="pch.h" />

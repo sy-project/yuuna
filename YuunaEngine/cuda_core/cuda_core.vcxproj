@@ -114,6 +114,7 @@ xcopy /Y "$(ProjectDir)*.cuh" "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc"</Comm
   <ItemGroup>
     <ClInclude Include="..\..\Core\Singleton.h" />
     <ClInclude Include="CudaGDevice.h" />
+    <ClInclude Include="CudaImporter.h" />
     <ClInclude Include="CudaUtils.h" />
     <ClInclude Include="cuda_header.h" />
     <ClInclude Include="cuda_main.h" />

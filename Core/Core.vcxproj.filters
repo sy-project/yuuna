@@ -75,6 +75,9 @@
     <ClInclude Include="Types.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="CoreImporter.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

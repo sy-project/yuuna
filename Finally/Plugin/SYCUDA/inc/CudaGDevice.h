@@ -8,7 +8,7 @@ void renderCudaDevice(const int WIDTH, const int HEIGHT);
 void RenderVertexDevice(const int WIDTH, const int HEIGHT);
 void copyFramebufferToCPUCudaDevice(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT);
 void DeleteCudaDevice();
-void Input2DVertex(unsigned int objId, Vertex v0, Vertex v1, Vertex v2);
+void Input2DVertex(unsigned int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2);
 void Input2DImage(unsigned int objId, std::string _path);
 void Update2DVertexPos(unsigned int objId, Vector::Vector2D v);
 void Update2DVertexRot(unsigned int objId, float _val);

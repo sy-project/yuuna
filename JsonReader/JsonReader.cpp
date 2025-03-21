@@ -21,14 +21,30 @@ int main(int argc, char* argv[]) {
     }
 
     json config;
-    file >> config;
+    try {
+        file >> config;
+    }
+    catch (json::parse_error& e) {
+        std::cerr << "JSON parsing error: " << e.what() << std::endl;
+        return 1;
+    }
 
     if (config.contains(key)) {
-        std::cout << config[key] << std::endl;  // 값을 출력하여 CMake가 사용할 수 있도록 함
-        return 0;
+        if (config[key].is_string()) {
+            std::string value = config[key].get<std::string>();
+            if (value.length() > 2) {
+                std::string modifiedValue = value.substr(0, value.length());
+                std::cout << modifiedValue << std::endl;
+            }
+            else {
+                std::cerr << "Value is too short to trim: " << value << std::endl;
+            }
+        }
+        else {
+            std::cerr << "Key does not contain a string value: " << key << std::endl;
+        }
     }
     else {
         std::cerr << "Key not found in JSON: " << key << std::endl;
-        return 1;
     }
 }

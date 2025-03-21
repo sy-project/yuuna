@@ -111,13 +111,13 @@ struct Line {
 	float d[3];
 	float determinant;
 };
-struct Vertex {
+struct Vertex2D {
 	Vector::Vector2D p;
 	Vector::Vector2D uv;
 };
 struct Triangle2D {
 	unsigned int objId;
-	Vertex v1, v2, v3;
+	Vertex2D v1, v2, v3;
 };
 struct Image2D {
 	unsigned int objId;

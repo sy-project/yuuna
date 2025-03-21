@@ -1,6 +1,7 @@
 #pragma once
 class cCmakeManager : public Singleton<cCmakeManager>
 {
+	template<typename T>
 	friend class Singleton;
 public:
 	void MakeCmakeFile(std::string _ProjectName);

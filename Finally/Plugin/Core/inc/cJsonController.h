@@ -1,8 +1,9 @@
 #pragma once
-#include "../json/nlohmann/json.hpp"
+#include "json/nlohmann/json.hpp"
 
 class cJsonController : public Singleton<cJsonController>
 {
+	template<typename T>
 	friend class Singleton;
 public:
 	void SetFilename(const std::string& filename);

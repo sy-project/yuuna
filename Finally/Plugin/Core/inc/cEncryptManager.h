@@ -3,6 +3,7 @@
 class cEncryptManager : public Singleton<cEncryptManager>
 {
 private:
+	template<typename T>
 	friend class Singleton;
 
 public:

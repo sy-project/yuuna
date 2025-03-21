@@ -25,6 +25,9 @@
     <ClInclude Include="CudaUtils.h">
       <Filter>CUDA\RESOURCES</Filter>
     </ClInclude>
+    <ClInclude Include="CudaImporter.h">
+      <Filter>MAIN</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CUDA">
