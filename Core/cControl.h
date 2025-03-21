@@ -4,6 +4,7 @@
 #define KEYMAX 255
 class cControl : public Singleton<cControl>
 {
+	template<typename T>
 	friend class Singleton;
 public:
 	void Update();

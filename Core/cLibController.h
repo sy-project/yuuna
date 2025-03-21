@@ -9,6 +9,7 @@ struct PluginInfo {
 
 class cLibController : public Singleton<cLibController>
 {
+	template<typename T>
 	friend class Singleton;
 public:
 	cLibController(const cLibController&) = delete;

@@ -152,7 +152,9 @@
 mkdir "$(SolutionDir)..\Finally\Plugin\Core\inc\"
 xcopy /Y "$(OutDir)Core.dll" "$(SolutionDir)..\Finally\Plugin\Core\dll"
 xcopy /Y "$(OutDir)Core.lib" "$(SolutionDir)..\Finally\Plugin\Core\lib"
-xcopy /Y "$(ProjectDir)*.h" "$(SolutionDir)..\Finally\Plugin\Core\inc"</Command>
+xcopy /Y "$(ProjectDir)*.h" "$(SolutionDir)..\Finally\Plugin\Core\inc"
+mkdir "$(SolutionDir)..\Finally\Plugin\Core\inc\json\nlohmann"
+xcopy /Y "$(ProjectDir)..\json\nlohmann\*.hpp" "$(SolutionDir)..\Finally\Plugin\Core\inc\json\nlohmann"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
