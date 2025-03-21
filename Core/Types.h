@@ -24,6 +24,19 @@ namespace Vector
 		vect2d.y = 0;
 		return vect2d;
 	}
+	__inline Vector2D Vector2D_init(Vector2D value) {
+		Vector2D vect2d;
+		vect2d.x = value.x;
+		vect2d.y = value.y;
+		return vect2d;
+	}
+	__inline Vector2D Vector2D_init(float x, float y)
+	{
+		Vector2D vect2d;
+		vect2d.x = x;
+		vect2d.y = y;
+		return vect2d;
+	}
 
 	__inline Vector3D Vector3D_init() {
 		Vector3D vect3d;
@@ -103,7 +116,7 @@ namespace Vector
 	}
 }
 
-struct Circle {
+struct Circle2D {
 	Vector::Vector2D center;
 	float radius;
 };
@@ -115,9 +128,17 @@ struct Vertex2D {
 	Vector::Vector2D p;
 	Vector::Vector2D uv;
 };
+struct Vertex3D {
+	Vector::Vector3D p;
+	Vector::Vector2D uv;
+};
 struct Triangle2D {
 	unsigned int objId;
 	Vertex2D v1, v2, v3;
+};
+struct Triangle3D {
+	unsigned int objId;
+	Vertex3D v1, v2, v3;
 };
 struct Image2D {
 	unsigned int objId;

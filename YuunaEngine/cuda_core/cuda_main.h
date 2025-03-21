@@ -34,6 +34,7 @@
 			extern "C" CUDA_DLL void DeviceUpdate2DVertexRot(int objId, float val);
 			extern "C" CUDA_DLL void DeviceUpdate2DVertexRotWCenter(int objId, float val, Vector::Vector2D center);
 
+			extern "C" CUDA_DLL void DeviceInput3DVertex(int objId, Vertex3D v0, Vertex3D v1, Vertex3D v2);
 			extern "C" CUDA_DLL void DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec);
 			extern "C" CUDA_DLL void DeviceUpdate4DVertex(int objId, Vector::Vector4D _vec);
 		}

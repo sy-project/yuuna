@@ -101,7 +101,11 @@ extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRotWCenter(int objId, float
     Update2DVertexRot(objId, val, center);
 }
 
-extern "C"  void SYCUDA::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
+extern "C" void SYCUDA::GDevice::DeviceInput3DVertex(int objId, Vertex3D v0, Vertex3D v1, Vertex3D v2)
+{
+    Input3DVertex(objId, v0, v1, v2);
+}
+void SYCUDA::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
 {
     Update3DVertex(objId, _vec);
 }

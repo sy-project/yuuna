@@ -19,27 +19,29 @@ int main()
 
     uint8_t* h_framebuffer = new uint8_t[WIDTH * HEIGHT * 4];
 
-    std::vector<Vertex2D> vvertex;
-    Vector::Vector2D p = { 100, 100 };
+    std::vector<Vertex3D> vvertex;
+    Vector::Vector3D p = { 100, 100, 100 };
     Vector::Vector2D uv = { 0,0 };
-    Vertex2D v = { p,uv };
+    Vertex3D v = { p,uv };
     vvertex.push_back(v);
-    p = { 200, 200 };
+    p = { 100, 110, 200 };
     uv = { 1,0 };
     v = { p,uv };
     vvertex.push_back(v);
-    p = { 0, 200 };
+    p = { 150, 190, 100 };
     uv = { 0,1 };
     v = { p,uv };
     vvertex.push_back(v);
-    p = { 100, 300 };
+    p = { 150, 200, 200 };
     uv = { 1,1 };
     v = { p,uv };
     vvertex.push_back(v);
 
-    SYCUDA::GDevice::DeviceInput2DVertex(0, vvertex.at(0), vvertex.at(1), vvertex.at(3));
-    SYCUDA::GDevice::DeviceInput2DVertex(0, vvertex.at(2), vvertex.at(0), vvertex.at(3));
-    SYCUDA::GDevice::DeviceInput2DVertex(1, { 200, 200 }, { 200, 250 }, { 250, 200 });
+    SYCUDA::GDevice::DeviceInput3DVertex(0, vvertex.at(0), vvertex.at(1), vvertex.at(3));
+    SYCUDA::GDevice::DeviceInput3DVertex(0, vvertex.at(2), vvertex.at(0), vvertex.at(3));
+    //SYCUDA::GDevice::DeviceInput2DVertex(0, vvertex.at(0), vvertex.at(1), vvertex.at(3));
+    //SYCUDA::GDevice::DeviceInput2DVertex(0, vvertex.at(2), vvertex.at(0), vvertex.at(3));
+    //SYCUDA::GDevice::DeviceInput2DVertex(1, { 200, 200 }, { 200, 250 }, { 250, 200 });
     SYCUDA::GDevice::DeviceInput2DImageFromEnc(0, Core::Decrypt::DResourceFile("123432.enc"));
 
     while (true)
