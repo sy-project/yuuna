@@ -37,6 +37,12 @@
     <Filter Include="Utils\KeyInput">
       <UniqueIdentifier>{f7d7e781-4916-4caf-8a93-977563f8d95d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils\Model">
+      <UniqueIdentifier>{8ac1e445-aca3-40ef-830c-dae420e5f56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\String">
+      <UniqueIdentifier>{076013e0-1f5b-4dce-af13-2c2d23c2c5a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -78,6 +84,15 @@
     <ClInclude Include="CoreImporter.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="cModel.h">
+      <Filter>Utils\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="cModelManager.h">
+      <Filter>Utils\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="StrUtils.h">
+      <Filter>Utils\String</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -103,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="cControl.cpp">
       <Filter>Utils\KeyInput</Filter>
+    </ClCompile>
+    <ClCompile Include="cModel.cpp">
+      <Filter>Utils\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="cModelManager.cpp">
+      <Filter>Utils\Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

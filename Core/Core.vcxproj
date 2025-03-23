@@ -71,10 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)..\asio-1.18.0\include;$(SolutionDir)..\openssl\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\asio-1.18.0\include;$(SolutionDir)..\openssl\include;$(SolutionDir)..\Assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)..\asio-1.18.0\include;$(SolutionDir)..\openssl\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\asio-1.18.0\include;$(SolutionDir)..\openssl\include;$(SolutionDir)..\Assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -164,12 +166,15 @@ xcopy /Y "$(ProjectDir)..\json\nlohmann\*.hpp" "$(SolutionDir)..\Finally\Plugin\
     <ClInclude Include="cJsonController.h" />
     <ClInclude Include="cLibController.h" />
     <ClInclude Include="cLogger.h" />
+    <ClInclude Include="cModel.h" />
+    <ClInclude Include="cModelManager.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="CoreImporter.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="StrUtils.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +184,8 @@ xcopy /Y "$(ProjectDir)..\json\nlohmann\*.hpp" "$(SolutionDir)..\Finally\Plugin\
     <ClCompile Include="cJsonController.cpp" />
     <ClCompile Include="cLibController.cpp" />
     <ClCompile Include="cLogger.cpp" />
+    <ClCompile Include="cModel.cpp" />
+    <ClCompile Include="cModelManager.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

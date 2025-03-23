@@ -30,4 +30,6 @@
 #include "cCmakeManager.h"
 #include "cJsonController.h"
 #include "cControl.h"
+#include "cModel.h"
+#include "cModelManager.h"
 #include "Types.h"

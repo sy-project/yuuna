@@ -16,6 +16,7 @@ void Update2DVertexRot(unsigned int objId, float _val);
 void Update2DVertexRot(unsigned int objId, float _val, Vector::Vector2D center);
 
 void Input3DVertex(unsigned int objId, Vertex3D v0, Vertex3D v1, Vertex3D v2);
+void Input3DModel(std::string _path);
 void Update3DVertex(int objId, Vector::Vector3D _vec);
 void Update4DVertex(int objId, Vector::Vector4D _vec);
 #ifdef _WIN32

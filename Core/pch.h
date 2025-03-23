@@ -64,6 +64,12 @@ extern "C"
 			CORE_DLL float MouseWheelGet();
 			CORE_DLL void MouseWheelSet(float value);
 		}
+		namespace Model
+		{
+			CORE_DLL void Import3D(std::string path, std::string _format = "");
+			CORE_DLL int GetObjIdFromName(std::string name);
+			CORE_DLL std::vector<Vertex3D> GetVertex(int objId);
+		}
 	}
 }
 

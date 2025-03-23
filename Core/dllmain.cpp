@@ -25,6 +25,7 @@ int Core::Init()
     cCmakeManager::Get();
     cJsonController::Get();
     cControl::Get();
+    cModelManager::Get();
     return 0;
 }
 
@@ -36,6 +37,7 @@ int Core::End()
     cCmakeManager::Delete();
     cJsonController::Delete();
     cControl::Delete();
+    cModelManager::Delete();
     return 0;
 }
 
@@ -158,4 +160,19 @@ float Core::CONTROL::MouseWheelGet()
 void Core::CONTROL::MouseWheelSet(float value)
 {
     return cControl::Get()->SetWheel(value);
+}
+
+void Core::Model::Import3D(std::string _path, std::string _format)
+{
+    cModelManager::Get()->ImportModel(_path, _format);
+}
+
+int Core::Model::GetObjIdFromName(std::string name)
+{
+    return cModelManager::Get()->GetObjId(name);
+}
+
+std::vector<Vertex3D> Core::Model::GetVertex(int objId)
+{
+    return cModelManager::Get()->GetV(objId);
 }

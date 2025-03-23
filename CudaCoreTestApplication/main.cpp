@@ -14,6 +14,9 @@ int main()
     HEIGHT = 600;
 
     Core::Init();
+    Core::Model::Import3D("../Engine/Resources/miko/sakura_miko.pmx");
+    auto a = Core::Model::GetVertex(0);
+    auto b = Core::Model::GetObjIdFromName("sakura_miko");
     //Core::Encrypt::EResourceFile("123432.png", "123432.enc");
     SYCUDA::GDevice::DeviceInit(winName, 10, 20, WIDTH, HEIGHT, WS_OVERLAPPEDWINDOW | WS_VISIBLE);
 
