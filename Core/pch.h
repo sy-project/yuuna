@@ -68,7 +68,10 @@ extern "C"
 		{
 			CORE_DLL void Import3D(std::string path, std::string _format = "");
 			CORE_DLL int GetObjIdFromName(std::string name);
+			CORE_DLL std::string GetObjNameFromId(int objId);
 			CORE_DLL std::vector<Vertex3D> GetVertex(int objId);
+			CORE_DLL std::vector<Image2D> GetTexture(int objId);
+			CORE_DLL std::vector<Triangle3D> GetTriangle(int objId);
 		}
 	}
 }

@@ -76,14 +76,14 @@ extern "C"  void SYCUDA::GDevice::DeviceInput2DVertex(int objId, Vertex2D v0, Ve
     Input2DVertex(objId, v0, v1, v2);
 }
 
-extern "C" void SYCUDA::GDevice::DeviceInput2DImage(int objId, std::string _path)
+extern "C" void SYCUDA::GDevice::DeviceInput2DImage(int objId, int texId, std::string _path)
 {
-    Input2DImage(objId, _path, std::vector<char>());
+    Input2DImage(objId, texId, _path, std::vector<char>());
 }
 
-extern "C" void SYCUDA::GDevice::DeviceInput2DImageFromEnc(int objId, std::vector<char> encData)
+extern "C" void SYCUDA::GDevice::DeviceInput2DImageFromEnc(int objId, int texId, std::vector<char> encData)
 {
-    Input2DImage(objId, "", encData);
+    Input2DImage(objId, texId, "", encData);
 }
 
 extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexPos(int objId, Vector::Vector2D v)
@@ -104,6 +104,18 @@ extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRotWCenter(int objId, float
 extern "C" void SYCUDA::GDevice::DeviceInput3DVertex(int objId, Vertex3D v0, Vertex3D v1, Vertex3D v2)
 {
     Input3DVertex(objId, v0, v1, v2);
+}
+extern "C" void SYCUDA::GDevice::DeviceInput3DTriangle(unsigned int objId, std::vector<Triangle3D> v)
+{
+    Input3DModelFromTriangle(objId, v);
+}
+extern "C" void SYCUDA::GDevice::DeviceInput3DModel(int objId, std::vector<Vertex3D> v)
+{
+    Input3DModel(objId, v);
+}
+extern "C" void SYCUDA::GDevice::DeviceInput3DTex(int objId, int texId, uint8_t* img, int width, int height)
+{
+    Input3DTexture(objId, texId, img, width, height);
 }
 void SYCUDA::GDevice::DeviceUpdate3DVertex(int objId, Vector::Vector3D _vec)
 {

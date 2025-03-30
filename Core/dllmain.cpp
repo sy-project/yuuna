@@ -172,7 +172,22 @@ int Core::Model::GetObjIdFromName(std::string name)
     return cModelManager::Get()->GetObjId(name);
 }
 
+std::string Core::Model::GetObjNameFromId(int objId)
+{
+    return cModelManager::Get()->GetModelName(objId);
+}
+
 std::vector<Vertex3D> Core::Model::GetVertex(int objId)
 {
     return cModelManager::Get()->GetV(objId);
+}
+
+std::vector<Image2D> Core::Model::GetTexture(int objId)
+{
+    return cModelManager::Get()->GetT(objId);
+}
+
+std::vector<Triangle3D> Core::Model::GetTriangle(int objId)
+{
+    return cModelManager::Get()->GetTri(objId);
 }

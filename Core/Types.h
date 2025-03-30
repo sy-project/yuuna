@@ -37,7 +37,21 @@ namespace Vector
 		vect2d.y = y;
 		return vect2d;
 	}
+	__inline Vector2D operator+(const Vector2D& a, const Vector2D& b) {
+		return Vector2D{ a.x + b.x, a.y + b.y };
+	}
 
+	__inline Vector2D operator-(const Vector2D& a, const Vector2D& b) {
+		return Vector2D{ a.x - b.x, a.y - b.y };
+	}
+
+	__inline Vector2D operator*(const Vector2D& a, float scalar) {
+		return Vector2D{ a.x * scalar, a.y * scalar };
+	}
+
+	__inline Vector2D operator/(const Vector2D& a, float scalar) {
+		return Vector2D{ a.x / scalar, a.y / scalar };
+	}
 	__inline Vector3D Vector3D_init() {
 		Vector3D vect3d;
 		vect3d.x = 0;
@@ -106,6 +120,22 @@ namespace Vector
 		return value.z;
 	}
 
+	__inline Vector3D operator+(const Vector3D& a, const Vector3D& b) {
+		return Vector3D{ a.x + b.x, a.y + b.y, a.z + b.z };
+	}
+
+	__inline Vector3D operator-(const Vector3D& a, const Vector3D& b) {
+		return Vector3D{ a.x - b.x, a.y - b.y, a.z - b.z };
+	}
+
+	__inline Vector3D operator*(const Vector3D& a, float scalar) {
+		return Vector3D{ a.x * scalar, a.y * scalar, a.z * scalar };
+	}
+
+	__inline Vector3D operator/(const Vector3D& a, float scalar) {
+		return Vector3D{ a.x / scalar, a.y / scalar, a.z / scalar };
+	}
+
 	__inline Vector4D Vector4D_init() {
 		Vector4D vect4d;
 		vect4d.x = 0;
@@ -114,8 +144,29 @@ namespace Vector
 		vect4d.w = 0;
 		return vect4d;
 	}
-}
+	__inline Vector4D operator+(const Vector4D& a, const Vector4D& b) {
+		return Vector4D{ a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w };
+	}
 
+	__inline Vector4D operator-(const Vector4D& a, const Vector4D& b) {
+		return Vector4D{ a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w };
+	}
+
+	__inline Vector4D operator*(const Vector4D& a, float scalar) {
+		return Vector4D{ a.x * scalar, a.y * scalar, a.z * scalar, a.w * scalar };
+	}
+
+	__inline Vector4D operator/(const Vector4D& a, float scalar) {
+		return Vector4D{ a.x / scalar, a.y / scalar, a.z / scalar, a.w / scalar };
+	}
+}
+enum eRTFlag
+{
+	NONE = 0,				// DO NOT RAY TRACING
+	DIFFRACT = 1 << 0,		// DIFFRACT ON
+	REFLECT = 1 << 1,		// REFLECT ON
+	REVERB = 1 << 2			// REVERB ON
+};
 struct Circle2D {
 	Vector::Vector2D center;
 	float radius;
@@ -138,10 +189,52 @@ struct Triangle2D {
 };
 struct Triangle3D {
 	unsigned int objId;
+	unsigned int texId;
+	Vector::Vector3D normal;
 	Vertex3D v1, v2, v3;
 };
 struct Image2D {
 	unsigned int objId;
+	unsigned int texId;
 	uint8_t* img;
 	Vector::Vector2D size;
+};
+struct Mesh3D {
+	Vertex3D vert;
+	Vector::Vector3D normalv;
+	eRTFlag GRTFlag;	//Graphic
+	eRTFlag SRTFlag;	//Sound
+};
+
+enum LightType {
+	L_POINT,
+	L_SPOT,
+	L_DIRECTIONAL
+};
+struct Light {
+	Vector::Vector3D position;
+	Vector::Vector3D direction;
+	float intensity;
+	Vector::Vector3D color;
+	LightType type;
+	float angle;
+};
+
+struct Matrix4x4 {
+	float m[4][4];
+
+	static Matrix4x4 identity() {
+		Matrix4x4 mat = {};
+		for (int i = 0; i < 4; ++i)
+			mat.m[i][i] = 1.0f;
+		return mat;
+	}
+};
+
+struct Camera {
+	Vector::Vector3D position;
+	Vector::Vector3D forward;
+	Vector::Vector3D up;
+	float fov;
+	float aspectRatio;
 };

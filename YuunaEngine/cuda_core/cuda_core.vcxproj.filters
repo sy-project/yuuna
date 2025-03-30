@@ -54,6 +54,9 @@
     <Filter Include="CUDA\RESOURCES">
       <UniqueIdentifier>{2192cde6-5220-43ec-a96a-657cb684b10f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CUDA\MATH\KDTREE">
+      <UniqueIdentifier>{a17cca6f-978f-4ebb-a40d-1e9754dc99e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu">

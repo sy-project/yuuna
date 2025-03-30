@@ -11,6 +11,16 @@ std::vector<Vertex3D> cModelManager::GetV(int objId)
 	return m_vModelvecList.at(objId)->vertex;
 }
 
+std::vector<Image2D> cModelManager::GetT(int objId)
+{
+	return m_vModelvecList.at(objId)->GetTextrue();
+}
+
+std::vector<Triangle3D> cModelManager::GetTri(int objId)
+{
+	return m_vModelvecList.at(objId)->triangle;
+}
+
 int cModelManager::GetObjId(std::string _name)
 {
 	for (unsigned int i = 0; i < m_vModelvecList.size(); i++)
@@ -19,6 +29,11 @@ int cModelManager::GetObjId(std::string _name)
 			return i;
 	}
 	return -1;
+}
+
+std::string cModelManager::GetModelName(int objId)
+{
+	return m_vModelvecList.at(objId)->name;
 }
 
 cModelManager::cModelManager()

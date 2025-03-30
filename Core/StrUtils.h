@@ -15,3 +15,9 @@ std::string GetFileName(const std::string& path) {
     std::filesystem::path filePath(path);
     return filePath.stem().string();
 }
+
+std::string GetFilePath(const std::string& path)
+{
+    std::filesystem::path filePath(path);
+    return filePath.parent_path().string();
+}
