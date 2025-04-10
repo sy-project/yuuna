@@ -1,12 +1,7 @@
 #pragma once
-#include <pch.h>
+#define NOMINMAX
+#include <CoreImporter.h>
 #include <unordered_map>
-
-#ifdef _DEBUG
-#pragma comment(lib, "Debug/Core.lib")
-#else
-#pragma comment(lib, "Release/Core.lib")
-#endif
 
 class cGameServer : public server_interface<GameMsg>
 {
