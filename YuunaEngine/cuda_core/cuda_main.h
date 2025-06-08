@@ -19,20 +19,20 @@
 //{
 	namespace SYCUDA
 	{
-		extern "C" CUDA_DLL int Check_Cuda();
+		extern "C" CUDA_DLL int Check_Cuda(sWindow& _window);
 		namespace GDevice
 		{
-			extern "C" CUDA_DLL void DeviceInit(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT, unsigned long dwStyle);
-			extern "C" CUDA_DLL void DeviceImport(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT);
-			extern "C" CUDA_DLL void DeviceRender(uint8_t* h_framebuffer, const int WIDTH = 0, const int HEIGHT = 0);
+			extern "C" CUDA_DLL void DeviceInit(sWindow& _window);
+			extern "C" CUDA_DLL void DeviceImport(sWindow& _window);
+			extern "C" CUDA_DLL void DeviceRender(sWindow& _window);
 			extern "C" CUDA_DLL void DeviceDelete();
 
-			extern "C" CUDA_DLL void DeviceInput2DVertex(int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2);
-			extern "C" CUDA_DLL void DeviceInput2DImage(int objId, int texId, std::string _path);
-			extern "C" CUDA_DLL void DeviceInput2DImageFromEnc(int objId, int texId, std::vector<char> encData = std::vector<char>());
-			extern "C" CUDA_DLL void DeviceUpdate2DVertexPos(int objId, Vector::Vector2D v);
-			extern "C" CUDA_DLL void DeviceUpdate2DVertexRot(int objId, float val);
-			extern "C" CUDA_DLL void DeviceUpdate2DVertexRotWCenter(int objId, float val, Vector::Vector2D center);
+			extern "C" CUDA_DLL void DeviceInput2DVertex(sWindow& _window, int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2);
+			extern "C" CUDA_DLL void DeviceInput2DImage(sWindow& _window, int objId, int texId, std::string _path);
+			extern "C" CUDA_DLL void DeviceInput2DImageFromEnc(sWindow& _window, int objId, int texId, std::vector<char> encData = std::vector<char>());
+			extern "C" CUDA_DLL void DeviceUpdate2DVertexPos(sWindow& _window, int objId, Vector::Vector2D v);
+			extern "C" CUDA_DLL void DeviceUpdate2DVertexRot(sWindow& _window, int objId, float val);
+			extern "C" CUDA_DLL void DeviceUpdate2DVertexRotWCenter(sWindow& _window, int objId, float val, Vector::Vector2D center);
 
 			extern "C" CUDA_DLL void DeviceInput3DVertex(int objId, Vertex3D v0, Vertex3D v1, Vertex3D v2);
 			extern "C" CUDA_DLL void DeviceInput3DTriangle(unsigned int objId, std::vector<Triangle3D> v);

@@ -170,6 +170,15 @@ enum eRTFlag
 	REFLECT = 1 << 1,		// REFLECT ON
 	REVERB = 1 << 2			// REVERB ON
 };
+struct sWindow
+{
+	std::string winName = "test";
+	Vector::Vector2D pos = {0,0};
+	Vector::Vector2D size = { 800,600 };
+	unsigned long dwStyle = 0;
+	uint8_t* framebuffer = 0;
+	int CUDA_FLAG = 0;
+};
 struct Circle2D {
 	Vector::Vector2D center;
 	float radius;
@@ -363,10 +372,6 @@ struct LinearBVHNode {
 	int start;
 	int count;
 	int isLeaf;
-};
-struct Ray {
-	Vector::Vector3D origin;
-	Vector::Vector3D direction;
 };
 struct Camera {
 	Vector::Vector3D position;

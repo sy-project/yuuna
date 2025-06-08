@@ -11,6 +11,7 @@
 extern __device__ bool isInside2DTriangle(Vector::Vector2D p, Vector::Vector2D a, Vector::Vector2D b, Vector::Vector2D c);
 extern __device__ bool isInside3DTriangle(const Vector::Vector3D& p, const Vector::Vector3D& a, const Vector::Vector3D& b, const Vector::Vector3D& c);
 extern __device__ void GInverse(float* out, const float* in, int _index);
+extern __host__ __device__ Matrix4x4 inverse(const Matrix4x4& m);
 extern __device__ void GFMultiply(float* out, const float* x, const float* y, int _index);
 extern __device__ void GIMultiply(int* out, const int* x, const int* y, int _index);
 extern __device__ void GNormalize(float* out, const float* InVec[3], const float* OutVec[3], int _index);
@@ -21,10 +22,11 @@ extern __host__ Matrix4x4 Perspective(float fovDeg, float aspect, float _near, f
 extern __host__ Matrix4x4 PerspectiveNoClip(float fovDeg, float aspect);
 extern __host__ Matrix4x4 Ortho(float left, float right, float bottom, float top, float _near, float _far);
 extern __device__ Vector::Vector3D mulMat_Vec(const Matrix4x4& mat, const Vector::Vector3D& v);
+extern __device__ Vector::Vector4D mulVec4(const Matrix4x4& m, const Vector::Vector4D& v);
 extern __host__ __device__ Matrix4x4 mulMat(const Matrix4x4& mat1, const Matrix4x4& mat2);
 extern __device__ Vector::Vector3D NDCtoScreen(const Vector::Vector3D& ndc, int screenWidth, int screenHeight);
 extern __device__ Vector::Vector3D cross(const Vector::Vector3D& a, const Vector::Vector3D& b);
 extern __device__ Vector::Vector3D ProjectVertex(const Vector::Vector3D& v, const Matrix4x4& viewProj, int screenWidth, int screenHeight);
 extern __host__ __device__ Matrix4x4 LookAt(const Vector::Vector3D& eye, const Vector::Vector3D& target, const Vector::Vector3D& up);
-
+extern __device__ void getUVW2D(Vector::Vector2D p, Vertex2D v0, Vertex2D v1, Vertex2D v2, float& u, float& v, float& w);
 //cudaError_t Math_Test(int* c, const int* a, const int* b, unsigned int size);

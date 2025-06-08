@@ -11,7 +11,7 @@
       <Filter>MAIN</Filter>
     </ClInclude>
     <ClInclude Include="SoundTracingPlugin.h">
-      <Filter>CUDA\PHYSICS\SOUNDTRACING</Filter>
+      <Filter>CUDA\PHYSICS\RAYTRACING\SOUNDTRACING</Filter>
     </ClInclude>
     <ClInclude Include="cuda_math.cuh">
       <Filter>CUDA\MATH</Filter>
@@ -20,13 +20,25 @@
       <Filter>CUDA\DEVICE</Filter>
     </ClInclude>
     <ClInclude Include="RayTracing.cuh">
-      <Filter>CUDA\MATH\RAYTRACING</Filter>
-    </ClInclude>
-    <ClInclude Include="CudaUtils.h">
-      <Filter>CUDA\RESOURCES</Filter>
+      <Filter>CUDA\PHYSICS\RAYTRACING</Filter>
     </ClInclude>
     <ClInclude Include="CudaImporter.h">
       <Filter>MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="CudaGCamera.h">
+      <Filter>CUDA\PHYSICS\CAMERA</Filter>
+    </ClInclude>
+    <ClInclude Include="FullBVH.cuh">
+      <Filter>CUDA\MATH\BVH</Filter>
+    </ClInclude>
+    <ClInclude Include="CudaUtils.h">
+      <Filter>CUDA\RESOURCES\UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="CudaVertexLoader.cuh">
+      <Filter>CUDA\RESOURCES\MODEL</Filter>
+    </ClInclude>
+    <ClInclude Include="cCudaMainRuntimeClass.h">
+      <Filter>MAIN\CONTROLLER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -35,9 +47,6 @@
     </Filter>
     <Filter Include="CUDA\PHYSICS">
       <UniqueIdentifier>{aca1ecf4-01ea-4ac8-aa8a-c8ed685f75b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CUDA\PHYSICS\SOUNDTRACING">
-      <UniqueIdentifier>{50c64302-fb96-4065-ac99-b49cb10de9f5}</UniqueIdentifier>
     </Filter>
     <Filter Include="MAIN">
       <UniqueIdentifier>{fea2cf5c-8a7f-42e5-be06-41eef5bc5f09}</UniqueIdentifier>
@@ -48,14 +57,29 @@
     <Filter Include="CUDA\DEVICE">
       <UniqueIdentifier>{59781306-6924-40d8-a5cc-e7d4332b4e8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CUDA\MATH\RAYTRACING">
-      <UniqueIdentifier>{dcf15982-4679-4dbd-8a61-a98c5e65185f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="CUDA\RESOURCES">
       <UniqueIdentifier>{2192cde6-5220-43ec-a96a-657cb684b10f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CUDA\MATH\KDTREE">
+    <Filter Include="CUDA\MATH\BVH">
       <UniqueIdentifier>{a17cca6f-978f-4ebb-a40d-1e9754dc99e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MAIN\CONTROLLER">
+      <UniqueIdentifier>{b1e9562f-2647-4ca4-9f81-11676c54a5c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\PHYSICS\RAYTRACING">
+      <UniqueIdentifier>{dcf15982-4679-4dbd-8a61-a98c5e65185f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\PHYSICS\RAYTRACING\SOUNDTRACING">
+      <UniqueIdentifier>{50c64302-fb96-4065-ac99-b49cb10de9f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\PHYSICS\CAMERA">
+      <UniqueIdentifier>{97f9e5ec-6b18-449c-ba3e-c47da0fb44c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\RESOURCES\UTIL">
+      <UniqueIdentifier>{f1e83672-ea01-4da9-9fa4-0d4a327305ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUDA\RESOURCES\MODEL">
+      <UniqueIdentifier>{1dfc5d16-fa6c-4635-8ff5-0fd2db974289}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +87,7 @@
       <Filter>MAIN</Filter>
     </CudaCompile>
     <CudaCompile Include="SoundTracingPlugin.cu">
-      <Filter>CUDA\PHYSICS\SOUNDTRACING</Filter>
+      <Filter>CUDA\PHYSICS\RAYTRACING\SOUNDTRACING</Filter>
     </CudaCompile>
     <CudaCompile Include="cuda_math.cu">
       <Filter>CUDA\MATH</Filter>
@@ -72,10 +96,24 @@
       <Filter>CUDA\DEVICE</Filter>
     </CudaCompile>
     <CudaCompile Include="RayTracing.cu">
-      <Filter>CUDA\MATH\RAYTRACING</Filter>
+      <Filter>CUDA\PHYSICS\RAYTRACING</Filter>
+    </CudaCompile>
+    <CudaCompile Include="CudaGCamera.cu">
+      <Filter>CUDA\PHYSICS\CAMERA</Filter>
+    </CudaCompile>
+    <CudaCompile Include="FullBVH.cu">
+      <Filter>CUDA\MATH\BVH</Filter>
+    </CudaCompile>
+    <CudaCompile Include="CudaVertexLoader.cu">
+      <Filter>CUDA\RESOURCES\MODEL</Filter>
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Memo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cCudaMainRuntimeClass.cpp">
+      <Filter>MAIN\CONTROLLER</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

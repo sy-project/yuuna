@@ -3,6 +3,8 @@
 #include "SoundTracingPlugin.h"
 #include "cuda_math.cuh"
 #include "CudaGDevice.h"
+#include "CudaGCamera.h"
+#include "cCudaMainRuntimeClass.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule,
     DWORD  ul_reason_for_call,
@@ -20,85 +22,63 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     return TRUE;
 }
 
-extern "C" int SYCUDA::Check_Cuda()
+extern "C" int SYCUDA::Check_Cuda(sWindow& _window)
 {
-    cudaError_t cudaStatus;
-    cudaStatus = cudaSetDevice(0);
-    if (cudaStatus != cudaSuccess) {
+    if (!cCudaMainRuntimeClass::Get()->CheckCUDAUsage(_window)) {
         fprintf(stderr, "cudaSetDevice failed!  Do you have a CUDA-capable GPU installed?");
         return -1;
     }
     return 0;
 }
 
-extern "C" void SYCUDA::GDevice::DeviceInit(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT, unsigned long dwStyle)
+extern "C" void SYCUDA::GDevice::DeviceInit(sWindow& _window)
 {
-    initFramebufferCudaDevice(WIDTH, HEIGHT);
-
-#ifdef _WIN32
-    createWindow(winName, X, Y, WIDTH, HEIGHT, dwStyle);
-#elif __linux__
-#endif
+    cCudaMainRuntimeClass::Get()->Init(_window);
 }
 
-extern "C" void SYCUDA::GDevice::DeviceImport(std::string winName, int X, int Y, const int WIDTH, const int HEIGHT)
+extern "C" void SYCUDA::GDevice::DeviceImport(sWindow& _window)
 {
-#ifdef _WIN32
-    ImportWindow(winName, X, Y, WIDTH, HEIGHT);
-#elif __linux__
-#endif
+    cCudaMainRuntimeClass::Get()->ImportWindow(_window);
 }
 
-//extern "C" void cuda_dll::GDevice::DeviceRender(const int WIDTH, const int HEIGHT)
-//{
-//    renderCudaDevice(WIDTH, HEIGHT);
-//}
-
-extern "C" void SYCUDA::GDevice::DeviceRender(uint8_t* h_framebuffer, const int WIDTH, const int HEIGHT)
+extern "C" void SYCUDA::GDevice::DeviceRender(sWindow& _window)
 {
-    renderCudaDevice(WIDTH, HEIGHT);
-    copyFramebufferToCPUCudaDevice(h_framebuffer, WIDTH, HEIGHT);
-    displayFramebufferCudaDevice(h_framebuffer, 0, 0, WIDTH, HEIGHT);
+    cCudaMainRuntimeClass::Get()->Rendering(_window);
 }
-//
-//extern "C" void cuda_dll::GDevice::DevicedisplayFramebuffer(uint8_t* framebuffer, const int x, const int y, const int WIDTH, const int HEIGHT)
-//{
-//    displayFramebufferCudaDevice(framebuffer, x, y, WIDTH, HEIGHT);
-//}
 
 extern "C" void SYCUDA::GDevice::DeviceDelete()
 {
-    DeleteCudaDevice();
+    cCudaMainRuntimeClass::Delete();
 }
 
-extern "C"  void SYCUDA::GDevice::DeviceInput2DVertex(int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2)
+extern "C"  void SYCUDA::GDevice::DeviceInput2DVertex(sWindow& _window, int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2)
 {
-    Input2DVertex(objId, v0, v1, v2);
+    cCudaMainRuntimeClass::Get()->Import2DVertex(_window, objId, v0, v1, v2);
 }
 
-extern "C" void SYCUDA::GDevice::DeviceInput2DImage(int objId, int texId, std::string _path)
+extern "C" void SYCUDA::GDevice::DeviceInput2DImage(sWindow& _window, int objId, int texId, std::string _path)
 {
-    Input2DImage(objId, texId, _path, std::vector<char>());
+    cCudaMainRuntimeClass::Get()->ImportImageFor2DV(_window, objId, texId, _path, std::vector<char>());
 }
 
-extern "C" void SYCUDA::GDevice::DeviceInput2DImageFromEnc(int objId, int texId, std::vector<char> encData)
+extern "C" void SYCUDA::GDevice::DeviceInput2DImageFromEnc(sWindow& _window, int objId, int texId, std::vector<char> encData)
 {
-    Input2DImage(objId, texId, "", encData);
+    cCudaMainRuntimeClass::Get()->ImportImageFor2DV(_window, objId, texId, "", encData);
 }
 
-extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexPos(int objId, Vector::Vector2D v)
+extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexPos(sWindow& _window, int objId, Vector::Vector2D v)
 {
-    Update2DVertexPos(objId, v);
+    cCudaMainRuntimeClass::Get()->Update2DVertexPos(_window, objId, v);
 }
 
-extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRot(int objId, float val)
+extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRot(sWindow& _window, int objId, float val)
 {
-    Update2DVertexRot(objId, val);
+    cCudaMainRuntimeClass::Get()->Update2DVertexRot(_window, objId, val);
 }
 
-extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRotWCenter(int objId, float val, Vector::Vector2D center)
+extern "C" void SYCUDA::GDevice::DeviceUpdate2DVertexRotWCenter(sWindow& _window, int objId, float val, Vector::Vector2D center)
 {
-    Update2DVertexRot(objId, val, center);
+    cCudaMainRuntimeClass::Get()->Update2DVertexRot(_window, objId, val, center);
 }
 
 extern "C" void SYCUDA::GDevice::DeviceInput3DVertex(int objId, Vertex3D v0, Vertex3D v1, Vertex3D v2)
@@ -136,31 +116,3 @@ extern "C" void* SYCUDA::physics::SoundTracing::GetSTInstance()
 {
     return SoundTracer::Get();
 }
-
-//int main()
-//{
-//    const int arraySize = 5;
-//    const int a[arraySize] = { 1, 2, 3, 4, 5 };
-//    const int b[arraySize] = { 10, 20, 30, 40, 50 };
-//    int c[arraySize] = { 0 };
-//
-//    // Add vectors in parallel.
-//    cudaError_t cudaStatus = addWithCuda(c, a, b, arraySize);
-//    if (cudaStatus != cudaSuccess) {
-//        fprintf(stderr, "addWithCuda failed!");
-//        return 1;
-//    }
-//
-//    printf("{1,2,3,4,5} + {10,20,30,40,50} = {%d,%d,%d,%d,%d}\n",
-//        c[0], c[1], c[2], c[3], c[4]);
-//
-//    // cudaDeviceReset must be called before exiting in order for profiling and
-//    // tracing tools such as Nsight and Visual Profiler to show complete traces.
-//    cudaStatus = cudaDeviceReset();
-//    if (cudaStatus != cudaSuccess) {
-//        fprintf(stderr, "cudaDeviceReset failed!");
-//        return 1;
-//    }
-//
-//    return 0;
-//}

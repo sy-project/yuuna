@@ -41,6 +41,141 @@ __device__ void GInverse(float* out, const float* in, int _index)
 {
     out[_index] = (1.0f / in[_index]);
 }
+__host__ __device__ Matrix4x4 inverse(const Matrix4x4& m)
+{
+    Matrix4x4 inv;
+    float det;
+    float* a = &inv.m[0][0];
+    const float* b = &m.m[0][0];
+
+    inv.m[0][0] = b[5] * b[10] * b[15] -
+        b[5] * b[11] * b[14] -
+        b[9] * b[6] * b[15] +
+        b[9] * b[7] * b[14] +
+        b[13] * b[6] * b[11] -
+        b[13] * b[7] * b[10];
+
+    inv.m[0][1] = -b[1] * b[10] * b[15] +
+        b[1] * b[11] * b[14] +
+        b[9] * b[2] * b[15] -
+        b[9] * b[3] * b[14] -
+        b[13] * b[2] * b[11] +
+        b[13] * b[3] * b[10];
+
+    inv.m[0][2] = b[1] * b[6] * b[15] -
+        b[1] * b[7] * b[14] -
+        b[5] * b[2] * b[15] +
+        b[5] * b[3] * b[14] +
+        b[13] * b[2] * b[7] -
+        b[13] * b[3] * b[6];
+
+    inv.m[0][3] = -b[1] * b[6] * b[11] +
+        b[1] * b[7] * b[10] +
+        b[5] * b[2] * b[11] -
+        b[5] * b[3] * b[10] -
+        b[9] * b[2] * b[7] +
+        b[9] * b[3] * b[6];
+
+    inv.m[1][0] = -b[4] * b[10] * b[15] +
+        b[4] * b[11] * b[14] +
+        b[8] * b[6] * b[15] -
+        b[8] * b[7] * b[14] -
+        b[12] * b[6] * b[11] +
+        b[12] * b[7] * b[10];
+
+    inv.m[1][1] = b[0] * b[10] * b[15] -
+        b[0] * b[11] * b[14] -
+        b[8] * b[2] * b[15] +
+        b[8] * b[3] * b[14] +
+        b[12] * b[2] * b[11] -
+        b[12] * b[3] * b[10];
+
+    inv.m[1][2] = -b[0] * b[6] * b[15] +
+        b[0] * b[7] * b[14] +
+        b[4] * b[2] * b[15] -
+        b[4] * b[3] * b[14] -
+        b[12] * b[2] * b[7] +
+        b[12] * b[3] * b[6];
+
+    inv.m[1][3] = b[0] * b[6] * b[11] -
+        b[0] * b[7] * b[10] -
+        b[4] * b[2] * b[11] +
+        b[4] * b[3] * b[10] +
+        b[8] * b[2] * b[7] -
+        b[8] * b[3] * b[6];
+
+    inv.m[2][0] = b[4] * b[9] * b[15] -
+        b[4] * b[11] * b[13] -
+        b[8] * b[5] * b[15] +
+        b[8] * b[7] * b[13] +
+        b[12] * b[5] * b[11] -
+        b[12] * b[7] * b[9];
+
+    inv.m[2][1] = -b[0] * b[9] * b[15] +
+        b[0] * b[11] * b[13] +
+        b[8] * b[1] * b[15] -
+        b[8] * b[3] * b[13] -
+        b[12] * b[1] * b[11] +
+        b[12] * b[3] * b[9];
+
+    inv.m[2][2] = b[0] * b[5] * b[15] -
+        b[0] * b[7] * b[13] -
+        b[4] * b[1] * b[15] +
+        b[4] * b[3] * b[13] +
+        b[12] * b[1] * b[7] -
+        b[12] * b[3] * b[5];
+
+    inv.m[2][3] = -b[0] * b[5] * b[11] +
+        b[0] * b[7] * b[9] +
+        b[4] * b[1] * b[11] -
+        b[4] * b[3] * b[9] -
+        b[8] * b[1] * b[7] +
+        b[8] * b[3] * b[5];
+
+    inv.m[3][0] = -b[4] * b[9] * b[14] +
+        b[4] * b[10] * b[13] +
+        b[8] * b[5] * b[14] -
+        b[8] * b[6] * b[13] -
+        b[12] * b[5] * b[10] +
+        b[12] * b[6] * b[9];
+
+    inv.m[3][1] = b[0] * b[9] * b[14] -
+        b[0] * b[10] * b[13] -
+        b[8] * b[1] * b[14] +
+        b[8] * b[2] * b[13] +
+        b[12] * b[1] * b[10] -
+        b[12] * b[2] * b[9];
+
+    inv.m[3][2] = -b[0] * b[5] * b[14] +
+        b[0] * b[6] * b[13] +
+        b[4] * b[1] * b[14] -
+        b[4] * b[2] * b[13] -
+        b[12] * b[1] * b[6] +
+        b[12] * b[2] * b[5];
+
+    inv.m[3][3] = b[0] * b[5] * b[10] -
+        b[0] * b[6] * b[9] -
+        b[4] * b[1] * b[10] +
+        b[4] * b[2] * b[9] +
+        b[8] * b[1] * b[6] -
+        b[8] * b[2] * b[5];
+
+    det = b[0] * inv.m[0][0] + b[1] * inv.m[1][0] + b[2] * inv.m[2][0] + b[3] * inv.m[3][0];
+
+    if (det == 0) {
+        return Matrix4x4::identity();
+    }
+
+    det = 1.0f / det;
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            inv.m[i][j] *= det;
+        }
+    }
+
+    return inv;
+}
 __device__ void GFMultiply(float* out, const float* x, const float* y, int _index)
 {
     out[_index] = x[_index] * y[_index];
@@ -146,6 +281,15 @@ __device__ Vector::Vector3D mulMat_Vec(const Matrix4x4& mat, const Vector::Vecto
 
     return { x, y, z };
 }
+__device__ Vector::Vector4D mulVec4(const Matrix4x4& m, const Vector::Vector4D& v)
+{
+    Vector::Vector4D result;
+    result.x = m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z + m.m[0][3] * v.w;
+    result.y = m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z + m.m[1][3] * v.w;
+    result.z = m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z + m.m[2][3] * v.w;
+    result.w = m.m[3][0] * v.x + m.m[3][1] * v.y + m.m[3][2] * v.z + m.m[3][3] * v.w;
+    return result;
+}
 __host__ __device__ Matrix4x4 mulMat(const Matrix4x4& mat1, const Matrix4x4& mat2)
 {
     Matrix4x4 result = {};
@@ -201,6 +345,16 @@ __host__ __device__ Matrix4x4 LookAt(const Vector::Vector3D& eye, const Vector::
     mat.m[3][2] = -dot(z, eye);
     return mat;
 }
+__device__ void getUVW2D(Vector::Vector2D p, Vertex2D v0, Vertex2D v1, Vertex2D v2, float& u, float& v, float& w) {
+    float detT = (v1.p.x - v0.p.x) * (v2.p.y - v0.p.y) - (v2.p.x - v0.p.x) * (v1.p.y - v0.p.y);
+    float lambda1 = ((v1.p.x - p.x) * (v2.p.y - p.y) - (v2.p.x - p.x) * (v1.p.y - p.y)) / detT;
+    float lambda2 = ((v2.p.x - p.x) * (v0.p.y - p.y) - (v0.p.x - p.x) * (v2.p.y - p.y)) / detT;
+    float lambda3 = 1.0f - lambda1 - lambda2;
+    u = lambda1 * v0.uv.x + lambda2 * v1.uv.x + lambda3 * v2.uv.x;
+    v = lambda1 * v0.uv.y + lambda2 * v1.uv.y + lambda3 * v2.uv.y;
+    w = 1.0f - u - v;
+}
+
 __global__ void GMath_Test1(int* c, const int* a, const int* b) 
 {
     int i = threadIdx.x;
