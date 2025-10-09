@@ -41,9 +41,9 @@ extern "C" void SYCUDA::GDevice::DeviceImport(sWindow& _window)
     cCudaMainRuntimeClass::Get()->ImportWindow(_window);
 }
 
-extern "C" void SYCUDA::GDevice::DeviceRender(sWindow& _window)
+extern "C" void SYCUDA::GDevice::DeviceRender(sWindow& _window, int _split)
 {
-    cCudaMainRuntimeClass::Get()->Rendering(_window);
+    cCudaMainRuntimeClass::Get()->Rendering(_window, _split);
 }
 
 extern "C" void SYCUDA::GDevice::DeviceDelete()
@@ -87,7 +87,11 @@ extern "C" void SYCUDA::GDevice::DeviceInput3DVertex(int objId, Vertex3D v0, Ver
 }
 extern "C" void SYCUDA::GDevice::DeviceInput3DTriangle(unsigned int objId, std::vector<Triangle3D> v)
 {
-    Input3DModelFromTriangle(objId, v);
+    for (int i = 0; i < v.size(); i++)
+    {
+        Input3DVertex(objId, v.at(i).v1, v.at(i).v2, v.at(i).v3);
+    }
+    //Input3DModelFromTriangle(objId, v);
 }
 extern "C" void SYCUDA::GDevice::DeviceInput3DModel(int objId, std::vector<Vertex3D> v)
 {

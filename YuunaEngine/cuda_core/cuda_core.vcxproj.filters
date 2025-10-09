@@ -40,6 +40,9 @@
     <ClInclude Include="cCudaMainRuntimeClass.h">
       <Filter>MAIN\CONTROLLER</Filter>
     </ClInclude>
+    <ClInclude Include="Ray.cuh">
+      <Filter>CUDA\PHYSICS\RAY</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CUDA">
@@ -81,6 +84,9 @@
     <Filter Include="CUDA\RESOURCES\MODEL">
       <UniqueIdentifier>{1dfc5d16-fa6c-4635-8ff5-0fd2db974289}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CUDA\PHYSICS\RAY">
+      <UniqueIdentifier>{21d06caa-4d8e-4a8b-9490-91d45075710d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu">
@@ -106,6 +112,9 @@
     </CudaCompile>
     <CudaCompile Include="CudaVertexLoader.cu">
       <Filter>CUDA\RESOURCES\MODEL</Filter>
+    </CudaCompile>
+    <CudaCompile Include="Ray.cu">
+      <Filter>CUDA\PHYSICS\RAY</Filter>
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>

@@ -24,7 +24,7 @@
 		{
 			extern "C" CUDA_DLL void DeviceInit(sWindow& _window);
 			extern "C" CUDA_DLL void DeviceImport(sWindow& _window);
-			extern "C" CUDA_DLL void DeviceRender(sWindow& _window);
+			extern "C" CUDA_DLL void DeviceRender(sWindow& _window, int _split = 1);
 			extern "C" CUDA_DLL void DeviceDelete();
 
 			extern "C" CUDA_DLL void DeviceInput2DVertex(sWindow& _window, int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2);

@@ -111,6 +111,7 @@ xcopy /Y "$(ProjectDir)*.cuh" "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc"</Comm
     <CudaCompile Include="cuda_math.cu" />
     <CudaCompile Include="FullBVH.cu" />
     <CudaCompile Include="kernel.cu" />
+    <CudaCompile Include="Ray.cu" />
     <CudaCompile Include="RayTracing.cu" />
     <CudaCompile Include="SoundTracingPlugin.cu" />
   </ItemGroup>
@@ -126,6 +127,7 @@ xcopy /Y "$(ProjectDir)*.cuh" "$(SolutionDir)..\Finally\Plugin\SYCUDA\inc"</Comm
     <ClInclude Include="cuda_main.h" />
     <ClInclude Include="cuda_math.cuh" />
     <ClInclude Include="FullBVH.cuh" />
+    <ClInclude Include="Ray.cuh" />
     <ClInclude Include="RayTracing.cuh" />
     <ClInclude Include="SoundTracingPlugin.h" />
   </ItemGroup>

@@ -20,7 +20,7 @@ public:
 	bool CheckCUDAUsage(sWindow& _window);
 	void Init(sWindow& _window);
 	void ImportWindow(sWindow& _window);
-	void Rendering(sWindow& _window);
+	void Rendering(sWindow& _window, int _split = 1);
 
 public: //2D
 	void Import2DVertex(sWindow& _window, int objId, Vertex2D v0, Vertex2D v1, Vertex2D v2);
@@ -33,6 +33,7 @@ public: //2D
 private: //3D
 
 private: //BVH
+	void buildBVH(sWindow& _window);
 
 private: //CUDA MAIN
 	std::unique_ptr<CudaGCamera> pCamera;

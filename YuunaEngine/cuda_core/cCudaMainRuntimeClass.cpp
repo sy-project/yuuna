@@ -31,6 +31,7 @@ void cCudaMainRuntimeClass::Init(sWindow& _window)
 	pDevice->CreateCudaWindow(_window.winName, _window.pos.x, _window.pos.y, _window.size.x, _window.size.y, _window.dwStyle);
 #elif __linux__
 #endif
+	pCamera->SetMultiRendering(_window.framebuffer, 1);
 }
 
 void cCudaMainRuntimeClass::ImportWindow(sWindow& _window)
@@ -41,11 +42,11 @@ void cCudaMainRuntimeClass::ImportWindow(sWindow& _window)
 #endif
 }
 
-void cCudaMainRuntimeClass::Rendering(sWindow& _window)
+void cCudaMainRuntimeClass::Rendering(sWindow& _window, int _split)
 {
 	if (!(_window.CUDA_FLAG & eCUDA::READ_CUDA))
 		return;
-	pCamera->Render(_window.framebuffer);
+	pCamera->Render(_window.framebuffer, _split);
 	pDevice->displayFramebufferCudaDevice2Windows(_window.framebuffer, _window.pos.x, _window.pos.y, _window.size.x, _window.size.y);
 }
 
@@ -82,6 +83,21 @@ void cCudaMainRuntimeClass::Update2DVertexRot(sWindow& _window, unsigned int obj
 	if (!(_window.CUDA_FLAG & eCUDA::READ_CUDA))
 		return;
 	pVCont->Update2DVertexRot(objId, _val, center);
+}
+
+void cCudaMainRuntimeClass::buildBVH(sWindow& _window)
+{
+	if (!(_window.CUDA_FLAG & eCUDA::READ_CUDA))
+		return;
+	int objId = 0;
+	while (true)
+	{
+		if (!pVCont->BuildBVH(objId))
+			break;
+		if (!pVCont->WorldBuildBVH())
+			break;
+		objId++;
+	}
 }
 
 cCudaMainRuntimeClass::cCudaMainRuntimeClass()

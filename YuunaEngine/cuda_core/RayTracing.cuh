@@ -5,5 +5,5 @@
 #include "cuda_header.h"
 #include <Types.h>
 
-extern __device__ bool intersectAABB(const Ray& ray, const Vector::Vector3D& min, const Vector::Vector3D& max, float& tmin, float& tmax);
+//extern __device__ bool intersectAABB(const Ray& ray, const Vector::Vector3D& min, const Vector::Vector3D& max, float& tmin, float& tmax);
 
