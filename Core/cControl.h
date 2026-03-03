@@ -14,7 +14,7 @@ public:
 	bool Press(UINT key) { return mapState[key] == PRESS; }
 
 	Vector3D GetMouse() { return mousePos; }
-	void SetMouse(LPARAM lParam, int WIN_X = 0, int WIN_Y = 0);
+	void SetMouse(LPARAM lParam, int winx = 0, int winy = 0);
 
 	float GetWheel() { return wheelValue; }
 	void SetWheel(float value) { wheelValue = value; }

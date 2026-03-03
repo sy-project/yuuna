@@ -98,9 +98,6 @@
     <ClInclude Include="framework.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\imgui\imconfig.h">
       <Filter>Core\imgui\Core</Filter>
     </ClInclude>

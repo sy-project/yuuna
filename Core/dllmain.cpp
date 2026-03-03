@@ -147,9 +147,9 @@ Vector3D Core::CONTROL::MouseGet()
     return cControl::Get()->GetMouse();
 }
 
-void Core::CONTROL::MouseSet(LPARAM lParam, int WIN_X, int WIN_Y)
+void Core::CONTROL::MouseSet(LPARAM lParam, int winx, int winy)
 {
-    return cControl::Get()->SetMouse(lParam, WIN_X, WIN_Y);
+    return cControl::Get()->SetMouse(lParam, winx, winy);
 }
 
 float Core::CONTROL::MouseWheelGet()

@@ -60,7 +60,7 @@ extern "C"
 			CORE_DLL bool KeyUp(UINT key);
 			CORE_DLL bool KeyPress(UINT key);
 			CORE_DLL Vector3D MouseGet();
-			CORE_DLL void MouseSet(LPARAM lParam, int WIN_X = 0, int WIN_Y = 0);
+			CORE_DLL void MouseSet(LPARAM lParam, int winx = 0, int winy = 0);
 			CORE_DLL float MouseWheelGet();
 			CORE_DLL void MouseWheelSet(float value);
 		}

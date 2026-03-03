@@ -35,13 +35,13 @@ void cControl::Update()
 	}
 }
 
-void cControl::SetMouse(LPARAM lParam, int WIN_X, int WIN_Y)
+void cControl::SetMouse(LPARAM lParam, int winx, int winy)
 {
 	float x = (float)LOWORD(lParam);
 	float y = (float)HIWORD(lParam);
 
-	if (x <= WIN_X)
+	if (x <= winx)
 		mousePos.x = x;
-	if (y <= WIN_Y)
+	if (y <= winy)
 		mousePos.y = y;
 }

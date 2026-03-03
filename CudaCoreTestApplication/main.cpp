@@ -5,8 +5,8 @@
 #include <iostream>
 #include <vector>
 
-#define WIDTH 1920 //1920
-#define HEIGHT 1080 //1080
+#define WIDTH 1280 //1920
+#define HEIGHT 720 //1080
 
 int main()
 {
@@ -17,7 +17,8 @@ int main()
     s.size = { WIDTH,HEIGHT };
     s.dwStyle = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
 
-    SYCUDA::Check_Cuda(s);
+    if (SYCUDA::Check_Cuda(s) < 0)
+        return -1;
     SYCUDA::GDevice::DeviceInit(s);
 
     std::vector<Vertex2D> vvertex;
@@ -41,7 +42,8 @@ int main()
     SYCUDA::GDevice::DeviceInput2DVertex(s, 0, vvertex.at(0), vvertex.at(1), vvertex.at(3));
     SYCUDA::GDevice::DeviceInput2DVertex(s, 0, vvertex.at(2), vvertex.at(0), vvertex.at(3));
     //SYCUDA::GDevice::DeviceInput2DVertex(1, { 200, 200 }, { 200, 250 }, { 250, 200 });
-    SYCUDA::GDevice::DeviceInput2DImageFromEnc(s, 0, 0, Core::Decrypt::DResourceFile("123432.enc"));
+    //SYCUDA::GDevice::DeviceInput2DImageFromEnc(s, 0, 0, Core::Decrypt::DResourceFile("123432.png"));
+    SYCUDA::GDevice::DeviceInput2DImage(s, 0, 0, "123432.png");
 
     //Core::Model::Import3D("../Engine/Resources/miko/sakura_miko.pmx");
     //auto objid = Core::Model::GetObjIdFromName("sakura_miko");
