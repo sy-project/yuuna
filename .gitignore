@@ -408,8 +408,47 @@ Study_Winapi/*
 
 # CUDA
 *.cu
+*.cuh
+*.ptx
+*.optixir
 
 [dD]oc/*
 /CudaCoreTestApplication/123432.png
 /Finally/Icons/123432.ico
 /CudaCoreTestApplication/*.enc
+
+# Yuuna: the source of every DLL that contains GPU code (graphics or sound, even a little) stays out of this repository.
+# Today that is one DLL: SYCUDA.dll, built from cuda_core (CUDA / OptiX rendering, sound tracing, the sound mixer and the game UI).
+# Its prebuilt plugin is attached to GitHub Releases only. When another DLL starts to use the GPU, add its source folder here.
+# Core, Physics, Blueprint, Voice and Customize contain no GPU code.
+/YuunaEngine/cuda_core/
+/CudaCoreTestApplication/
+/Finally/Plugin/SYCUDA/
+
+# Yuuna: bundled CMake ships with releases. The editor also finds CMake from PATH or Visual Studio.
+/Finally/Tools/CMake/
+
+# Yuuna: prebuilt third-party libraries needed to build Core.
+!/openssl/lib/Debug/
+!/openssl/lib/Release/
+!/openssl/dll/Debug/
+!/openssl/dll/Release/
+!/Assimp/lib/Debug/
+!/Assimp/lib/Release/
+!/Assimp/dll/Debug/
+!/Assimp/dll/Release/
+
+# Yuuna: build results inside the runnable Finally folder. Finally holds no source; Core, Physics and Blueprint copy their results there after a Release build.
+/Finally/Engine.exe
+/Finally/Core.dll
+/Finally/assimp-vc143-mt*.dll
+/Finally/libcrypto-3-x64.dll
+/Finally/libssl-3-x64.dll
+/Finally/msvcp140*.dll
+/Finally/vcruntime140*.dll
+/Finally/config.json
+/Finally/Plugin/Core/
+/Finally/Plugin/Physics/
+/Finally/Plugin/Blueprint/
+/Finally/Plugin/Voice/
+/Finally/Plugin/Customize/
