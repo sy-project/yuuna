@@ -4,7 +4,6 @@
 #pragma warning(disable: 4996)
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#define CMAKEVERSION 3.15
 
 #define KEY "my_secret_key_123"  // 16 bytes AES 키
 #define IV "0000000000000000"    // 16 bytes IV
@@ -27,7 +26,8 @@
 #include "cLogger.h"
 #include "cLibController.h"
 #include "cEncryptManager.h"
-#include "cCmakeManager.h"
 #include "cJsonController.h"
 #include "cControl.h"
+#include "cModel.h"
+#include "cModelManager.h"
 #include "Types.h"

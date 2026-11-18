@@ -350,7 +350,12 @@ private:
 			{
 				if (!ec)
 				{
-					if (m_msgTemporaryIn.header.size > 0)
+					if (m_msgTemporaryIn.header.size > 64u * 1024u * 1024u)
+					{
+						cout << "[" << id << "] Message too large.\n";
+						m_socket.close();
+					}
+					else if (m_msgTemporaryIn.header.size > 0)
 					{
 						m_msgTemporaryIn.body.resize(m_msgTemporaryIn.header.size);
 						ReadBody();

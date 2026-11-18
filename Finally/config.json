@@ -1,5 +1,832 @@
 {
-    "exe_name": "GameOut",
-    "icon_path": "Icons/123432.ico",
-    "export_path": "D:/workspace/yuuna/Finally/test"
+  "editorLayout": "[Window][Scene]\nPos=0,24\nSize=266,649\nCollapsed=0\nDockId=0x00000005,0\n\n[Window][Inspector]\nPos=1216,24\nSize=384,876\nCollapsed=0\nDockId=0x00000002,0\n\n[Window][Editor View]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,0\n\n[Window][Four Views]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,1\n\n[Window][Game View]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,2\n\n[Window][Performance]\nPos=0,675\nSize=1214,225\nCollapsed=0\nDockId=0x00000004,0\n\n[Window][Log]\nPos=0,675\nSize=1214,225\nCollapsed=0\nDockId=0x00000004,1\n\n[Window][Debug##Default]\nPos=60,60\nSize=400,400\nCollapsed=0\n\n[Window][Working...]\nPos=580,402\nSize=440,120\nCollapsed=0\n\n[Window][Document]\nPos=59,60\nSize=680,530\nCollapsed=0\n\n[Window][Blueprint Studio]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,3\n\n[Window][###BlueprintGraph84A781D3-F326-4A2A-AFE3-B3A84C4FF7C0]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,4\n\n[Window][Yuuna Projects & Build]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,3\n\n[Window][Project Settings]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,4\n\n[Window][###BlueprintGraph3F30D660-8A60-4059-8D49-7BF7C554EFEC]\nPos=280,140\nSize=1000,650\nCollapsed=0\n\n[Window][###YuunaNewProject]\nPos=628,386\nSize=344,128\nCollapsed=0\n\n[Window][###BlueprintGraphE98420AD-25E9-4E27-992A-48E84610FF4A]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,5\n\n[Window][Key Input]\nPos=60,60\nSize=420,500\nCollapsed=0\n\n[Window][UI]\nPos=1216,24\nSize=384,876\nCollapsed=0\nDockId=0x00000002,1\n\n[Window][Operation failed]\nPos=549,389\nSize=502,122\nCollapsed=0\n\n[Window][Developer link]\nPos=60,60\nSize=440,140\nCollapsed=0\n\n[Window][Plugins]\nPos=60,60\nSize=640,480\nCollapsed=0\n\n[Window][###BlueprintGraphMAIN]\nPos=268,24\nSize=946,649\nCollapsed=0\nDockId=0x00000006,5\n\n[Window][###BlueprintGraphWALK]\nPos=280,140\nSize=1000,650\nCollapsed=0\n\n[Window][Particle editor]\nPos=225,117\nSize=900,560\nCollapsed=0\n\n[Window][###BlueprintGraph2126FEFD-8A20-41A1-92F8-9305E4DE3768]\nPos=272,140\nSize=1000,650\nCollapsed=0\n\n[Docking][Data]\nDockSpace       ID=0x849F22A5 Window=0x1027812F Pos=0,24 Size=1600,876 Split=X\n  DockNode      ID=0x00000001 Parent=0x849F22A5 SizeRef=1214,900 Split=Y\n    DockNode    ID=0x00000003 Parent=0x00000001 SizeRef=1214,673 Split=X\n      DockNode  ID=0x00000005 Parent=0x00000003 SizeRef=266,673 Selected=0xE192E354\n      DockNode  ID=0x00000006 Parent=0x00000003 SizeRef=946,673 CentralNode=1 Selected=0xFC7B880D\n    DockNode    ID=0x00000004 Parent=0x00000001 SizeRef=1214,225 Selected=0x64F50EE5\n  DockNode      ID=0x00000002 Parent=0x849F22A5 SizeRef=384,900 Selected=0xE7039252\n\n",
+  "presetSound": "../../soundtracing_new/Data/Audio/footstep01.wav",
+  "projects": [
+    {
+      "buildDirectory": "D:\\workspace\\test_list\\preset\\online",
+      "cmakePath": "",
+      "file": "D:\\workspace\\test_list\\preset\\on\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "on",
+      "netSmoothing": true,
+      "online": true,
+      "physicsMode": 2,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              0.6200000047683716,
+              0.11999999731779099
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 116
+        },
+        "prefabs": [
+          "Player",
+          "PlayerBlue"
+        ]
+      },
+      "plugins": [
+        "Plugin/Voice/dll/x64/YuunaVoice.dll",
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [
+        {
+          "file": "prefabs/Player.yuprefab",
+          "name": "Player"
+        },
+        {
+          "file": "prefabs/PlayerBlue.yuprefab",
+          "name": "PlayerBlue"
+        },
+        {
+          "file": "prefabs/Crate.yuprefab",
+          "name": "Crate"
+        }
+      ],
+      "rayDepth": 64,
+      "renderPreparation": "loading",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "172.30.1.60",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "Test 2 - online features",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:\\workspace\\test_list\\preset\\build",
+      "cmakePath": "",
+      "file": "D:\\workspace\\test_list\\preset\\off\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "off",
+      "netSmoothing": true,
+      "online": false,
+      "physicsMode": 2,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              0.6200000047683716,
+              0.11999999731779099
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 116
+        },
+        "prefabs": [
+          "Player"
+        ]
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [
+        {
+          "file": "prefabs/Player.yuprefab",
+          "name": "Player"
+        },
+        {
+          "file": "prefabs/Crate.yuprefab",
+          "name": "Crate"
+        }
+      ],
+      "rayDepth": 64,
+      "renderPreparation": "loading",
+      "scenes": [
+        {
+          "name": "second",
+          "project": "D:\\workspace\\test_list\\preset\\off\\scenes\\second\\config.json"
+        }
+      ],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "Test 1 - offline features",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:\\workspace\\test_list\\Build",
+      "cmakePath": "",
+      "file": "D:\\workspace\\test_list\\online\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "online",
+      "netSmoothing": true,
+      "online": true,
+      "physicsMode": 2,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              0.6200000047683716,
+              0.11999999731779099
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 116
+        },
+        "prefabs": [
+          "Player"
+        ]
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [
+        {
+          "file": "prefabs/Player.yuprefab",
+          "name": "Player"
+        }
+      ],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "My Game",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:\\workspace\\test_list\\Build\\Physics",
+      "cmakePath": "",
+      "file": "D:\\workspace\\test_list\\phy\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "phy",
+      "online": false,
+      "physicsMode": 2,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              1.600000023841858,
+              0.0
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 116
+        },
+        "prefabs": []
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "My Game",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "",
+      "cmakePath": "",
+      "file": "D:\\workspace\\YuunaSamples\\Customize\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "Customize",
+      "online": false,
+      "physicsMode": 0,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              1.600000023841858,
+              0.0
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 45.0,
+            "offset": [
+              -0.8999999761581421,
+              1.149999976158142,
+              -3.4000000953674316
+            ],
+            "pitch": 2.0
+          },
+          "toggleKey": 0
+        },
+        "prefabs": [
+          "Character"
+        ]
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll",
+        "Plugin/Customize/dll/x64/YuunaCustomize.dll"
+      ],
+      "prefabs": [
+        {
+          "file": "prefabs/character.yuprefab",
+          "name": "Character"
+        }
+      ],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "Yuuna character customization sample",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "",
+      "buildMode": "prebuilt",
+      "cmakePath": "D:\\workspace\\yuuna\\Finally\\Tools\\CMake\\bin\\cmake.exe",
+      "file": "D:\\workspace\\test_list\\ui all\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "ui all",
+      "online": true,
+      "physicsMode": 1,
+      "player": {
+        "appearance": {
+          "color": "blue"
+        },
+        "camera": {
+          "default": "first",
+          "firstPerson": {
+            "fov": 75.0,
+            "offset": [
+              0.0,
+              1.2000000476837158,
+              0.20000000298023224
+            ],
+            "pitch": 4.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 86
+        },
+        "prefabs": [
+          "hero"
+        ]
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [
+        {
+          "file": "D:\\workspace\\yuuna\\build\\claude-perf\\ui-tests\\editor-check\\work\\hero.yuprefab",
+          "name": "hero"
+        }
+      ],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "BuildCheck",
+      "voice": {
+        "mode": "auto",
+        "pushKey": 84,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "",
+      "buildMode": "auto",
+      "cmakePath": "",
+      "file": "D:\\workspace\\test_list\\buildtest\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "buildtest",
+      "online": false,
+      "physicsMode": 1,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              1.600000023841858,
+              0.0
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 116
+        },
+        "prefabs": []
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "My Game",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:\\workspace\\test_list\\Build",
+      "buildMode": "auto",
+      "cmakePath": "",
+      "file": "D:\\workspace\\test_list\\test\\config.json",
+      "height": 720,
+      "iconPath": "icons\\Program.ico",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "test",
+      "online": false,
+      "physicsMode": 1,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              1.600000023841858,
+              0.0
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 116
+        },
+        "prefabs": []
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "My Game",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:\\workspace\\test_list\\Build",
+      "buildMode": "auto",
+      "cmakePath": "",
+      "file": "D:\\workspace\\3dmodel\\test\\cornell\\config.json",
+      "height": 720,
+      "iconPath": "icons\\Program.ico",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "MyGame",
+      "online": false,
+      "physicsMode": 1,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              1.600000023841858,
+              0.0
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 116
+        },
+        "prefabs": []
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "My Game",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:\\workspace\\3dmodel\\test\\exe\\a",
+      "buildMode": "auto",
+      "cmakePath": "",
+      "file": "D:\\workspace\\3dmodel\\test\\proj\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "MyGame",
+      "online": false,
+      "physicsMode": 1,
+      "player": {
+        "appearance": {},
+        "camera": {
+          "default": "third",
+          "firstPerson": {
+            "fov": 70.0,
+            "offset": [
+              0.0,
+              1.600000023841858,
+              0.0
+            ],
+            "pitch": 0.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 116
+        },
+        "prefabs": []
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "My Game",
+      "voice": {
+        "mode": "push",
+        "pushKey": 86,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "",
+      "buildMode": "prebuilt",
+      "cmakePath": "D:\\workspace\\yuuna\\Finally\\Tools\\CMake\\bin\\cmake.exe",
+      "file": "D:\\workspace\\yuuna\\build\\claude-perf\\ui-tests\\editor-check\\work\\project-mode\\config.json",
+      "height": 720,
+      "iconPath": "",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxPlayers": 16,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "BuildCheck",
+      "online": true,
+      "physicsMode": 1,
+      "player": {
+        "appearance": {
+          "color": "blue"
+        },
+        "camera": {
+          "default": "first",
+          "firstPerson": {
+            "fov": 75.0,
+            "offset": [
+              0.0,
+              1.2000000476837158,
+              0.20000000298023224
+            ],
+            "pitch": 4.0
+          },
+          "thirdPerson": {
+            "fov": 60.0,
+            "offset": [
+              0.0,
+              2.5,
+              -5.0
+            ],
+            "pitch": 12.0
+          },
+          "toggleKey": 86
+        },
+        "prefabs": [
+          "hero"
+        ]
+      },
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "prefabs": [
+        {
+          "file": "D:\\workspace\\yuuna\\build\\claude-perf\\ui-tests\\editor-check\\work\\hero.yuprefab",
+          "name": "hero"
+        }
+      ],
+      "rayDepth": 64,
+      "renderPreparation": "background",
+      "scenes": [],
+      "sdr": false,
+      "serverAddress": "127.0.0.1",
+      "serverPort": 27015,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "tickRate": 30,
+      "title": "BuildCheck",
+      "voice": {
+        "mode": "auto",
+        "pushKey": 84,
+        "threshold": 0.019999999552965164
+      },
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:\\workspace\\3dmodel\\test\\exe\\cornel test",
+      "cmakePath": "",
+      "file": "D:\\workspace\\3dmodel\\test\\cornell\\MyGame.yuuna.json",
+      "height": 720,
+      "iconPath": "Versions\\2C35C8AE-02AC-4D93-BAA7-2E9822796676\\Program.ico",
+      "lightSamplesPerAxis": 4,
+      "maxFps": 0,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "MyGame",
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "rayDepth": 64,
+      "sdr": false,
+      "soundListenerCharacter": -1,
+      "soundListenerMode": 0,
+      "title": "My Game",
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:\\workspace\\3dmodel\\test\\exe\\a",
+      "cmakePath": "",
+      "file": "D:\\workspace\\3dmodel\\test\\proj\\MyGame.yuuna.json",
+      "height": 720,
+      "maxFps": 0,
+      "maxRaysPerSample": 256,
+      "minRayWeight": 9.999999747378752e-05,
+      "name": "MyGame",
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "rayDepth": 64,
+      "title": "My Game",
+      "width": 1280
+    },
+    {
+      "buildDirectory": "D:/workspace/yuuna/build/animation-core-move/generated-service\\967ABAB8-16AC-4C1E-A8E9-5DFF6DC4C54F\\Output",
+      "cmakePath": "",
+      "file": "D:\\workspace\\yuuna\\build\\animation-core-move\\generated-service\\967ABAB8-16AC-4C1E-A8E9-5DFF6DC4C54F\\Service Game.yuuna",
+      "height": 360,
+      "name": "ServiceGame",
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "title": "Generated CUDA Blueprint game",
+      "width": 640
+    },
+    {
+      "buildDirectory": "D:\\workspace\\3dmodel\\test\\exe",
+      "cmakePath": "",
+      "file": "D:\\workspace\\3dmodel\\test\\exe\\MyGame.yuuna.json",
+      "height": 720,
+      "name": "MyGame",
+      "plugins": [
+        "Core.dll",
+        "SYCUDA.dll"
+      ],
+      "title": "MyGame",
+      "width": 1280
+    }
+  ],
+  "samples": [
+    "../../YuunaSamples/BlueprintCube",
+    "../../YuunaSamples/Customize"
+  ]
 }

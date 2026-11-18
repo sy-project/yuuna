@@ -31,10 +31,6 @@ extern "C"
 			CORE_DLL std::string GetValueFromJson(const std::string& key, const std::string& defaultValue = "");
 			CORE_DLL void SetValueFromJson(const std::string& key, const std::string& value);
 		}
-		namespace Cmake
-		{
-			CORE_DLL std::vector<std::string> RunCommand(const std::string& command);
-		}
 		namespace Lib
 		{
 			CORE_DLL cLibController* GetLibContInstance();
@@ -44,11 +40,13 @@ extern "C"
 		namespace Encrypt
 		{
 			CORE_DLL std::string EStringData(std::string _str);
+			CORE_DLL void EResourceFile(const std::string& inputPath, const std::string& outputPath);
 			CORE_DLL std::string EPlayerData(sPlayerDescription _data);
 		}
 		namespace Decrypt
 		{
 			CORE_DLL std::string DStringData(std::string _str);
+			CORE_DLL std::vector<char> DResourceFile(const std::string& filePath);
 			CORE_DLL sPlayerDescription DPlayerData(std::string _data);
 		}
 		namespace CONTROL
@@ -62,7 +60,22 @@ extern "C"
 			CORE_DLL float MouseWheelGet();
 			CORE_DLL void MouseWheelSet(float value);
 		}
+		namespace Model
+		{
+			CORE_DLL void Import3D(std::string path, std::string _format = "");
+			CORE_DLL int Import3DWithId(std::string path, std::string _format = "");
+
+			CORE_DLL bool Unload3D(int objId);
+
+			CORE_DLL int GetObjIdFromName(std::string name);
+			CORE_DLL std::string GetObjNameFromId(int objId);
+			CORE_DLL std::vector<Vertex3D> GetVertex(int objId);
+			CORE_DLL std::vector<Image2D> GetTexture(int objId);
+			CORE_DLL std::vector<Triangle3D> GetTriangle(int objId);
+		}
 	}
 }
+
+
 
 #endif //PCH_H

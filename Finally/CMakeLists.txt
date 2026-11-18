@@ -1,97 +1,188 @@
-cmake_minimum_required(VERSION 3.15)
-project(GameEngine)
-
+cmake_minimum_required(VERSION 3.20)
+project(GameEngine LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# JSON 설정 파일 경로
-set(CONFIG_FILE "${CMAKE_SOURCE_DIR}/config.json")
+if(EXISTS "${CMAKE_SOURCE_DIR}/Plugin/Core/inc/CoreImporter.h" AND EXISTS "${CMAKE_SOURCE_DIR}/Plugin/SYCUDA/inc/CudaImporter.h")
+    set(YUUNA_DEFAULT_ROOT "${CMAKE_SOURCE_DIR}")
+elseif(EXISTS "${CMAKE_SOURCE_DIR}/../Core/CoreImporter.h" AND EXISTS "${CMAKE_SOURCE_DIR}/../YuunaEngine/cuda_core/CudaImporter.h")
+    get_filename_component(YUUNA_DEFAULT_ROOT "${CMAKE_SOURCE_DIR}/.." ABSOLUTE)
+else()
+    set(YUUNA_DEFAULT_ROOT "${CMAKE_SOURCE_DIR}")
+endif()
+set(YUUNA_ROOT "${YUUNA_DEFAULT_ROOT}" CACHE PATH "Yuuna source repository or portable SDK directory")
+set(YUUNA_PACKAGED_SDK OFF)
+if(EXISTS "${YUUNA_ROOT}/Plugin/Core/inc/CoreImporter.h" AND EXISTS "${YUUNA_ROOT}/Plugin/SYCUDA/inc/CudaImporter.h")
+    set(YUUNA_PACKAGED_SDK ON)
+    get_property(YUUNA_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+    if(YUUNA_MULTI_CONFIG)
+        set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "Configurations supplied by this SDK" FORCE)
+    else()
+        set(CMAKE_BUILD_TYPE "Release" CACHE STRING "SDK build configuration" FORCE)
+    endif()
+elseif(NOT EXISTS "${YUUNA_ROOT}/Core/CoreImporter.h" OR NOT EXISTS "${YUUNA_ROOT}/YuunaEngine/cuda_core/CudaImporter.h")
+    message(FATAL_ERROR "YUUNA_ROOT must contain the source SDK (Core and YuunaEngine/cuda_core) or portable Plugin/Core and Plugin/SYCUDA headers")
+endif()
+set(YUUNA_BINARY_DIR "${YUUNA_ROOT}/YuunaEngine/x64/Release" CACHE PATH "Source SDK Core/CUDA library and DLL directory (unused for portable SDK)")
+set(YUUNA_CODE "" CACHE PATH "Project Code folder with the generated game and server sources")
+set(YUUNA_CONFIG "" CACHE FILEPATH "Project config.json that holds exe_name, icon_path and export_path")
+set(YUUNA_GAME_NAME "" CACHE STRING "Override exe_name")
+set(YUUNA_OUTPUT_DIR "" CACHE PATH "Override export_path")
+set(YUUNA_ICON "" CACHE FILEPATH "Override icon_path")
+option(YUUNA_ONLINE "Build the dedicated server into the server folder of the output" OFF)
+set(EXE_NAME "YuunaGame")
+set(ICON_PATH "")
+set(EXPORT_PATH "${CMAKE_BINARY_DIR}/Game")
+set(CONFIG_DIR "${CMAKE_BINARY_DIR}")
+if(NOT YUUNA_CONFIG STREQUAL "" AND EXISTS "${YUUNA_CONFIG}")
+    get_filename_component(CONFIG_DIR "${YUUNA_CONFIG}" DIRECTORY)
+    foreach(PAIR "exe_name;EXE_NAME" "icon_path;ICON_PATH" "export_path;EXPORT_PATH")
+        list(GET PAIR 0 JSON_KEY)
+        list(GET PAIR 1 OUTPUT_KEY)
+        set(JSON_VALUE "")
+        set(READER_RESULT 1)
+        if(EXISTS "${CMAKE_SOURCE_DIR}/Tools/json_reader.exe")
+            execute_process(COMMAND "${CMAKE_SOURCE_DIR}/Tools/json_reader.exe" "${YUUNA_CONFIG}" "${JSON_KEY}"
+                OUTPUT_VARIABLE JSON_VALUE OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET RESULT_VARIABLE READER_RESULT)
+        endif()
+        if(NOT READER_RESULT EQUAL 0 OR JSON_VALUE STREQUAL "")
+            file(READ "${YUUNA_CONFIG}" CONFIG_JSON)
+            string(JSON JSON_VALUE ERROR_VARIABLE JSON_ERROR GET "${CONFIG_JSON}" "${JSON_KEY}")
+            if(JSON_ERROR)
+                set(JSON_VALUE "")
+            endif()
+        endif()
+        if(NOT JSON_VALUE STREQUAL "")
+            set(${OUTPUT_KEY} "${JSON_VALUE}")
+        endif()
+    endforeach()
+endif()
+if(NOT YUUNA_GAME_NAME STREQUAL "")
+    set(EXE_NAME "${YUUNA_GAME_NAME}")
+endif()
+if(NOT YUUNA_OUTPUT_DIR STREQUAL "")
+    set(EXPORT_PATH "${YUUNA_OUTPUT_DIR}")
+endif()
+if(NOT YUUNA_ICON STREQUAL "")
+    set(ICON_PATH "${YUUNA_ICON}")
+endif()
+if(NOT EXE_NAME MATCHES "^[A-Za-z_][A-Za-z0-9_-]*$")
+    message(FATAL_ERROR "The generated executable name must be a simple identifier")
+endif()
+get_filename_component(EXPORT_PATH "${EXPORT_PATH}" ABSOLUTE BASE_DIR "${CONFIG_DIR}")
+if(YUUNA_CODE STREQUAL "" OR NOT EXISTS "${YUUNA_CODE}/GameRuntime.cpp")
+    message(FATAL_ERROR "YUUNA_CODE must be the project Code folder that contains the generated GameRuntime.cpp")
+endif()
+file(GLOB GameSources CONFIGURE_DEPENDS "${YUUNA_CODE}/*.cpp")
+list(FILTER GameSources EXCLUDE REGEX "[/\\\\]ServerMain\\.cpp$")
+add_executable(${EXE_NAME} WIN32 ${GameSources})
+if(YUUNA_PACKAGED_SDK)
+    target_include_directories(${EXE_NAME} PRIVATE "${YUUNA_CODE}"
+        "${YUUNA_ROOT}/Plugin/Core/inc" "${YUUNA_ROOT}/Plugin/SYCUDA/inc"
+        "${YUUNA_ROOT}/Plugin/Core/inc/json")
+    target_link_directories(${EXE_NAME} PRIVATE "${YUUNA_ROOT}/Plugin/Core/lib/x64" "${YUUNA_ROOT}/Plugin/SYCUDA/lib/x64")
+    file(GLOB SDK_DLL_FILES "${YUUNA_ROOT}/Plugin/Core/dll/x64/*.dll" "${YUUNA_ROOT}/Plugin/SYCUDA/dll/x64/*.dll")
+    file(GLOB SERVER_SDK_DLL_FILES "${YUUNA_ROOT}/Plugin/Core/dll/x64/*.dll")
+else()
+    target_include_directories(${EXE_NAME} PRIVATE "${YUUNA_CODE}" "${YUUNA_ROOT}/Core" "${YUUNA_ROOT}/YuunaEngine/cuda_core" "${YUUNA_ROOT}/json" "${YUUNA_ROOT}/asio-1.18.0/include")
+    target_link_directories(${EXE_NAME} PRIVATE "${YUUNA_BINARY_DIR}")
+    file(GLOB SDK_DLL_FILES "${YUUNA_BINARY_DIR}/Core.dll" "${YUUNA_BINARY_DIR}/SYCUDA.dll" "${YUUNA_BINARY_DIR}/assimp*.dll" "${YUUNA_BINARY_DIR}/libcrypto*.dll" "${YUUNA_BINARY_DIR}/libssl*.dll")
+    file(GLOB SERVER_SDK_DLL_FILES "${YUUNA_BINARY_DIR}/Core.dll" "${YUUNA_BINARY_DIR}/assimp*.dll" "${YUUNA_BINARY_DIR}/libcrypto*.dll" "${YUUNA_BINARY_DIR}/libssl*.dll")
+endif()
+file(GLOB RUNTIME_DLL_FILES "${CMAKE_SOURCE_DIR}/msvcp140*.dll" "${CMAKE_SOURCE_DIR}/vcruntime140*.dll")
+target_link_libraries(${EXE_NAME} PRIVATE Core SYCUDA shell32 user32 gdi32)
+if(MSVC)
+    target_compile_options(${EXE_NAME} PRIVATE /W4 /EHsc /utf-8)
+    target_compile_definitions(${EXE_NAME} PRIVATE NOMINMAX UNICODE _UNICODE)
+endif()
+set_target_properties(${EXE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${EXPORT_PATH}")
+foreach(CONFIG Debug Release RelWithDebInfo MinSizeRel)
+    string(TOUPPER "${CONFIG}" CONFIG_UPPER)
+    set_target_properties(${EXE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${EXPORT_PATH}")
+endforeach()
 
-# JSON에서 실행 파일 이름 & 아이콘 경로 읽기
-execute_process(
-    COMMAND ${CMAKE_SOURCE_DIR}/Tools/json_reader ${CONFIG_FILE} exe_name
-    OUTPUT_VARIABLE EXE_NAME OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-execute_process(
-    COMMAND ${CMAKE_SOURCE_DIR}/Tools/json_reader ${CONFIG_FILE} icon_path
-    OUTPUT_VARIABLE ICON_PATH OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-execute_process(
-    COMMAND ${CMAKE_SOURCE_DIR}/Tools/json_reader ${CONFIG_FILE} export_path
-    OUTPUT_VARIABLE EXPORT_PATH OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-# 소스파일 설정
-file(GLOB EngineSrc "Engine/src/*.cpp")
-
-# 헤더파일 설정
-include_directories(Engine/include)
-
-# 엔진 실행 파일 생성
-add_executable(${EXE_NAME} ${EngineSrc})
-
-# Windows에서 아이콘 적용 (리소스 파일 생성)
-if(WIN32)
-    set(RC_FILE "${CMAKE_BINARY_DIR}/icon.rc")
-    set(ICO_FILE "${CMAKE_SOURCE_DIR}/${ICON_PATH}")
-
-    file(WRITE ${RC_FILE} "IDI_ICON1 ICON \"${ICO_FILE}\"\n")
-
-    add_custom_command(
-        OUTPUT ${CMAKE_BINARY_DIR}/icon.res
-        COMMAND windres ${RC_FILE} -O coff -o ${CMAKE_BINARY_DIR}/icon.res
-        DEPENDS ${RC_FILE}
-    )
-
-    target_sources(${EXE_NAME} PRIVATE ${CMAKE_BINARY_DIR}/icon.res)
+if(WIN32 AND NOT ICON_PATH STREQUAL "")
+    get_filename_component(ICO_FILE "${ICON_PATH}" ABSOLUTE BASE_DIR "${CONFIG_DIR}")
+    if(NOT EXISTS "${ICO_FILE}" OR IS_DIRECTORY "${ICO_FILE}")
+        message(FATAL_ERROR "The selected program icon does not exist: ${ICO_FILE}")
+    endif()
+    enable_language(RC)
+    file(TO_CMAKE_PATH "${ICO_FILE}" ICO_RESOURCE_PATH)
+    file(WRITE "${CMAKE_BINARY_DIR}/icon.rc" "#pragma code_page(65001)\n101 ICON \"${ICO_RESOURCE_PATH}\"\n")
+    target_sources(${EXE_NAME} PRIVATE "${CMAKE_BINARY_DIR}/icon.rc")
 endif()
 
-# 플러그인 자동 감지 및 추가
 set(PLUGIN_DIR "${CMAKE_SOURCE_DIR}/Plugin")
-file(GLOB PLUGIN_FOLDERS LIST_DIRECTORIES true ${PLUGIN_DIR}/*)
-
+file(GLOB PLUGIN_FOLDERS LIST_DIRECTORIES true "${PLUGIN_DIR}/*")
 foreach(PLUGIN_PATH ${PLUGIN_FOLDERS})
-    if (IS_DIRECTORY ${PLUGIN_PATH})
-        get_filename_component(PLUGIN_NAME ${PLUGIN_PATH} NAME)
-
-        # 헤더 추가
-        set(PLUGIN_INC_DIR "${PLUGIN_PATH}/inc")
-        if (EXISTS ${PLUGIN_INC_DIR})
-            include_directories(${PLUGIN_INC_DIR})
-            message(STATUS "Adding include directory: ${PLUGIN_INC_DIR}")
+    if(IS_DIRECTORY "${PLUGIN_PATH}")
+        get_filename_component(PLUGIN_NAME "${PLUGIN_PATH}" NAME)
+        if(PLUGIN_NAME STREQUAL "Core" OR PLUGIN_NAME STREQUAL "SYCUDA" OR PLUGIN_NAME STREQUAL "Blueprint")
+            continue()
         endif()
-
-        # 정적 라이브러리 추가
-        set(PLUGIN_LIB_DIR "${PLUGIN_PATH}/lib/")
-        file(GLOB PLUGIN_LIB_FILES "${PLUGIN_LIB_DIR}/*.lib")
-
-        if (PLUGIN_LIB_FILES)
-            message(STATUS "Linking static library: ${PLUGIN_LIB_FILES}")
-            target_link_libraries(${EXE_NAME} PUBLIC ${PLUGIN_LIB_FILES})
+        if(NOT EXISTS "${PLUGIN_PATH}/inc")
+            continue()
         endif()
-
-        # 동적 라이브러리 복사
-        set(PLUGIN_DLL_DIR "${PLUGIN_PATH}/dll/")
-        file(GLOB PLUGIN_DLL_FILES "${PLUGIN_DLL_DIR}/*.dll")
-
-        if (PLUGIN_DLL_FILES)
-            message(STATUS "Copying DLL files to output directory: ${PLUGIN_DLL_FILES}")
-            foreach(DLL_FILE ${PLUGIN_DLL_FILES})
-                add_custom_command(TARGET ${EXE_NAME} POST_BUILD
-                    COMMAND ${CMAKE_COMMAND} -E copy ${DLL_FILE} $<TARGET_FILE_DIR:${EXE_NAME}>
-                )
-                add_custom_command(TARGET ${EXE_NAME} POST_BUILD
-                    COMMAND ${CMAKE_COMMAND} -E copy ${DLL_FILE} ${EXPORT_PATH}
-                )
-            endforeach()
+        target_include_directories(${EXE_NAME} PRIVATE "${PLUGIN_PATH}/inc")
+        file(GLOB PLUGIN_LIB_FILES "${PLUGIN_PATH}/lib/x64/*.lib")
+        if(PLUGIN_LIB_FILES)
+            target_link_libraries(${EXE_NAME} PRIVATE ${PLUGIN_LIB_FILES})
         endif()
+        file(GLOB PLUGIN_DLL_FILES "${PLUGIN_PATH}/dll/x64/*.dll")
+        foreach(DLL_FILE ${PLUGIN_DLL_FILES})
+            add_custom_command(TARGET ${EXE_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${DLL_FILE}" "$<TARGET_FILE_DIR:${EXE_NAME}>")
+        endforeach()
     endif()
 endforeach()
 
-# 빌드 결과 EXE 복사
+set(YUUNA_BLUEPRINT_DIR "${CMAKE_SOURCE_DIR}/Plugin/Blueprint")
+if(NOT EXISTS "${YUUNA_BLUEPRINT_DIR}/inc/YuunaBlueprint.h" OR NOT EXISTS "${YUUNA_BLUEPRINT_DIR}/dll/x64/YuunaBlueprint.dll")
+    message(FATAL_ERROR "The Blueprint plugin is missing: Plugin/Blueprint needs inc/YuunaBlueprint.h and dll/x64/YuunaBlueprint.dll")
+endif()
+target_include_directories(${EXE_NAME} PRIVATE "${YUUNA_BLUEPRINT_DIR}/inc")
 add_custom_command(TARGET ${EXE_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${EXPORT_PATH}
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${EXE_NAME}> ${EXPORT_PATH}
-)
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:${EXE_NAME}>/Plugin/Blueprint/dll"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${YUUNA_BLUEPRINT_DIR}/dll/x64/YuunaBlueprint.dll" "$<TARGET_FILE_DIR:${EXE_NAME}>/Plugin/Blueprint/dll/YuunaBlueprint.dll")
+foreach(DLL_FILE ${SDK_DLL_FILES} ${RUNTIME_DLL_FILES})
+    add_custom_command(TARGET ${EXE_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${DLL_FILE}" "$<TARGET_FILE_DIR:${EXE_NAME}>")
+endforeach()
 
+if(YUUNA_ONLINE)
+    if(NOT EXISTS "${YUUNA_CODE}/ServerMain.cpp")
+        message(FATAL_ERROR "An online build needs the generated ServerMain.cpp in the Code folder")
+    endif()
+    set(SERVER_NAME "${EXE_NAME}Server")
+    set(SERVER_DIR "${EXPORT_PATH}/server")
+    add_executable(${SERVER_NAME} "${YUUNA_CODE}/ServerMain.cpp" "${YUUNA_CODE}/GameConfig.cpp")
+    if(YUUNA_PACKAGED_SDK)
+        target_include_directories(${SERVER_NAME} PRIVATE "${YUUNA_CODE}" "${YUUNA_ROOT}/Plugin/Core/inc" "${YUUNA_ROOT}/Plugin/Core/inc/json")
+        target_link_directories(${SERVER_NAME} PRIVATE "${YUUNA_ROOT}/Plugin/Core/lib/x64")
+    else()
+        target_include_directories(${SERVER_NAME} PRIVATE "${YUUNA_CODE}" "${YUUNA_ROOT}/Core" "${YUUNA_ROOT}/json" "${YUUNA_ROOT}/asio-1.18.0/include")
+        target_link_directories(${SERVER_NAME} PRIVATE "${YUUNA_BINARY_DIR}")
+    endif()
+    target_include_directories(${SERVER_NAME} PRIVATE "${YUUNA_BLUEPRINT_DIR}/inc")
+    target_link_libraries(${SERVER_NAME} PRIVATE Core)
+    if(NOT EXISTS "${CMAKE_SOURCE_DIR}/Plugin/Physics/inc/GamePhysics.h" OR NOT EXISTS "${CMAKE_SOURCE_DIR}/Plugin/Physics/lib/x64/Physics.lib")
+        message(FATAL_ERROR "The dedicated server needs the Physics plugin: Plugin/Physics/inc and lib/x64")
+    endif()
+    target_include_directories(${SERVER_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/Plugin/Physics/inc")
+    target_link_libraries(${SERVER_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/Plugin/Physics/lib/x64/Physics.lib")
+    if(MSVC)
+        target_compile_options(${SERVER_NAME} PRIVATE /W4 /EHsc /utf-8)
+        target_compile_definitions(${SERVER_NAME} PRIVATE NOMINMAX UNICODE _UNICODE)
+    endif()
+    add_dependencies(${SERVER_NAME} ${EXE_NAME})
+    set_target_properties(${SERVER_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${SERVER_DIR}")
+    foreach(CONFIG Debug Release RelWithDebInfo MinSizeRel)
+        string(TOUPPER "${CONFIG}" CONFIG_UPPER)
+        set_target_properties(${SERVER_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${SERVER_DIR}")
+    endforeach()
+    file(GLOB SERVER_PLUGIN_DLL_FILES "${CMAKE_SOURCE_DIR}/Plugin/Physics/dll/x64/*.dll")
+    add_custom_command(TARGET ${SERVER_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:${SERVER_NAME}>/Plugin/Blueprint/dll"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${YUUNA_BLUEPRINT_DIR}/dll/x64/YuunaBlueprint.dll" "$<TARGET_FILE_DIR:${SERVER_NAME}>/Plugin/Blueprint/dll/YuunaBlueprint.dll")
+    foreach(DLL_FILE ${SERVER_SDK_DLL_FILES} ${SERVER_PLUGIN_DLL_FILES} ${RUNTIME_DLL_FILES})
+        add_custom_command(TARGET ${SERVER_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${DLL_FILE}" "$<TARGET_FILE_DIR:${SERVER_NAME}>")
+    endforeach()
+endif()

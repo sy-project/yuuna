@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 class cEncryptManager : public Singleton<cEncryptManager>
 {
@@ -7,7 +7,11 @@ private:
 	friend class Singleton;
 
 public:
-	void Encrypt();
+
+
+    static std::vector<unsigned char> EncryptBuffer(const std::vector<unsigned char>& data,const std::string& password);
+    static std::vector<unsigned char> DecryptBuffer(const std::vector<unsigned char>& data,const std::string& password);
+    void Encrypt();
 	void Decrypt();
 
 	std::string EncryptData(std::string _data);
